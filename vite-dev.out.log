@@ -1,0 +1,74 @@
+
+> @figma/my-make-file@0.0.1 dev
+> vite --host 127.0.0.1 --port 5173
+
+
+  [32m[1mVITE[22m v6.3.5[39m  [2mready in [0m[1m452[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m03:04:53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:05:02[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:05:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:06:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:06:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:06:32[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:06:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:09:18[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:13:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\Portfolio.tsx, /src/styles/index.css[22m
+[2m03:14:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/index.css, /@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\Root.tsx[22m
+[2m03:14:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/index.css, /@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\components\common\Common.tsx[22m
+[2m03:15:22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\HomePage.tsx, /src/styles/index.css[22m
+[2m03:15:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\HomePage.tsx, /src/styles/index.css[22m
+[2m03:15:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/index.css, /@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\Root.tsx, /@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\ProjectsPage.tsx, /@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\ProjectDetailPage.tsx, /@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\HomePage.tsx[22m
+[2m03:16:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/index.css, /@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\Root.tsx[22m
+[2m03:16:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\pages\HomePage.tsx, /src/styles/index.css[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/accordion.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/alert-dialog.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/alert.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/aspect-ratio.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/avatar.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/badge.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/breadcrumb.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/button.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/calendar.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/card.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/carousel.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/chart.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/checkbox.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/collapsible.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/command.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/context-menu.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/dialog.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/drawer.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/dropdown-menu.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/form.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/hover-card.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/input-otp.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/input.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/label.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/menubar.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/navigation-menu.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/pagination.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/popover.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/progress.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/radio-group.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/resizable.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/scroll-area.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/select.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/separator.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sheet.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sidebar.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/skeleton.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/slider.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sonner.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/switch.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/table.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/tabs.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/textarea.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/toggle-group.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/toggle.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/tooltip.tsx[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/use-mobile.ts[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/utils.ts[22m
+[2m03:17:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/figma/ImageWithFallback.tsx[22m
+[2m03:20:40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\thede\Downloads\Portfolio for Lucas Montalvão\src\app\components\projects\ProjectGalleryCard.tsx, /src/styles/index.css[22m
