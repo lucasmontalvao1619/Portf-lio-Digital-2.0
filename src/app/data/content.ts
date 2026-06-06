@@ -22,7 +22,6 @@ export {
   getProjectDetails,
 } from "./projects";
 export {
-  BEYOND_CARDS,
   IDENTITY,
   INFINITE_BAR_REPEATS,
   MARQUEE,
@@ -30,7 +29,6 @@ export {
   TRAJ_YEARS,
 } from "./skills";
 export type {
-  BeyondCard,
   CategoryIcon,
   ContactIconKey,
   ContactLink,

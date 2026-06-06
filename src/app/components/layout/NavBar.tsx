@@ -32,8 +32,8 @@ export function NavBar({
   const isActive = (id: NavItemId, isRoute?: boolean) =>
     isRoute ? onProjectsPage : !onProjectsPage && activeSection === id;
 
-  const navBg        = isDark ? "rgba(6,6,6,0.9)"        : "rgba(255,255,255,0.92)";
-  const navBorder    = isDark ? "rgba(255,255,255,0.07)"  : "rgba(0,0,0,0.07)";
+  const navBg        = isDark ? "rgba(5,7,13,0.45)"       : "rgba(255,255,255,0.92)";
+  const navBorder    = isDark ? "rgba(255,255,255,0.09)"  : "rgba(0,0,0,0.07)";
   const logoAngle    = isDark ? "rgba(255,255,255,0.28)"  : "rgba(0,0,0,0.28)";
   const logoName     = isDark ? "rgba(255,255,255,0.92)"  : "rgba(0,0,0,0.88)";
   const linkActive   = isDark ? "rgba(255,255,255,0.92)"  : "rgba(0,0,0,0.88)";
@@ -46,7 +46,7 @@ export function NavBar({
   const sepColor     = isDark ? "rgba(255,255,255,0.16)"  : "rgba(0,0,0,0.16)";
   const ptActive     = isDark ? "rgba(255,255,255,0.92)"  : "rgba(0,0,0,0.88)";
   const ptInactive   = isDark ? "rgba(255,255,255,0.28)"  : "rgba(0,0,0,0.3)";
-  const menuBg       = isDark ? "rgba(6,6,6,0.97)"        : "rgba(255,255,255,0.97)";
+  const menuBg       = isDark ? "rgba(5,7,13,0.72)"       : "rgba(255,255,255,0.97)";
   const hamburgClr   = isDark ? "rgba(255,255,255,0.65)"  : "rgba(0,0,0,0.6)";
 
   const pill: React.CSSProperties = {
@@ -56,7 +56,7 @@ export function NavBar({
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50"
-      style={{ backgroundColor: navBg, backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderBottom: `1px solid ${navBorder}`, transition: "background-color 0.3s ease, border-color 0.3s ease" }}>
+      style={{ backgroundColor: navBg, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderBottom: `1px solid ${navBorder}`, transition: "background-color 0.3s ease, border-color 0.3s ease" }}>
       <div className="max-w-6xl mx-auto px-6 h-14 relative flex items-center">
 
         <button

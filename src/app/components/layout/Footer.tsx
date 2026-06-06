@@ -2,13 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import { FOOTER_LINKS, FOOTER_SCROLL_IDS, isExternalLink } from "../../data/content";
 import type { SectionId, Tr } from "../../data/content";
 
-export function Footer({ tr, handleNavClick, handleProjectsClick }: {
+export function Footer({ isDark, tr, handleNavClick, handleProjectsClick }: {
+  isDark: boolean;
   tr: Tr;
   handleNavClick: (id: SectionId) => void;
   handleProjectsClick: () => void;
 }) {
   return (
-    <footer style={{ backgroundColor: "#070707" }}>
+    <footer className="relative z-10" style={{ backgroundColor: isDark ? "rgba(5, 7, 13, 0.72)" : "#070707" }}>
       <div className="max-w-6xl mx-auto px-6 pt-20 pb-10">
         <div className="flex flex-col md:flex-row gap-12 pb-16"
           style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
+import { CosmicBackground } from "../components/home/CosmicBackground";
 import { Footer } from "../components/layout/Footer";
 import { NavBar } from "../components/layout/NavBar";
 import { SCROLL_IDS, T } from "../data/content";
@@ -82,8 +83,10 @@ export function Root() {
   const ctx: OutletCtx = { isDark, lang, tr, scrollToSection, handleProjectsClick };
 
   return (
-    <div className="bg-background text-foreground font-sans antialiased min-h-screen overflow-x-hidden"
+    <div className="relative bg-background text-foreground font-sans antialiased min-h-screen overflow-x-hidden"
       style={{ transition: "background-color 0.3s ease, color 0.3s ease" }}>
+      <CosmicBackground isDark={isDark} />
+
       <style>{`
         @keyframes fade-up { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
         @keyframes infinite-bar { from { transform:translate3d(0,0,0); } to { transform:translate3d(-12.5%,0,0); } }
@@ -107,9 +110,11 @@ export function Root() {
         onProjectsPage={location.pathname.startsWith("/projetos")}
       />
 
-      <Outlet context={ctx} />
+      <main className="relative z-10">
+        <Outlet context={ctx} />
+      </main>
 
-      <Footer tr={tr} handleNavClick={handleNavClick} handleProjectsClick={handleProjectsClick} />
+      <Footer isDark={isDark} tr={tr} handleNavClick={handleNavClick} handleProjectsClick={handleProjectsClick} />
     </div>
   );
 }

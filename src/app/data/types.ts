@@ -78,10 +78,6 @@ export interface Translation {
   readonly f_email_ph: string;
   readonly f_msg_ph: string;
   readonly s_identity: string;
-  readonly s_beyond: string;
-  readonly beyond_subtitle: string;
-  readonly beyond_footer: string;
-  readonly beyond_highlights_label: string;
   readonly footer_tagline: string;
   readonly footer_site: string;
   readonly footer_links: string;
@@ -148,14 +144,6 @@ export interface SkillItem {
 export interface SkillCard {
   readonly catIcon: CategoryIcon;
   readonly items: readonly SkillItem[];
-}
-
-export interface BeyondCard {
-  readonly num: string;
-  readonly Icon: CategoryIcon;
-  readonly title: string;
-  readonly desc: string;
-  readonly highlights: readonly string[];
 }
 
 export type ContactIconKey = "github" | "linkedin" | "mail" | "phone";

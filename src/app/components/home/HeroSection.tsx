@@ -22,14 +22,15 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
   return (
     <section id="inicio" className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(to right,${gridLine} 1px,transparent 1px),linear-gradient(to bottom,${gridLine} 1px,transparent 1px)`,
           backgroundSize: "155px 110px",
+          opacity: isDark ? 0.72 : 1,
         }}
       />
       {CORNER_CLASSES.map((className) => (
-        <div key={className} className={`absolute w-5 h-5 border-foreground/10 pointer-events-none ${className}`} />
+        <div key={className} className={`absolute z-[2] w-5 h-5 border-foreground/10 pointer-events-none ${className}`} />
       ))}
 
       <div className="text-center max-w-4xl mx-auto relative z-10">

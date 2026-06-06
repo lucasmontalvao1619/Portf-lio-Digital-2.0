@@ -82,11 +82,6 @@ export const T = {
 
     s_identity: "Minha Essência",
 
-    s_beyond: "Além do Código",
-    beyond_subtitle: "Desenvolvimento, pesquisa, produção acadêmica e aprendizado contínuo além da programação.",
-    beyond_footer: "Acredito que bons sistemas nascem da combinação entre código, pesquisa, clareza e entendimento real do problema.",
-    beyond_highlights_label: "Destaques",
-
     footer_tagline: "Construindo software e aprendendo todos os dias.",
     footer_site: "Site",
     footer_links: "Links",
@@ -174,11 +169,6 @@ export const T = {
     f_msg_ph: "Your message...",
 
     s_identity: "Who I Am",
-
-    s_beyond: "Beyond the Code",
-    beyond_subtitle: "Development, research, academic production, and continuous learning beyond programming.",
-    beyond_footer: "I believe great systems are born from the combination of code, research, clarity, and a genuine understanding of the problem.",
-    beyond_highlights_label: "Highlights",
 
     footer_tagline: "Building software and learning every day.",
     footer_site: "Site",

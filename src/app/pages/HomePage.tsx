@@ -1,6 +1,5 @@
 import { useOutletContext } from "react-router";
 import { AboutSection } from "../components/home/AboutSection";
-import { BeyondCodeSection } from "../components/home/BeyondCodeSection";
 import { ContactSection } from "../components/home/ContactSection";
 import { EducationSection } from "../components/home/EducationSection";
 import { HeroSection } from "../components/home/HeroSection";
@@ -13,7 +12,7 @@ import { IDENTITY, MARQUEE } from "../data/content";
 import type { OutletCtx } from "../data/content";
 
 export function HomePage() {
-  const { isDark, lang, tr, scrollToSection, handleProjectsClick } = useOutletContext<OutletCtx>();
+  const { isDark, tr, scrollToSection, handleProjectsClick } = useOutletContext<OutletCtx>();
 
   return (
     <>
@@ -35,10 +34,6 @@ export function HomePage() {
       <Divider />
 
       <ServicesSection tr={tr} />
-
-      <Divider />
-
-      <BeyondCodeSection lang={lang} tr={tr} />
 
       <Divider />
 
