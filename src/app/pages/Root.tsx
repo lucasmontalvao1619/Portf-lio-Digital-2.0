@@ -3,41 +3,42 @@ import { Outlet, useLocation, useNavigate } from "react-router";
 import { Footer } from "../components/layout/Footer";
 import { NavBar } from "../components/layout/NavBar";
 import { SCROLL_IDS, T } from "../data/content";
-import type { Lang, OutletCtx } from "../data/content";
+import type { Lang, OutletCtx, SectionId } from "../data/content";
+import { readStorageValue, writeStorageValue } from "../lib/storage";
+
+const isLang = (value: string): value is Lang => value === "PT" || value === "EN";
+const isTheme = (value: string): value is "dark" | "light" => value === "dark" || value === "light";
 
 export function Root() {
-  const [lang, setLang] = useState<Lang>(() => {
-    try { return (localStorage.getItem("lang") as Lang) || "PT"; } catch { return "PT"; }
-  });
-  const [isDark, setIsDark] = useState(() => {
-    try { return localStorage.getItem("theme") === "dark"; } catch { return false; }
-  });
+  const [lang, setLang] = useState<Lang>(() => readStorageValue("lang", "PT", isLang));
+  const [isDark, setIsDark] = useState(() => readStorageValue("theme", "light", isTheme) === "dark");
   const [menuOpen, setMenuOpen]           = useState(false);
-  const [activeSection, setActiveSection] = useState("inicio");
+  const [activeSection, setActiveSection] = useState<SectionId>("inicio");
   const pendingScrollRef                  = useRef<string | null>(null);
   const navigate                          = useNavigate();
   const location                          = useLocation();
 
-  const tr = T[lang] as Tr;
+  const tr = T[lang];
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
-    try { localStorage.setItem("theme", isDark ? "dark" : "light"); } catch {}
+    writeStorageValue("theme", isDark ? "dark" : "light");
   }, [isDark]);
 
   useEffect(() => {
-    try { localStorage.setItem("lang", lang); } catch {}
+    writeStorageValue("lang", lang);
   }, [lang]);
 
   useEffect(() => {
     if (location.pathname !== "/") return;
     const update = () => {
-      const y = window.scrollY + 80; let cur = "inicio";
+      const y = window.scrollY + 80;
+      let currentSection: SectionId = "inicio";
       for (const id of SCROLL_IDS) {
         const el = document.getElementById(id);
-        if (el && el.offsetTop <= y) cur = id;
+        if (el && el.offsetTop <= y) currentSection = id;
       }
-      setActiveSection(cur);
+      setActiveSection(currentSection);
     };
     window.addEventListener("scroll", update, { passive: true });
     update();
@@ -57,13 +58,13 @@ export function Root() {
     }
   }, [location.pathname]);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: SectionId) => {
     setMenuOpen(false);
     if (id === "inicio") window.scrollTo({ top: 0, behavior: "smooth" });
     else document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleNavClick = (id: string) => {
+  const handleNavClick = (id: SectionId) => {
     setMenuOpen(false);
     if (location.pathname !== "/") {
       pendingScrollRef.current = id;

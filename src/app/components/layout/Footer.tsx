@@ -1,10 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
-import { FOOTER_LINKS, FOOTER_SCROLL_IDS } from "../../data/content";
-import type { Tr } from "../../data/content";
+import { FOOTER_LINKS, FOOTER_SCROLL_IDS, isExternalLink } from "../../data/content";
+import type { SectionId, Tr } from "../../data/content";
 
 export function Footer({ tr, handleNavClick, handleProjectsClick }: {
   tr: Tr;
-  handleNavClick: (id: string) => void;
+  handleNavClick: (id: SectionId) => void;
   handleProjectsClick: () => void;
 }) {
   return (
@@ -27,12 +27,14 @@ export function Footer({ tr, handleNavClick, handleProjectsClick }: {
             </p>
             {FOOTER_SCROLL_IDS.map((id, i) => (
               <button key={id} onClick={() => handleNavClick(id)}
+                type="button"
                 className="text-sm text-left hover:text-white transition-colors"
                 style={{ color: "rgba(255,255,255,0.42)" }}>
                 {tr.footer_nav[i]}
               </button>
             ))}
             <button onClick={handleProjectsClick}
+              type="button"
               className="text-sm text-left hover:text-white transition-colors"
               style={{ color: "rgba(255,255,255,0.42)" }}>
               {tr.nav_labels[5]}
@@ -45,8 +47,8 @@ export function Footer({ tr, handleNavClick, handleProjectsClick }: {
             </p>
             {FOOTER_LINKS.map(({ label, href }) => (
               <a key={label} href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                target={isExternalLink(href) ? "_blank" : undefined}
+                rel={isExternalLink(href) ? "noopener noreferrer" : undefined}
                 className="text-sm transition-colors group inline-flex items-center gap-1 hover:text-white"
                 style={{ color: "rgba(255,255,255,0.42)" }}>
                 {label}

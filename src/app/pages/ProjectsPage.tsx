@@ -1,11 +1,12 @@
 import { useOutletContext } from "react-router";
 import { ProjectGalleryCard } from "../components/projects/ProjectGalleryCard";
 import { Reveal } from "../components/common/Common";
-import { PROJECT_ALT, PROJECT_GITHUB, PROJECT_IMAGES, PROJECT_LIVE, PROJECT_SLUGS, PROJECT_TECH } from "../data/content";
+import { getLocalizedProjects } from "../data/content";
 import type { OutletCtx } from "../data/content";
 
 export function ProjectsPage() {
   const { tr } = useOutletContext<OutletCtx>();
+  const projects = getLocalizedProjects(tr);
 
   return (
     <div className="pt-28 pb-32 px-6">
@@ -19,21 +20,21 @@ export function ProjectsPage() {
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-          {[0, 1, 2, 3].map((i) => (
+          {projects.map((project) => (
             <ProjectGalleryCard
-              key={i}
-              num={`0${i + 1}`}
-              name={tr.proj_names[i]}
-              desc={tr.proj_descs[i]}
-              tech={PROJECT_TECH[i]}
-              image={PROJECT_IMAGES[i]}
-              alt={PROJECT_ALT[i]}
-              github={PROJECT_GITHUB[i]}
-              live={PROJECT_LIVE[i]}
+              key={project.slug}
+              num={project.num}
+              name={project.name}
+              desc={project.desc}
+              tech={project.tech}
+              image={project.image}
+              alt={project.alt}
+              github={project.github}
+              live={project.live}
               githubLabel={tr.github_btn}
               liveLabel={tr.live_btn}
-              delay={i * 80}
-              slug={PROJECT_SLUGS[i]}
+              delay={project.index * 80}
+              slug={project.slug}
             />
           ))}
         </div>

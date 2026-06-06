@@ -3,18 +3,35 @@ import type React from "react";
 import { Send } from "lucide-react";
 import type { Tr } from "../../data/content";
 
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const INITIAL_FORM_DATA: ContactFormData = { name: "", email: "", message: "" };
+
 export function ContactForm({ tr }: { tr: Tr }) {
-  const [data, setData]     = useState({ name: "", email: "", message: "" });
-  const [sent, setSent]     = useState(false);
+  const [formData, setFormData] = useState<ContactFormData>(INITIAL_FORM_DATA);
+  const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!data.name || !data.email || !data.message) return;
+  const updateField = (field: keyof ContactFormData, value: string) => {
+    setFormData((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message) {
+      return;
+    }
+
     setSending(true);
     setTimeout(() => {
-      setSent(true); setSending(false);
-      setData({ name: "", email: "", message: "" });
+      setSent(true);
+      setSending(false);
+      setFormData(INITIAL_FORM_DATA);
       setTimeout(() => setSent(false), 5000);
     }, 700);
   };
@@ -38,19 +55,19 @@ export function ContactForm({ tr }: { tr: Tr }) {
   }
 
   return (
-    <form onSubmit={submit} noValidate className="flex flex-col gap-10 max-w-lg">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-10 max-w-lg">
       <div className="grid sm:grid-cols-2 gap-8 sm:gap-10">
         <div>
-          <label className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_name}</label>
-          <input type="text" value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })}
+          <label htmlFor="contact-name" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_name}</label>
+          <input id="contact-name" type="text" value={formData.name} onChange={(e) => updateField("name", e.target.value)}
             className={inputBase} style={{ borderColor: "var(--border)" }}
             onFocus={(e) => (e.currentTarget.style.borderColor = "var(--foreground)")}
             onBlur={(e)  => (e.currentTarget.style.borderColor = "var(--border)")}
             placeholder={tr.f_name_ph} />
         </div>
         <div>
-          <label className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_email}</label>
-          <input type="email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })}
+          <label htmlFor="contact-email" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_email}</label>
+          <input id="contact-email" type="email" value={formData.email} onChange={(e) => updateField("email", e.target.value)}
             className={inputBase} style={{ borderColor: "var(--border)" }}
             onFocus={(e) => (e.currentTarget.style.borderColor = "var(--foreground)")}
             onBlur={(e)  => (e.currentTarget.style.borderColor = "var(--border)")}
@@ -58,8 +75,8 @@ export function ContactForm({ tr }: { tr: Tr }) {
         </div>
       </div>
       <div>
-        <label className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_message}</label>
-        <textarea value={data.message} onChange={(e) => setData({ ...data, message: e.target.value })}
+        <label htmlFor="contact-message" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_message}</label>
+        <textarea id="contact-message" value={formData.message} onChange={(e) => updateField("message", e.target.value)}
           rows={4} className={`${inputBase} resize-none`} style={{ borderColor: "var(--border)" }}
           onFocus={(e) => (e.currentTarget.style.borderColor = "var(--foreground)")}
           onBlur={(e)  => (e.currentTarget.style.borderColor = "var(--border)")}

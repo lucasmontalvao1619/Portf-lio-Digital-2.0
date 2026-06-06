@@ -1,19 +1,31 @@
 import { useState } from "react";
+import type React from "react";
 import { useNavigate } from "react-router";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import { useInView } from "../../lib/useInView";
 
 export function ProjectGalleryCard({ num, name, desc, tech, image, alt, github, live, githubLabel, liveLabel, delay, slug }: {
-  num: string; name: string; desc: string; tech: string[]; image: string; alt: string;
+  num: string; name: string; desc: string; tech: readonly string[]; image: string; alt: string;
   github: string; live: string; githubLabel: string; liveLabel: string; delay: number; slug: string;
 }) {
   const { ref, inView } = useInView(0.05);
   const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
+  const openProject = () => navigate(`/projetos/${slug}`);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProject();
+    }
+  };
 
   return (
     <div ref={ref}
-      onClick={() => navigate(`/projetos/${slug}`)}
+      role="link"
+      tabIndex={0}
+      aria-label={name}
+      onClick={openProject}
+      onKeyDown={handleKeyDown}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="border border-border overflow-hidden cursor-pointer"

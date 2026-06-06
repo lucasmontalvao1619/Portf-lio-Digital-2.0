@@ -2,39 +2,34 @@ import { useState } from "react";
 import type React from "react";
 import { Menu, X } from "lucide-react";
 import { GlobeIcon, MoonIcon, SunIcon } from "../icons/PortfolioIcons";
-import type { Lang, Tr } from "../../data/content";
+import { buildNavItems } from "../../data/content";
+import type { Lang, NavItemId, SectionId, Tr } from "../../data/content";
+
+interface NavBarProps {
+  lang: Lang;
+  setLang: React.Dispatch<React.SetStateAction<Lang>>;
+  isDark: boolean;
+  setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  activeSection: SectionId;
+  handleNavClick: (id: SectionId) => void;
+  handleProjectsClick: () => void;
+  tr: Tr;
+  onProjectsPage: boolean;
+}
 
 export function NavBar({
   lang, setLang, isDark, setIsDark,
   menuOpen, setMenuOpen,
   activeSection, handleNavClick, handleProjectsClick,
   tr, onProjectsPage,
-}: {
-  lang: Lang;
-  setLang: (l: Lang) => void;
-  isDark: boolean;
-  setIsDark: (fn: (p: boolean) => boolean) => void;
-  menuOpen: boolean;
-  setMenuOpen: (v: boolean) => void;
-  activeSection: string;
-  handleNavClick: (id: string) => void;
-  handleProjectsClick: () => void;
-  tr: Tr;
-  onProjectsPage: boolean;
-}) {
+}: NavBarProps) {
   const [logoHov, setLogoHov] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const navItems = buildNavItems(tr);
 
-  const NAV_ITEMS = [
-    { label: tr.nav_labels[0], id: "inicio" },
-    { label: tr.nav_labels[1], id: "sobre" },
-    { label: tr.nav_labels[2], id: "habilidades" },
-    { label: tr.nav_labels[3], id: "trajetoria" },
-    { label: tr.nav_labels[4], id: "contato" },
-    { label: tr.nav_labels[5], id: "projetos", isRoute: true },
-  ];
-
-  const isActive = (id: string, isRoute?: boolean) =>
+  const isActive = (id: NavItemId, isRoute?: boolean) =>
     isRoute ? onProjectsPage : !onProjectsPage && activeSection === id;
 
   const navBg        = isDark ? "rgba(6,6,6,0.9)"        : "rgba(255,255,255,0.92)";
@@ -65,6 +60,7 @@ export function NavBar({
       <div className="max-w-6xl mx-auto px-6 h-14 relative flex items-center">
 
         <button
+          type="button"
           onClick={() => handleNavClick("inicio")}
           onMouseEnter={() => setLogoHov(true)}
           onMouseLeave={() => setLogoHov(false)}
@@ -85,7 +81,7 @@ export function NavBar({
         </button>
 
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-5">
-          {NAV_ITEMS.map(({ label, id, isRoute }) => {
+          {navItems.map(({ label, id, isRoute }) => {
             const active = isActive(id, isRoute);
             if (isRoute) {
               const routeBorder = active
@@ -96,6 +92,7 @@ export function NavBar({
                 : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)";
               return (
                 <button key={id}
+                  type="button"
                   onClick={handleProjectsClick}
                   className="relative text-[12px] font-mono px-3 py-0.5 shrink-0 transition-all duration-200"
                   style={{ color: routeColor, border: `1px solid ${routeBorder}`, background: active ? linkActive : "transparent" }}
@@ -117,6 +114,7 @@ export function NavBar({
             }
             return (
               <button key={id}
+                type="button"
                 onClick={() => handleNavClick(id)}
                 onMouseEnter={() => setHoveredId(id)}
                 onMouseLeave={() => setHoveredId(null)}
@@ -139,6 +137,8 @@ export function NavBar({
         <div className="ml-auto flex items-center gap-2 shrink-0">
           <div className="hidden md:flex items-center gap-2">
             <button onClick={() => setLang(lang === "PT" ? "EN" : "PT")}
+              type="button"
+              aria-label="Toggle language"
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono" style={pill}
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = pillHoverBg)}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = pillBg)}>
@@ -148,6 +148,7 @@ export function NavBar({
               <span style={{ color: lang === "EN" ? ptActive : ptInactive, transition: "color 0.2s" }}>EN</span>
             </button>
             <button onClick={() => setIsDark((d) => !d)}
+              type="button"
               className="flex items-center justify-center w-8 h-8" style={pill}
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = pillHoverBg)}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = pillBg)}
@@ -157,6 +158,7 @@ export function NavBar({
           </div>
 
           <button className="md:hidden flex items-center justify-center w-8 h-8 shrink-0"
+            type="button"
             onClick={() => setMenuOpen(!menuOpen)}
             style={{ color: hamburgClr }} aria-label="Toggle menu">
             {menuOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
@@ -167,11 +169,12 @@ export function NavBar({
       {menuOpen && (
         <div className="md:hidden px-6 py-6 flex flex-col gap-4"
           style={{ backgroundColor: menuBg, borderTop: `1px solid ${navBorder}` }}>
-          {NAV_ITEMS.map(({ label, id, isRoute }) => {
+          {navItems.map(({ label, id, isRoute }) => {
             const active = isActive(id, isRoute);
             if (isRoute) {
               return (
                 <button key={id} onClick={handleProjectsClick}
+                  type="button"
                   className="text-[13px] font-mono text-left py-1 px-3 w-fit border"
                   style={{
                     color: active ? linkActive : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)",
@@ -183,6 +186,7 @@ export function NavBar({
             }
             return (
               <button key={id} onClick={() => handleNavClick(id)}
+                type="button"
                 className="text-[13px] font-mono text-left py-1"
                 style={{ color: active ? linkActive : linkInactive }}>
                 {label}
@@ -192,6 +196,8 @@ export function NavBar({
           <div className="flex items-center gap-3 pt-2"
             style={{ borderTop: `1px solid ${navBorder}`, marginTop: "4px" }}>
             <button onClick={() => setLang(lang === "PT" ? "EN" : "PT")}
+              type="button"
+              aria-label="Toggle language"
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono" style={pill}>
               <GlobeIcon color={isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)"} />
               <span style={{ color: lang === "PT" ? ptActive : ptInactive }}>PT</span>
@@ -199,6 +205,7 @@ export function NavBar({
               <span style={{ color: lang === "EN" ? ptActive : ptInactive }}>EN</span>
             </button>
             <button onClick={() => setIsDark((d) => !d)}
+              type="button"
               className="flex items-center justify-center w-8 h-8" style={pill}
               aria-label="Toggle theme">
               {isDark ? <SunIcon color="rgba(255,255,255,0.6)" /> : <MoonIcon color="rgba(0,0,0,0.5)" />}
