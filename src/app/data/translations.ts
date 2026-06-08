@@ -41,7 +41,7 @@ Acredito no aprendizado contínuo como ferramenta de evolução, buscando consta
     ],
     proj_descs: [
       "Plataforma completa para gestão de imóveis, contratos e clientes.",
-      "Sistema web academico para gestao empresarial, relatorios financeiros e dashboards.",
+      "Sistema web acadêmico para gestão empresarial, relatórios financeiros e dashboards.",
       "Portfólio pessoal desenvolvido para apresentação de trabalhos criativos.",
       "Portfólio pessoal com design minimalista suíço e foco em performance.",
     ],

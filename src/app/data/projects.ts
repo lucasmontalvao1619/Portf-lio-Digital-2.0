@@ -46,11 +46,11 @@ export const PROJECTS = [
     ],
     details: {
       PT: {
-        overview: "O Projeto DUBY e um site/sistema web academico criado em equipe para organizar processos de gestao empresarial. A interface simula um ambiente financeiro com login, dashboard, relatorios, contas, adquirentes, conciliacao, usuarios e configuracoes.",
-        problem: "Empresas que lidam com vendas, taxas, recebimentos e contas precisam visualizar informacoes financeiras em telas claras. O desafio foi transformar esse fluxo de gestao em uma experiencia web organizada, navegavel e compreensivel para o usuario.",
-        solution: "Construimos telas estaticas e interativas com HTML, CSS e JavaScript, incluindo autenticacao simulada, sidebar compartilhada, cards de indicadores, tabelas, abas, seletores, notificacoes e graficos para recebimentos, pagamentos, taxas e divergencias.",
-        architecture: "Projeto front-end multipagina baseado em HTML, CSS global por modulos e JavaScript puro. O dashboard usa Chart.js e chartjs-plugin-datalabels para visualizacoes, Lucide para icones e scripts compartilhados em Assets para navegacao e comportamento da sidebar.",
-        learnings: ["Estruturacao de um sistema web multipagina com HTML, CSS e JavaScript", "Criacao de dashboards financeiros com Chart.js", "Organizacao de componentes visuais reutilizaveis como sidebar, cards, tabelas e abas", "Trabalho em equipe em um projeto academico com foco em gestao empresarial"],
+        overview: "O Projeto DUBY é um site/sistema web acadêmico criado em equipe para organizar processos de gestão empresarial. A interface simula um ambiente financeiro com login, dashboard, relatórios, contas, adquirentes, conciliação, usuários e configurações.",
+        problem: "Empresas que lidam com vendas, taxas, recebimentos e contas precisam visualizar informações financeiras em telas claras. O desafio foi transformar esse fluxo de gestão em uma experiência web organizada, navegável e compreensível para o usuário.",
+        solution: "Construímos telas estáticas e interativas com HTML, CSS e JavaScript, incluindo autenticação simulada, sidebar compartilhada, cards de indicadores, tabelas, abas, seletores, notificações e gráficos para recebimentos, pagamentos, taxas e divergências.",
+        architecture: "Projeto front-end multipágina baseado em HTML, CSS global por módulos e JavaScript puro. O dashboard usa Chart.js e chartjs-plugin-datalabels para visualizações, Lucide para ícones e scripts compartilhados em Assets para navegação e comportamento da sidebar.",
+        learnings: ["Estruturação de um sistema web multipágina com HTML, CSS e JavaScript", "Criação de dashboards financeiros com Chart.js", "Organização de componentes visuais reutilizáveis como sidebar, cards, tabelas e abas", "Trabalho em equipe em um projeto acadêmico com foco em gestão empresarial"],
       },
       EN: {
         overview: "The DUBY Project is an academic web system built with teammates to organize business management workflows. The interface simulates a financial environment with login, dashboard, reports, accounts, acquirers, reconciliation, users, and settings.",
