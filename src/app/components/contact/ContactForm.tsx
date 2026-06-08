@@ -7,33 +7,58 @@ interface ContactFormData {
   name: string;
   email: string;
   message: string;
+  website: string;
 }
 
-const INITIAL_FORM_DATA: ContactFormData = { name: "", email: "", message: "" };
+const INITIAL_FORM_DATA: ContactFormData = { name: "", email: "", message: "", website: "" };
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5000";
 
 export function ContactForm({ tr }: { tr: Tr }) {
   const [formData, setFormData] = useState<ContactFormData>(INITIAL_FORM_DATA);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const updateField = (field: keyof ContactFormData, value: string) => {
     setFormData((current) => ({ ...current, [field]: value }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
+      setError("Preencha todos os campos.");
       return;
     }
 
     setSending(true);
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          website: formData.website,
+        }),
+      });
+
+      if (!response.ok) {
+        setError(response.status === 429 ? "Aguarde um pouco antes de tentar novamente." : "Não foi possível enviar agora.");
+        return;
+      }
+
       setSent(true);
-      setSending(false);
       setFormData(INITIAL_FORM_DATA);
       setTimeout(() => setSent(false), 5000);
-    }, 700);
+    } catch {
+      setError("Não foi possível conectar ao servidor.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputBase = "w-full bg-transparent pb-3.5 pt-1 text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none border-b transition-colors duration-300";
@@ -56,6 +81,15 @@ export function ContactForm({ tr }: { tr: Tr }) {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-10 max-w-lg">
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        value={formData.website}
+        onChange={(e) => updateField("website", e.target.value)}
+        className="hidden"
+        aria-hidden="true"
+      />
       <div className="grid sm:grid-cols-2 gap-8 sm:gap-10">
         <div>
           <label htmlFor="contact-name" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_name}</label>
@@ -90,6 +124,7 @@ export function ContactForm({ tr }: { tr: Tr }) {
             ? <span style={{ letterSpacing: "0.1em", opacity: 0.7 }}>···</span>
             : <><span>{tr.f_send}</span><Send size={12} strokeWidth={1.75} /></>}
         </button>
+        {error && <p className="mt-4 text-xs text-muted-foreground">{error}</p>}
       </div>
     </form>
   );
