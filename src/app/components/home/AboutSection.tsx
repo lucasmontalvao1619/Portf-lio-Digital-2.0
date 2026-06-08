@@ -7,12 +7,17 @@ export function AboutSection({ tr }: { tr: Tr }) {
       <div className="max-w-3xl mx-auto text-center">
         <SectionHeader title={tr.s_about} />
         <Reveal delay={80}>
-          <p
-            className="font-sans font-light text-foreground leading-[1.72]"
-            style={{ fontSize: "clamp(1.15rem,2.4vw,1.45rem)" }}
-          >
-            {tr.about_text}
-          </p>
+          <div className="space-y-6">
+            {tr.about_text.split(/\n\s*\n/).map((paragraph) => (
+              <p
+                key={paragraph}
+                className="font-sans font-light text-foreground leading-[1.72]"
+                style={{ fontSize: "clamp(1.15rem,2.4vw,1.45rem)" }}
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>

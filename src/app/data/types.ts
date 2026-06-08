@@ -35,8 +35,11 @@ export interface ServiceItem {
 export interface EducationItem {
   readonly title: string;
   readonly period: string;
+  readonly badge: string;
   readonly desc: string;
   readonly ongoing: boolean;
+  readonly featured?: boolean;
+  readonly highlightLabel?: string;
 }
 
 export interface Translation {

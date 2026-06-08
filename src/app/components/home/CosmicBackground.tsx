@@ -20,7 +20,7 @@ type MeteorStyle = CSSProperties & {
 };
 
 const STAR_COUNT = 220;
-const METEOR_COUNT = 8;
+const METEOR_COUNT = 16;
 
 function seededValue(index: number, salt: number) {
   const x = Math.sin(index * 91.7 + salt * 37.3) * 10000;
@@ -47,20 +47,19 @@ const stars = Array.from({ length: STAR_COUNT }, (_, index) => {
 });
 
 const meteors = Array.from({ length: METEOR_COUNT }, (_, index) => {
-  const duration = 10 + seededValue(index, 16) * 8;
-  const distance = 700 + seededValue(index, 17) * 500;
+  const duration = 4 + seededValue(index, 16) * 5;
 
   return {
-    left: `${62 + seededValue(index, 10) * 58}%`,
+    left: `${-20 + seededValue(index, 10) * 120}vw`,
     top: `${-8 + seededValue(index, 11) * 76}%`,
     delay: `${seededValue(index, 12) * duration * -1}s`,
     duration: `${duration.toFixed(1)}s`,
-    length: `${Math.round(80 + seededValue(index, 13) * 60)}px`,
-    height: `${1 + seededValue(index, 14)}px`,
+    length: `${Math.round(120 + seededValue(index, 13) * 100)}px`,
+    height: `${(2 + seededValue(index, 14)).toFixed(2)}px`,
     opacity: 0.55 + seededValue(index, 15) * 0.35,
-    angle: "-35deg",
-    x: `${Math.round(distance * -1)}px`,
-    y: `${Math.round(distance * 0.85)}px`,
+    angle: "35deg",
+    x: `${Math.round(500 + seededValue(index, 17) * 600)}px`,
+    y: `${Math.round(400 + seededValue(index, 18) * 500)}px`,
   };
 });
 
@@ -102,7 +101,7 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
         })}
       </div>
 
-      <div className="absolute inset-0 cosmic-meteor-layer">
+      <div className="fixed inset-0 cosmic-meteor-layer">
         {meteors.map((meteor, index) => {
           const style: MeteorStyle = {
             left: meteor.left,
@@ -174,6 +173,7 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
 
         .cosmic-meteor-layer {
           z-index: 3;
+          pointer-events: none;
         }
 
         .cosmic-meteor {
@@ -183,14 +183,15 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
           border-radius: 999px;
           background: linear-gradient(
             90deg,
-            rgba(255,255,255,1),
-            rgba(255,255,255,0.55),
-            rgba(255,255,255,0)
+            rgba(255,255,255,0),
+            rgba(255,255,255,0.7),
+            rgba(255,255,255,1)
           );
           filter: blur(0.12px);
           box-shadow:
-            0 0 10px rgba(255,255,255,0.65),
-            0 0 24px rgba(255,255,255,0.25);
+            0 0 12px rgba(255,255,255,0.92),
+            0 0 28px rgba(255,255,255,0.58),
+            0 0 48px rgba(255,255,255,0.34);
           opacity: 0;
           transform: translate3d(0, 0, 0) rotate(var(--meteor-angle));
           transform-origin: left center;
@@ -201,15 +202,16 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
         .cosmic-meteor::before {
           content: "";
           position: absolute;
-          left: -1px;
+          right: -1px;
           top: 50%;
-          width: 3px;
-          height: 2px;
+          width: 5px;
+          height: 4px;
           border-radius: 999px;
-          background: rgba(255, 255, 255, 0.86);
+          background: rgba(255, 255, 255, 1);
           box-shadow:
-            0 0 7px rgba(255, 255, 255, 0.34),
-            0 0 15px rgba(231, 236, 255, 0.18);
+            0 0 10px rgba(255, 255, 255, 0.95),
+            0 0 22px rgba(255, 255, 255, 0.6),
+            0 0 38px rgba(231, 236, 255, 0.36);
           transform: translateY(-50%);
         }
 

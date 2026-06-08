@@ -39,6 +39,16 @@
   --sidebar-accent-foreground: #0a0a0a;
   --sidebar-border: rgba(0, 0, 0, 0.08);
   --sidebar-ring: #0a0a0a;
+  --skills-shell-background: linear-gradient(135deg, rgba(0, 0, 0, 0.026), rgba(0, 0, 0, 0.012) 48%, rgba(0, 0, 0, 0.032));
+  --skills-shell-shadow: 0 24px 70px rgba(0, 0, 0, 0.045), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  --skills-card-background: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.38)), var(--card);
+  --skills-card-shadow: 0 10px 34px rgba(0, 0, 0, 0.034);
+  --skills-icon-background: rgba(255, 255, 255, 0.56);
+  --skills-icon-hover-background: rgba(255, 255, 255, 0.96);
+  --skills-icon-hover-border: rgba(0, 0, 0, 0.18);
+  --skills-icon-shadow: 0 5px 16px rgba(0, 0, 0, 0.025);
+  --skills-icon-hover-shadow: 0 12px 26px rgba(0, 0, 0, 0.09), 0 0 0 1px rgba(255, 255, 255, 0.72);
+  --skills-category-icon-background: rgba(255, 255, 255, 0.48);
 }
 
 .dark {
@@ -78,6 +88,16 @@
   --sidebar-accent-foreground: #efefef;
   --sidebar-border: rgba(255, 255, 255, 0.07);
   --sidebar-ring: rgba(255, 255, 255, 0.35);
+  --skills-shell-background: linear-gradient(135deg, rgba(255, 255, 255, 0.034), rgba(255, 255, 255, 0.014) 48%, rgba(255, 255, 255, 0.042));
+  --skills-shell-shadow: 0 24px 70px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  --skills-card-background: linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.014)), var(--card);
+  --skills-card-shadow: 0 10px 34px rgba(0, 0, 0, 0.16);
+  --skills-icon-background: rgba(255, 255, 255, 0.035);
+  --skills-icon-hover-background: rgba(255, 255, 255, 0.07);
+  --skills-icon-hover-border: rgba(255, 255, 255, 0.18);
+  --skills-icon-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
+  --skills-icon-hover-shadow: 0 12px 26px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.045);
+  --skills-category-icon-background: rgba(255, 255, 255, 0.035);
 }
 
 @theme inline {

@@ -11,18 +11,22 @@ export const T = {
     nav_labels: ["Início", "Sobre", "Habilidades", "Trajetória", "Contato", "Projetos"],
 
     s_about: "Sobre Mim",
-    about_text: "Desde cedo apaixonado por tecnologia e computação, sou estudante de Ciência da Computação na Universidade Tiradentes. Tenho como objetivo transformar ideias em software e necessidades em soluções inteligentes, unindo desenvolvimento, design e pensamento analítico. Busco construir aplicações funcionais, bem estruturadas e agradáveis de usar, sempre focado em criar experiências que gerem valor real. Acredito no aprendizado contínuo como ferramenta de evolução, buscando constantemente aprimorar minhas habilidades técnicas e pessoais para enfrentar desafios cada vez maiores.",
+    about_text: `Desde cedo apaixonado por tecnologia e computação, sou estudante de Ciência da Computação na Universidade Tiradentes. Tenho como objetivo transformar ideias em software e necessidades em soluções inteligentes, unindo desenvolvimento, design e pensamento analítico. Busco construir aplicações funcionais, bem estruturadas e agradáveis de usar, sempre focado em criar experiências que gerem valor real.
+
+Além do desenvolvimento de software, atuo na área de pesquisa científica por meio da Iniciação Científica, participando de projetos voltados à aplicação da tecnologia na resolução de problemas reais. Minha experiência envolve produção de artigos científicos, levantamento bibliográfico, análise de dados, metodologias de pesquisa e desenvolvimento de soluções computacionais com embasamento acadêmico. Essa vivência fortalece minha capacidade de investigação, pensamento crítico e desenvolvimento de projetos orientados por evidências.
+
+Acredito no aprendizado contínuo como ferramenta de evolução, buscando constantemente aprimorar minhas habilidades técnicas e pessoais para enfrentar desafios cada vez maiores, seja no desenvolvimento de software, na pesquisa científica ou na criação de soluções inovadoras.`,
 
     s_skills: "Habilidades Técnicas",
-    skills_subtitle: "Tecnologias que utilizo para construir soluções modernas.",
+    skills_subtitle: "Stack Utilizada",
     skill_cats: ["Backend", "Frontend", "Database & Cloud", "Ferramentas & Fluxo"],
 
     s_services: "Serviços",
     services: [
-      { title: "Desenvolvimento Front-End", desc: "Criação de interfaces web com React, Next.js e TypeScript, focando em interatividade, performance e robustez." },
-      { title: "Desenvolvimento Back-End", desc: "Construção de APIs e sistemas com Node.js, ASP.NET e Python. Realizo requisições e testes utilizando o Postman." },
-      { title: "Engenharia de Requisitos", desc: "Modelagem de requisitos por meio de casos de uso, diagramas UML e elaboração de documentos de especificação de sistemas." },
-      { title: "Gestão de Processos", desc: "Gestão ágil com planejamento estratégico, aplicando técnicas para desenvolver e entregar soluções eficientes." },
+      { title: "Engenharia de Software", desc: "Desenvolvimento de aplicações e sistemas utilizando C#, ASP.NET Core e boas práticas de arquitetura, transformando requisitos em soluções escaláveis, seguras e bem estruturadas." },
+      { title: "Desenvolvimento Front-End", desc: "Criação de interfaces modernas com React, Next.js e TypeScript, priorizando experiência do usuário, responsividade, acessibilidade e performance." },
+      { title: "Pesquisa Científica & Inovação", desc: "Participação em projetos de Iniciação Científica, produção de artigos acadêmicos, análise de dados e desenvolvimento de soluções tecnológicas orientadas por metodologia científica." },
+      { title: "Dados & Automação", desc: "Modelagem de bancos de dados, consultas SQL, construção de dashboards com Power BI e automação de processos para apoiar a tomada de decisão baseada em dados." },
     ],
 
     s_projects: "Projetos",
@@ -44,10 +48,10 @@ export const T = {
 
     s_education: "Formação",
     education: [
-      { title: "Ciência da Computação — UNIT", period: "Ago 2024 — Jun 2028", desc: "Na universidade, desenvolvo habilidades fullstack, infraestrutura, engenharia de requisitos, fundamentos de programação e participo de hackathons.", ongoing: false },
-      { title: "Desenvolvimento Web — Udemy", period: "Dez 2024 — Fev 2025", desc: "Foco em JavaScript moderno, com aprofundamento em Node.js, Express, Vue e recursos avançados do ESNext para aplicações web.", ongoing: false },
-      { title: "Curso em Vídeo — CEV", period: "Jun 2023 — Dez 2024", desc: "Cursos na plataforma explorando HTML5, CSS3, JavaScript, lógica de programação, Python e outras áreas essenciais.", ongoing: false },
-      { title: "Desenvolvimento com React — Udemy", period: "Jun 2025 — Em andamento", desc: "Desenvolvimento com React, Next, Nest, Tailwind e outras tecnologias, além de criação e consumo de APIs.", ongoing: true },
+      { title: "Ciência da Computação — Universidade Tiradentes (UNIT)", period: "2024 — 2028", badge: "Graduação", desc: "Graduação em Ciência da Computação com foco em engenharia de software, desenvolvimento de sistemas, banco de dados, infraestrutura, pesquisa científica e resolução de problemas computacionais. Participação em projetos acadêmicos, iniciação científica e desenvolvimento de aplicações.", ongoing: true, featured: true, highlightLabel: "Principal Formação" },
+      { title: "Fundamentos de C# e .NET — Balta.io", period: "2025", badge: "Formação Profissional", desc: "Formação voltada aos fundamentos da plataforma .NET, programação orientada a objetos, arquitetura de software, APIs, boas práticas de desenvolvimento e ecossistema C#.", ongoing: false },
+      { title: "Lógica de Programação, HTML5, CSS3 e Python — Curso em Vídeo", period: "2023 — 2024", badge: "Base de Desenvolvimento", desc: "Formação responsável pela construção da base lógica e computacional, incluindo algoritmos, desenvolvimento web com HTML5 e CSS3, além dos fundamentos da programação utilizando Python.", ongoing: false },
+      { title: "Cultura Inglesa + TOEFL", period: "Concluído", badge: "Idiomas", desc: "Formação em língua inglesa complementada pela certificação TOEFL, permitindo leitura técnica, documentação internacional, produção acadêmica e comunicação em ambientes profissionais globais.", ongoing: false },
     ],
 
     s_traj: "Trajetória",
@@ -99,7 +103,7 @@ export const T = {
     nav_labels: ["Home", "About", "Skills", "Journey", "Contact", "Projects"],
 
     s_about: "About Me",
-    about_text: "Passionate about technology and computing from an early age, I am a Computer Science student at Universidade Tiradentes. My goal is to turn ideas into software and needs into intelligent solutions, combining development, design and analytical thinking. I seek to build functional, well-structured and enjoyable applications, always focused on creating experiences that generate real value. I believe in continuous learning as a tool for growth, constantly seeking to improve my technical and personal skills to face ever greater challenges.",
+    about_text: "Passionate about technology and computing from an early age, I am a Computer Science student at Universidade Tiradentes. My goal is to turn ideas into software and needs into intelligent solutions, combining development, design and analytical thinking. I seek to build functional, well-structured and enjoyable applications, always focused on creating experiences that generate real value. In addition to software development, I work in scientific research through Scientific Initiation, participating in projects focused on applying technology to solve real-world problems. My experience includes scientific article production, bibliographic research, data analysis, research methodologies and the development of computational solutions with academic grounding. This experience strengthens my investigative ability, critical thinking and capacity to develop evidence-oriented projects. I believe in continuous learning as a tool for growth, constantly seeking to improve my technical and personal skills to face increasingly complex challenges, whether in software development, scientific research or the creation of innovative solutions.",
 
     s_skills: "Expertise",
     skills_subtitle: "Technologies I use to build modern solutions.",
@@ -107,10 +111,10 @@ export const T = {
 
     s_services: "Services",
     services: [
-      { title: "Front-End Development", desc: "Building web interfaces with React, Next.js and TypeScript, focused on interactivity, performance and robustness." },
-      { title: "Back-End Development", desc: "Building APIs and systems with Node.js, ASP.NET and Python. Testing and API requests with Postman." },
-      { title: "Requirements Engineering", desc: "Requirements modeling through use cases, UML diagrams and structured system specification documents." },
-      { title: "Process Management", desc: "Agile management with strategic planning, applying techniques to efficiently develop and deliver software solutions." },
+      { title: "Software Engineering", desc: "Development of applications and systems using C#, ASP.NET Core and solid architecture practices, turning requirements into scalable, secure and well-structured solutions." },
+      { title: "Front-End Development", desc: "Creation of modern interfaces with React, Next.js and TypeScript, prioritizing user experience, responsiveness, accessibility and performance." },
+      { title: "Scientific Research & Innovation", desc: "Participation in Scientific Initiation projects, academic article production, data analysis and development of technology solutions guided by scientific methodology." },
+      { title: "Data & Automation", desc: "Database modeling, SQL queries, Power BI dashboard development and process automation to support data-driven decision-making." },
     ],
 
     s_projects: "Projects",
@@ -132,10 +136,10 @@ export const T = {
 
     s_education: "Education",
     education: [
-      { title: "Computer Science — UNIT", period: "Aug 2024 — Jun 2028", desc: "Developing fullstack, infrastructure, requirements engineering and programming fundamentals at university, actively participating in hackathons.", ongoing: false },
-      { title: "Web Development — Udemy", period: "Dec 2024 — Feb 2025", desc: "Focus on modern JavaScript, deep dives into Node.js, Express, Vue and advanced ESNext features for web applications.", ongoing: false },
-      { title: "Curso em Vídeo — CEV", period: "Jun 2023 — Dec 2024", desc: "Completed several courses exploring HTML5, CSS3, JavaScript, programming logic, Python and other essential areas.", ongoing: false },
-      { title: "React Development — Udemy", period: "Jun 2025 — Ongoing", desc: "Web development with React, Next, Nest, Tailwind and other technologies, including API creation and consumption.", ongoing: true },
+      { title: "Computer Science — Universidade Tiradentes (UNIT)", period: "2024 — 2028", badge: "Bachelor's Degree", desc: "Computer Science degree focused on software engineering, systems development, databases, infrastructure, scientific research and computational problem solving. Participation in academic projects, scientific initiation and application development.", ongoing: true, featured: true, highlightLabel: "Main Education" },
+      { title: "C# and .NET Fundamentals — Balta.io", period: "2025", badge: "Professional Training", desc: "Training focused on .NET platform fundamentals, object-oriented programming, software architecture, APIs, development best practices and the C# ecosystem.", ongoing: false },
+      { title: "Programming Logic, HTML5, CSS3 and Python — Curso em Vídeo", period: "2023 — 2024", badge: "Development Foundation", desc: "Training that built a logical and computational foundation, including algorithms, web development with HTML5 and CSS3, and programming fundamentals using Python.", ongoing: false },
+      { title: "Cultura Inglesa + TOEFL", period: "Completed", badge: "Languages", desc: "English language education complemented by TOEFL certification, supporting technical reading, international documentation, academic writing and communication in global professional environments.", ongoing: false },
     ],
 
     s_traj: "Journey",

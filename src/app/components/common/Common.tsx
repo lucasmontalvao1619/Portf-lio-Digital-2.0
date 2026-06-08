@@ -47,18 +47,24 @@ export function TechIconButton({ name, Icon }: TechIconButtonProps) {
   return (
     <div className="relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <div
-        className="w-12 h-12 flex items-center justify-center border transition-all duration-200 cursor-default"
+        className="flex h-14 w-14 cursor-default items-center justify-center rounded-[14px] border transition-all duration-300 ease-out"
         style={{
-          borderColor: isHovered ? "var(--foreground)" : "var(--border)",
-          backgroundColor: isHovered ? "var(--foreground)" : "transparent",
+          borderColor: isHovered ? "var(--skills-icon-hover-border)" : "var(--border)",
+          background: isHovered ? "var(--skills-icon-hover-background)" : "var(--skills-icon-background)",
+          boxShadow: isHovered ? "var(--skills-icon-hover-shadow)" : "var(--skills-icon-shadow)",
+          transform: isHovered ? "scale(1.05) translateY(-1px)" : "scale(1)",
         }}
       >
-        <Icon style={{ width: 20, height: 20, color: isHovered ? "var(--primary-foreground)" : "var(--muted-foreground)" }} />
+        <Icon style={{ width: 23, height: 23, color: isHovered ? "var(--foreground)" : "var(--muted-foreground)" }} />
       </div>
       {isHovered && (
         <div
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-0.5 font-mono text-[9px] whitespace-nowrap pointer-events-none z-30"
-          style={{ background: "var(--foreground)", color: "var(--primary-foreground)" }}
+          className="absolute bottom-full left-1/2 z-30 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-1 font-mono text-[9px] pointer-events-none"
+          style={{
+            background: "var(--foreground)",
+            color: "var(--primary-foreground)",
+            boxShadow: "0 8px 22px rgba(0,0,0,0.14)",
+          }}
         >
           {name}
         </div>
