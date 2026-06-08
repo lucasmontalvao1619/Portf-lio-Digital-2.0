@@ -1,10 +1,8 @@
-import { useEffect, useMemo } from "react";
-import type React from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router";
-import { ExternalLink, Github } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Reveal } from "../components/common/Common";
 import { findLocalizedProject, getProjectDetails } from "../data/content";
-import { useHorizontalDrag } from "../lib/useHorizontalDrag";
 import type { Lang, OutletCtx, ProjectDetails, ProjectSection } from "../data/content";
 
 function getProjectLabels(lang: Lang) {
@@ -17,7 +15,9 @@ function getProjectLabels(lang: Lang) {
     s04: lang === "PT" ? "Arquitetura" : "Architecture",
     s05: lang === "PT" ? "Galeria" : "Gallery",
     s06: lang === "PT" ? "Aprendizados" : "Key Learnings",
-    galleryHint: lang === "PT" ? "Arraste para navegar" : "Drag to scroll",
+    galleryHint: lang === "PT" ? "Use as setas para navegar" : "Use arrows to navigate",
+    previousImage: lang === "PT" ? "Imagem anterior" : "Previous image",
+    nextImage: lang === "PT" ? "Proxima imagem" : "Next image",
   };
 }
 
@@ -40,7 +40,7 @@ export function ProjectDetailPage() {
   const { isDark, lang, tr } = useOutletContext<OutletCtx>();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const galleryDrag = useHorizontalDrag<HTMLDivElement>();
+  const [galleryIndex, setGalleryIndex] = useState(0);
 
   const project = useMemo(() => findLocalizedProject(slug, tr), [slug, tr]);
 
@@ -50,6 +50,10 @@ export function ProjectDetailPage() {
     }
   }, [project, navigate]);
 
+  useEffect(() => {
+    setGalleryIndex(0);
+  }, [project?.slug]);
+
   if (!project) {
     return null;
   }
@@ -58,6 +62,12 @@ export function ProjectDetailPage() {
   const details = getProjectDetails(project, lang);
   const sections = buildProjectSections(details, project.gallery, labels);
   const borderMuted = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)";
+  const moveGallery = (direction: -1 | 1) => {
+    setGalleryIndex((current) => {
+      const total = project.gallery.length;
+      return total > 0 ? (current + direction + total) % total : 0;
+    });
+  };
 
   return (
     <div className="pt-14">
@@ -166,31 +176,50 @@ export function ProjectDetailPage() {
                   )}
 
                   {section.type === "gallery" && (
-                    <div className="flex flex-col gap-3">
-                      <div
-                        ref={galleryDrag.ref}
-                        className="flex gap-3 overflow-x-auto pb-3 select-none"
-                        style={{ cursor: "grab", scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
-                        onMouseDown={galleryDrag.onMouseDown}
-                        onMouseMove={galleryDrag.onMouseMove}
-                        onMouseUp={galleryDrag.onMouseUp}
-                        onMouseLeave={galleryDrag.onMouseLeave}
-                      >
-                        {section.content.map((imageUrl, index) => (
-                          <div
-                            key={imageUrl}
-                            className="shrink-0 overflow-hidden bg-muted"
-                            style={{ width: "clamp(260px, 44vw, 540px)", aspectRatio: "16/9" }}
+                    <div className="flex flex-col gap-4">
+                      <div className="relative overflow-hidden bg-muted" style={{ aspectRatio: "16/9" }}>
+                        <img
+                          src={section.content[galleryIndex % section.content.length]}
+                          alt={`${project.name} - ${galleryIndex + 1}`}
+                          loading="lazy"
+                          draggable={false}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-3 pointer-events-none">
+                          <button
+                            type="button"
+                            aria-label={labels.previousImage}
+                            onClick={() => moveGallery(-1)}
+                            className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-background/85 text-foreground border border-border hover:bg-background transition-colors"
                           >
-                            <img
-                              src={imageUrl}
-                              alt={`${project.name} — ${index + 1}`}
-                              loading="lazy"
-                              draggable={false}
-                              className="w-full h-full object-cover pointer-events-none"
+                            <ChevronLeft size={18} strokeWidth={1.8} />
+                          </button>
+                          <button
+                            type="button"
+                            aria-label={labels.nextImage}
+                            onClick={() => moveGallery(1)}
+                            className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-background/85 text-foreground border border-border hover:bg-background transition-colors"
+                          >
+                            <ChevronRight size={18} strokeWidth={1.8} />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex gap-2">
+                          {section.content.map((imageUrl, index) => (
+                            <button
+                              key={imageUrl}
+                              type="button"
+                              aria-label={`${labels.s05} ${index + 1}`}
+                              onClick={() => setGalleryIndex(index)}
+                              className="h-2.5 w-8 border border-border transition-colors"
+                              style={{ backgroundColor: index === galleryIndex ? "var(--foreground)" : "transparent" }}
                             />
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+                        <p className="font-mono text-[9px] tracking-[0.22em] text-muted-foreground/30 uppercase">
+                          {String(galleryIndex + 1).padStart(2, "0")} / {String(section.content.length).padStart(2, "0")}
+                        </p>
                       </div>
                       <p className="font-mono text-[9px] tracking-[0.22em] text-muted-foreground/30 uppercase">
                         {labels.galleryHint}
