@@ -20,7 +20,7 @@ type MeteorStyle = CSSProperties & {
 };
 
 const STAR_COUNT = 220;
-const METEOR_COUNT = 16;
+const METEOR_COUNT = 10
 
 function seededValue(index: number, salt: number) {
   const x = Math.sin(index * 91.7 + salt * 37.3) * 10000;
@@ -55,8 +55,8 @@ const meteors = Array.from({ length: METEOR_COUNT }, (_, index) => {
     top: `${-8 + seededValue(index, 11) * 76}%`,
     delay: `${seededValue(index, 12) * duration * -1}s`,
     duration: `${duration.toFixed(1)}s`,
-    length: `${Math.round(120 + seededValue(index, 13) * 100)}px`,
-    height: `${(2 + seededValue(index, 14)).toFixed(2)}px`,
+   length: `${Math.round(55 + seededValue(index, 13) * 45)}px`,
+height: `${(0.8 + seededValue(index, 14) * 0.7).toFixed(2)}px`,
     opacity: 0.55 + seededValue(index, 15) * 0.35,
     angle: "35deg",
     x: `${Math.round(500 + seededValue(index, 17) * 600)}px`,
@@ -252,23 +252,11 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
           }
         }
 
-        @media (max-width: 640px) {
-          .cosmic-star:nth-child(3n) {
-            display: none;
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .cosmic-star,
-          .cosmic-meteor {
-            animation: none;
-            will-change: auto;
-          }
-
-          .cosmic-meteor {
-            display: none;
-          }
-        }
+       @media (max-width: 640px) {
+  .cosmic-star:nth-child(3n) {
+    display: none;
+  }
+}
       `}</style>
     </div>
   );
