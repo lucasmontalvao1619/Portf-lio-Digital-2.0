@@ -29,7 +29,8 @@ function seededValue(index: number, salt: number) {
 
 const stars = Array.from({ length: STAR_COUNT }, (_, index) => {
   const depth = seededValue(index, 1);
-  const size = depth > 0.92 ? 2.4 : depth > 0.72 ? 1.7 : depth > 0.42 ? 1.15 : 0.75;
+  const size =
+    depth > 0.92 ? 2.4 : depth > 0.72 ? 1.7 : depth > 0.42 ? 1.15 : 0.75;
   const blur = depth < 0.22 ? 1.35 : depth > 0.88 ? 0.15 : 0;
 
   return {
@@ -71,37 +72,39 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
   if (!isDark) return null;
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <div className="absolute inset-0 cosmic-base" />
-      <div className="absolute inset-0 cosmic-nebula" />
-      <div className="absolute inset-0 cosmic-vignette" />
+    <div className="pointer-events-none" aria-hidden="true">
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 cosmic-base" />
+        <div className="absolute inset-0 cosmic-nebula" />
+        <div className="absolute inset-0 cosmic-vignette" />
 
-      <div className="absolute inset-0 cosmic-star-field">
-        {stars.map((star, index) => {
-          const style: StarStyle = {
-            left: star.left,
-            top: star.top,
-            width: `${star.size}px`,
-            height: `${star.size}px`,
-            filter: star.blur > 0 ? `blur(${star.blur}px)` : undefined,
-            "--star-opacity": star.opacity,
-            "--twinkle-duration": star.duration,
-            "--twinkle-delay": star.delay,
-            "--drift-x": star.driftX,
-            "--drift-y": star.driftY,
-          };
+        <div className="absolute inset-0 cosmic-star-field">
+          {stars.map((star, index) => {
+            const style: StarStyle = {
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              filter: star.blur > 0 ? `blur(${star.blur}px)` : undefined,
+              "--star-opacity": star.opacity,
+              "--twinkle-duration": star.duration,
+              "--twinkle-delay": star.delay,
+              "--drift-x": star.driftX,
+              "--drift-y": star.driftY,
+            };
 
-          return (
-            <span
-              key={`star-${index}`}
-              className={`cosmic-star${star.glow ? " cosmic-star-glow" : ""}`}
-              style={style}
-            />
-          );
-        })}
+            return (
+              <span
+                key={`star-${index}`}
+                className={`cosmic-star${star.glow ? " cosmic-star-glow" : ""}`}
+                style={style}
+              />
+            );
+          })}
+        </div>
       </div>
 
-      <div className="fixed inset-0 cosmic-meteor-layer">
+      <div className="fixed inset-0 z-20 overflow-hidden cosmic-meteor-layer">
         {meteors.map((meteor, index) => {
           const style: MeteorStyle = {
             left: meteor.left,
@@ -172,7 +175,6 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
         }
 
         .cosmic-meteor-layer {
-          z-index: 3;
           pointer-events: none;
         }
 
