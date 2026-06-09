@@ -1,11 +1,23 @@
+# Portfolio Lucas Montalvao
 
-  # Portfolio for Lucas Montalvão
+Projeto organizado em `frontend/` e `backend/`.
 
-  This is a code bundle for Portfolio for Lucas Montalvão. The original project is available at https://www.figma.com/design/rLiSw75I3SVIcBmlzvprqx/Portfolio-for-Lucas-Montalv%C3%A3o.
+## Frontend
 
-  ## Running the code
+```bash
+npm run dev
+```
 
-  Run `npm i` to install the dependencies.
+Ou, diretamente na pasta do frontend:
 
-  Run `npm run dev` to start the development server.
-  
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Backend
+
+```bash
+dotnet run --project backend/Portfolio.Api/Portfolio.Api.csproj
+```

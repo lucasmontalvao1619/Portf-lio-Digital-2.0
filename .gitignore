@@ -1,7 +1,9 @@
 node_modules/
+frontend/node_modules/
 
 # Build output
 dist/
+frontend/dist/
 build/
 
 # Logs
@@ -17,6 +19,10 @@ pnpm-debug.log*
 .cache/
 .parcel-cache/
 coverage/
+
+# .NET output
+backend/**/bin/
+backend/**/obj/
 
 # OS/editor noise
 .DS_Store

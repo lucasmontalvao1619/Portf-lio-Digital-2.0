@@ -1,30 +1,12 @@
 {
-  "name": "portfolio-digital-lucas-montalvao",
+  "name": "luxury-landing-page",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "lucide-react": "0.487.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-icons": "5.6.0",
-    "react-router": "7.17.0",
-    "tw-animate-css": "1.3.8"
-  },
-  "devDependencies": {
-    "@tailwindcss/vite": "4.1.12",
-    "@types/node": "25.9.2",
-    "@types/react": "18.3.31",
-    "@types/react-dom": "18.3.7",
-    "@vitejs/plugin-react": "4.7.0",
-    "tailwindcss": "4.1.12",
-    "typescript": "6.0.3",
-    "vite": "6.4.3"
+    "dev": "node frontend/node_modules/vite/bin/vite.js --config vite.config.mjs --configLoader native frontend",
+    "build": "node frontend/node_modules/vite/bin/vite.js build --config vite.config.mjs --configLoader native frontend",
+    "preview": "node frontend/node_modules/vite/bin/vite.js preview --config vite.config.mjs --configLoader native frontend",
+    "typecheck": "node frontend/node_modules/typescript/bin/tsc --project frontend/tsconfig.json --noEmit",
+    "backend": "dotnet run --project backend/Portfolio.Api/Portfolio.Api.csproj"
   }
 }
