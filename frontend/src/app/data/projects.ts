@@ -7,6 +7,13 @@ import tauanContatosUrl from "../../../assets/contatos.tauan.png?url";
 import tauanGalleryUrl from "../../../assets/gallery.tauan.png?url";
 import tauanHeroUrl from "../../../assets/herophoto_tauan.png?url";
 import tauanHistoriaUrl from "../../../assets/historia.tauan.png?url";
+import lucasContatoUrl from "../../../assets/portfolio_lucas_contato.png?url";
+import lucasHeroUrl from "../../../assets/portfolio_lucas_hero.png?url";
+import lucasMobileUrl from "../../../assets/portfolio_lucas_mobile.png?url";
+import lucasPesquisaUrl from "../../../assets/portfolio_lucas_pesquisa.png?url";
+import lucasProjetosUrl from "../../../assets/portfolio_lucas_projetos.png?url";
+import lucasSobreUrl from "../../../assets/portfolio_lucas_sobre.png?url";
+import lucasTecnologiasUrl from "../../../assets/portfolio_lucas_tecnologias.png?url";
 
 export const PROJECTS = [
   {
@@ -101,16 +108,19 @@ export const PROJECTS = [
   },
   {
     slug: "portfolio-lucas",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&h=500&fit=crop&auto=format",
-    alt: "Laptop with code",
+    image: lucasHeroUrl,
+    alt: "Portfolio Lucas Montalvao hero section",
     tech: ["React", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com/lucasmontalvao1619",
+    github: "https://github.com/lucasmontalvao1619/Portf-lio-Digital-2.0",
     live: "",
     gallery: [
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=700&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&h=700&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=700&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1555066931-4365d14431b9?w=1200&h=700&fit=crop&auto=format",
+      lucasHeroUrl,
+      lucasSobreUrl,
+      lucasTecnologiasUrl,
+      lucasProjetosUrl,
+      lucasPesquisaUrl,
+      lucasContatoUrl,
+      lucasMobileUrl,
     ],
     details: {
       PT: {

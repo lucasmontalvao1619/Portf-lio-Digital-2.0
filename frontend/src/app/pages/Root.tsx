@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
+import { CursorGlow } from "../components/common/CursorGlow";
 import { CosmicBackground } from "../components/home/CosmicBackground";
 import { Footer } from "../components/layout/Footer";
 import { NavBar } from "../components/layout/NavBar";
@@ -86,6 +87,7 @@ export function Root() {
     <div className="relative isolate bg-background text-foreground font-sans antialiased min-h-screen overflow-x-hidden"
       style={{ transition: "background-color 0.3s ease, color 0.3s ease" }}>
       <CosmicBackground isDark={isDark} />
+      <CursorGlow isDark={isDark} />
 
       <style>{`
         @keyframes fade-up { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }

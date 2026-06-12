@@ -11,11 +11,9 @@ export const T = {
     nav_labels: ["Início", "Sobre", "Habilidades", "Serviços", "Formação", "Trajetória", "Contato", "Projetos"],
 
     s_about: "Sobre Mim",
-    about_text: `Desde cedo apaixonado por tecnologia e computação, sou estudante de Ciência da Computação na Universidade Tiradentes. Tenho como objetivo transformar ideias em software e necessidades em soluções inteligentes, unindo desenvolvimento, design e pensamento analítico. Busco construir aplicações funcionais, bem estruturadas e agradáveis de usar, sempre focado em criar experiências que gerem valor real.
+    about_text: `Estudante de Ciência da Computação na Universidade Tiradentes, apaixonado por tecnologia e inovação. Desenvolvo sites, sistemas e soluções digitais com foco em desempenho, experiência do usuário e resolução de problemas reais.
 
-Além do desenvolvimento de software, atuo na área de pesquisa científica por meio da Iniciação Científica, participando de projetos voltados à aplicação da tecnologia na resolução de problemas reais. Minha experiência envolve produção de artigos científicos, levantamento bibliográfico, análise de dados, metodologias de pesquisa e desenvolvimento de soluções computacionais com embasamento acadêmico. Essa vivência fortalece minha capacidade de investigação, pensamento crítico e desenvolvimento de projetos orientados por evidências.
-
-Acredito no aprendizado contínuo como ferramenta de evolução, buscando constantemente aprimorar minhas habilidades técnicas e pessoais para enfrentar desafios cada vez maiores, seja no desenvolvimento de software, na pesquisa científica ou na criação de soluções inovadoras.`,
+Além do desenvolvimento de software, atuo em projetos de pesquisa científica por meio da Iniciação Científica, aplicando tecnologia, análise de dados e pensamento crítico para criar soluções fundamentadas e eficientes. Estou sempre em busca de novos desafios e oportunidades de aprendizado contínuo.`,
 
     s_skills: "Habilidades Técnicas",
     skills_subtitle: "Stack Utilizada",
