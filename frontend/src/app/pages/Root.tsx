@@ -83,7 +83,7 @@ export function Root() {
   const ctx: OutletCtx = { isDark, lang, tr, scrollToSection, handleProjectsClick };
 
   return (
-    <div className="relative bg-background text-foreground font-sans antialiased min-h-screen overflow-x-hidden"
+    <div className="relative isolate bg-background text-foreground font-sans antialiased min-h-screen overflow-x-hidden"
       style={{ transition: "background-color 0.3s ease, color 0.3s ease" }}>
       <CosmicBackground isDark={isDark} />
 

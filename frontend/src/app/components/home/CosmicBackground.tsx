@@ -72,8 +72,8 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
   if (!isDark) return null;
 
   return (
-    <div className="pointer-events-none" aria-hidden="true">
-      <div className="fixed inset-0 z-0 overflow-hidden">
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 cosmic-base" />
         <div className="absolute inset-0 cosmic-nebula" />
         <div className="absolute inset-0 cosmic-vignette" />
@@ -104,7 +104,7 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
         </div>
       </div>
 
-      <div className="fixed inset-0 z-20 overflow-hidden cosmic-meteor-layer">
+      <div className="absolute inset-0 z-0 overflow-hidden cosmic-meteor-layer">
         {meteors.map((meteor, index) => {
           const style: MeteorStyle = {
             left: meteor.left,
