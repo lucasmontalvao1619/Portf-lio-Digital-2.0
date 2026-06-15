@@ -12,16 +12,16 @@ interface CursorGlowProps {
 }
 
 const LIGHT_GLOW_STYLE: CursorGlowStyle = {
-  "--cursor-glow-core": "rgba(30,  60, 160, 0.10)",
-  "--cursor-glow-primary": "rgba(50,  90, 200, 0.07)",
-  "--cursor-glow-secondary": "rgba(70, 120, 220, 0.04)",
+  "--cursor-glow-core": "rgba(20,  40, 120, 0.18)",
+  "--cursor-glow-primary": "rgba(40,  70, 180, 0.12)",
+  "--cursor-glow-secondary": "rgba(60, 100, 200, 0.07)",
   "--cursor-glow-blend": "multiply",
 };
 
 const DARK_GLOW_STYLE: CursorGlowStyle = {
-  "--cursor-glow-core": "rgba(255, 255, 255, 0.10)",
-  "--cursor-glow-primary": "rgba(84, 190, 255, 0.16)",
-  "--cursor-glow-secondary": "rgba(154, 118, 255, 0.10)",
+  "--cursor-glow-core": "rgba(180, 180, 180, 0.08)",
+  "--cursor-glow-primary": "rgba(120, 120, 120, 0.06)",
+  "--cursor-glow-secondary": "rgba( 80,  80,  80, 0.04)",
   "--cursor-glow-blend": "screen",
 };
 
@@ -92,9 +92,9 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
           opacity: var(--cursor-glow-opacity);
           mix-blend-mode: var(--cursor-glow-blend, screen);
           background:
-            radial-gradient(circle 60px  at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-core),      transparent 70%),
-            radial-gradient(circle 280px at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-primary),   transparent 70%),
-            radial-gradient(circle 480px at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-secondary), transparent 74%);
+            radial-gradient(circle 50px  at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-core),      transparent 70%),
+            radial-gradient(circle 200px at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-primary),   transparent 70%),
+            radial-gradient(circle 380px at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-secondary), transparent 74%);
           
           contain: paint style;
           transition: opacity 240ms ease;
