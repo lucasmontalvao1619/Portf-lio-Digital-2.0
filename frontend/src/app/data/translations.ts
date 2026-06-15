@@ -38,7 +38,7 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
       "Portfólio Lucas Montalvão",
     ],
     proj_descs: [
-      "Projeto em producao para gestao de imoveis, contratos, clientes e rotinas imobiliarias.",
+      "Projeto em produção para gestão de imóveis, contratos, clientes e rotinas imobiliárias.",
       "Sistema web acadêmico para gestão empresarial, relatórios financeiros e dashboards.",
       "Landing page premium para personal trainer, com galeria, animações e canais de contato.",
       "Portfólio pessoal com design minimalista suíço e foco em performance.",

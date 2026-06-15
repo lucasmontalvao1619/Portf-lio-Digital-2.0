@@ -142,7 +142,7 @@ export function ProjectDetailPage() {
                 ) : (
                   <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-primary-foreground text-xs font-mono">
                     <Github size={12} strokeWidth={1.75} />
-                    {project.repositoryLabel ?? "Em producao"}
+                    {project.repositoryLabel ?? "Em produção"}
                   </span>
                 )}
                 {project.status && (

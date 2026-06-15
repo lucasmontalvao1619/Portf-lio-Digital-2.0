@@ -22,8 +22,8 @@ export const PROJECTS = [
     alt: "Corretora apresentando um imovel para clientes",
     tech: ["C#", "ASP.NET Core", "Entity Framework", "SQL Server", "React"],
     github: "",
-    repositoryLabel: "Em producao",
-    status: "PRODUCAO",
+    repositoryLabel: "Em produção",
+    status: "PRODUÇÃO",
     live: "",
     gallery: [
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&h=788&fit=crop&auto=format&q=85",
