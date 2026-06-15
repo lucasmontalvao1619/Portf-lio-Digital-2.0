@@ -31,32 +31,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    let currentX = window.innerWidth / 2;
-    let currentY = window.innerHeight / 2;
-    let targetX = currentX;
-    let targetY = currentY;
-    let animationFrame = 0;
-
-    const setGlowPosition = () => {
-      glow.style.setProperty("--cursor-glow-x", `${currentX.toFixed(2)}px`);
-      glow.style.setProperty("--cursor-glow-y", `${currentY.toFixed(2)}px`);
-    };
-
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.14;
-      currentY += (targetY - currentY) * 0.14;
-      setGlowPosition();
-
-      animationFrame = window.requestAnimationFrame(animate);
-    };
-
-    const stopAnimation = () => {
-      if (animationFrame) {
-        window.cancelAnimationFrame(animationFrame);
-        animationFrame = 0;
-      }
-    };
-
     const hideGlow = () => {
       glow.style.setProperty("--cursor-glow-opacity", "0");
     };
@@ -64,41 +38,27 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     const syncEnabledState = () => {
       if (reducedMotionQuery.matches) {
         hideGlow();
-        stopAnimation();
         return;
       }
 
-      setGlowPosition();
-      glow.style.setProperty("--cursor-glow-opacity", "1");
-      if (!animationFrame) animationFrame = window.requestAnimationFrame(animate);
-    };
-
-    const handlePointerMove = (event: PointerEvent | MouseEvent) => {
-      targetX = event.clientX;
-      targetY = event.clientY;
       glow.style.setProperty("--cursor-glow-opacity", "1");
     };
 
-    const handleResize = () => {
-      currentX = window.innerWidth / 2;
-      currentY = window.innerHeight / 2;
-      targetX = currentX;
-      targetY = currentY;
-      setGlowPosition();
+    const handleMouseMove = (event: MouseEvent) => {
+      glow.style.setProperty("--cursor-glow-x", `${event.clientX}px`);
+      glow.style.setProperty("--cursor-glow-y", `${event.clientY}px`);
+      glow.style.setProperty("--cursor-glow-opacity", "1");
     };
 
     syncEnabledState();
 
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("blur", hideGlow);
     document.documentElement.addEventListener("mouseleave", hideGlow);
     reducedMotionQuery.addEventListener("change", syncEnabledState);
 
     return () => {
-      stopAnimation();
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("blur", hideGlow);
       document.documentElement.removeEventListener("mouseleave", hideGlow);
       reducedMotionQuery.removeEventListener("change", syncEnabledState);
