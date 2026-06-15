@@ -141,7 +141,7 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
             radial-gradient(140px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-core), transparent 70%),
             radial-gradient(600px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-primary), transparent 70%),
             radial-gradient(920px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-secondary), transparent 74%);
-          mix-blend-mode: screen;
+          
           contain: paint style;
           transition: opacity 240ms ease;
           will-change: background, opacity;
