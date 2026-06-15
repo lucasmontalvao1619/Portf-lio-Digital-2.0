@@ -29,7 +29,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     const glow = glowRef.current;
     if (!glow) return;
 
-    const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     let currentX = window.innerWidth / 2;
@@ -37,7 +36,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     let targetX = currentX;
     let targetY = currentY;
     let animationFrame = 0;
-    let enabled = false;
 
     const setGlowPosition = () => {
       glow.style.setProperty("--cursor-glow-x", `${currentX.toFixed(2)}px`);
@@ -45,8 +43,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     };
 
     const animate = () => {
-      if (!enabled) return;
-
       currentX += (targetX - currentX) * 0.14;
       currentY += (targetY - currentY) * 0.14;
       setGlowPosition();
@@ -66,9 +62,7 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     };
 
     const syncEnabledState = () => {
-      enabled = finePointerQuery.matches && !reducedMotionQuery.matches;
-
-      if (!enabled) {
+      if (reducedMotionQuery.matches) {
         hideGlow();
         stopAnimation();
         return;
@@ -79,9 +73,7 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
       if (!animationFrame) animationFrame = window.requestAnimationFrame(animate);
     };
 
-    const handlePointerMove = (event: PointerEvent) => {
-      if (!enabled || event.pointerType !== "mouse") return;
-
+    const handlePointerMove = (event: PointerEvent | MouseEvent) => {
       targetX = event.clientX;
       targetY = event.clientY;
       glow.style.setProperty("--cursor-glow-opacity", "1");
@@ -101,7 +93,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("blur", hideGlow);
     document.documentElement.addEventListener("mouseleave", hideGlow);
-    finePointerQuery.addEventListener("change", syncEnabledState);
     reducedMotionQuery.addEventListener("change", syncEnabledState);
 
     return () => {
@@ -110,7 +101,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("blur", hideGlow);
       document.documentElement.removeEventListener("mouseleave", hideGlow);
-      finePointerQuery.removeEventListener("change", syncEnabledState);
       reducedMotionQuery.removeEventListener("change", syncEnabledState);
     };
   }, []);
