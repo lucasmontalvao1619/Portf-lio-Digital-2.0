@@ -11,15 +11,15 @@ interface CursorGlowProps {
 }
 
 const LIGHT_GLOW_STYLE: CursorGlowStyle = {
-  "--cursor-glow-core": "rgba(255, 255, 255, 0.36)",
-  "--cursor-glow-primary": "rgba(120, 150, 255, 0.14)",
-  "--cursor-glow-secondary": "rgba(92, 184, 255, 0.075)",
+  "--cursor-glow-core": "rgba(255, 255, 255, 0.22)",
+  "--cursor-glow-primary": "rgba(86, 124, 255, 0.16)",
+  "--cursor-glow-secondary": "rgba(42, 178, 255, 0.08)",
 };
 
 const DARK_GLOW_STYLE: CursorGlowStyle = {
-  "--cursor-glow-core": "rgba(255, 255, 255, 0.105)",
-  "--cursor-glow-primary": "rgba(80, 180, 255, 0.145)",
-  "--cursor-glow-secondary": "rgba(150, 106, 255, 0.085)",
+  "--cursor-glow-core": "rgba(255, 255, 255, 0.10)",
+  "--cursor-glow-primary": "rgba(84, 190, 255, 0.16)",
+  "--cursor-glow-secondary": "rgba(154, 118, 255, 0.10)",
 };
 
 export function CursorGlow({ isDark }: CursorGlowProps) {
@@ -38,7 +38,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     let targetY = currentY;
     let animationFrame = 0;
     let enabled = false;
-    let visible = false;
 
     const setGlowPosition = () => {
       glow.style.setProperty("--cursor-glow-x", `${currentX.toFixed(2)}px`);
@@ -63,7 +62,6 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
     };
 
     const hideGlow = () => {
-      visible = false;
       glow.style.setProperty("--cursor-glow-opacity", "0");
     };
 
@@ -77,6 +75,7 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
       }
 
       setGlowPosition();
+      glow.style.setProperty("--cursor-glow-opacity", "1");
       if (!animationFrame) animationFrame = window.requestAnimationFrame(animate);
     };
 
@@ -85,24 +84,15 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
 
       targetX = event.clientX;
       targetY = event.clientY;
-
-      if (!visible) {
-        currentX = targetX;
-        currentY = targetY;
-        setGlowPosition();
-        glow.style.setProperty("--cursor-glow-opacity", "1");
-        visible = true;
-      }
+      glow.style.setProperty("--cursor-glow-opacity", "1");
     };
 
     const handleResize = () => {
-      if (!visible) {
-        currentX = window.innerWidth / 2;
-        currentY = window.innerHeight / 2;
-        targetX = currentX;
-        targetY = currentY;
-        setGlowPosition();
-      }
+      currentX = window.innerWidth / 2;
+      currentY = window.innerHeight / 2;
+      targetX = currentX;
+      targetY = currentY;
+      setGlowPosition();
     };
 
     syncEnabledState();
@@ -138,36 +128,23 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
         .cursor-glow {
           --cursor-glow-x: 50vw;
           --cursor-glow-y: 50vh;
-          --cursor-glow-opacity: 0;
-          --cursor-glow-size: clamp(30rem, 54vw, 52rem);
+          --cursor-glow-opacity: 1;
 
           position: fixed;
-          left: 0;
-          top: 0;
-          z-index: 1;
-          width: var(--cursor-glow-size);
-          height: var(--cursor-glow-size);
+          inset: 0;
+          z-index: 2;
+          width: 100vw;
+          height: 100vh;
           pointer-events: none;
-          border-radius: 9999px;
           opacity: var(--cursor-glow-opacity);
-          transform: translate3d(
-            calc(var(--cursor-glow-x) - 50%),
-            calc(var(--cursor-glow-y) - 50%),
-            0
-          );
           background:
-            radial-gradient(circle at center, var(--cursor-glow-core) 0%, var(--cursor-glow-primary) 22%, transparent 58%),
-            radial-gradient(circle at center, var(--cursor-glow-secondary) 0%, transparent 72%);
-          filter: blur(22px);
-          contain: layout paint style;
+            radial-gradient(140px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-core), transparent 70%),
+            radial-gradient(600px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-primary), transparent 70%),
+            radial-gradient(920px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-secondary), transparent 74%);
+          mix-blend-mode: screen;
+          contain: paint style;
           transition: opacity 240ms ease;
-          will-change: transform, opacity;
-        }
-
-        @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
-          .cursor-glow {
-            display: none;
-          }
+          will-change: background, opacity;
         }
       `}</style>
     </>
