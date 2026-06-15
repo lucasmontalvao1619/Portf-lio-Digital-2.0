@@ -114,6 +114,8 @@ export interface ProjectStaticData {
   readonly alt: string;
   readonly tech: readonly string[];
   readonly github: string;
+  readonly repositoryLabel?: string;
+  readonly status?: string;
   readonly live: string;
   readonly gallery: readonly string[];
   readonly details: Localized<ProjectDetails>;

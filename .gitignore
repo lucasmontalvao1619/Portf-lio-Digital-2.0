@@ -19,6 +19,9 @@ pnpm-debug.log*
 .cache/
 .parcel-cache/
 coverage/
+frontend/edge-shot-profile/
+frontend/edge-shot-test-profile/
+frontend/edge-shot-test-profile-2/
 
 # .NET output
 backend/**/bin/

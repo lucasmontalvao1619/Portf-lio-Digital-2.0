@@ -38,7 +38,7 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
       "Portfólio Lucas Montalvão",
     ],
     proj_descs: [
-      "Plataforma completa para gestão de imóveis, contratos e clientes.",
+      "Projeto em producao para gestao de imoveis, contratos, clientes e rotinas imobiliarias.",
       "Sistema web acadêmico para gestão empresarial, relatórios financeiros e dashboards.",
       "Landing page premium para personal trainer, com galeria, animações e canais de contato.",
       "Portfólio pessoal com design minimalista suíço e foco em performance.",
@@ -126,7 +126,7 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
       "Lucas Montalvão Portfolio",
     ],
     proj_descs: [
-      "Complete platform for managing properties, contracts, and clients.",
+      "Production-stage platform for managing properties, contracts, clients, and real estate workflows.",
       "Academic web system for business management, financial reports, and dashboards.",
       "Premium landing page for a personal trainer, with gallery, animations, and contact channels.",
       "Personal portfolio with Swiss minimalist design and focus on performance.",

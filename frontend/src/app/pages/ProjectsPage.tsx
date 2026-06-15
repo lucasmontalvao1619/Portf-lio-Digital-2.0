@@ -30,6 +30,8 @@ export function ProjectsPage() {
               image={project.image}
               alt={project.alt}
               github={project.github}
+              repositoryLabel={project.repositoryLabel}
+              status={project.status}
               live={project.live}
               githubLabel={tr.github_btn}
               liveLabel={tr.live_btn}

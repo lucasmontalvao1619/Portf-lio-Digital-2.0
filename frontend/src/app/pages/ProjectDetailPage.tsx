@@ -129,15 +129,27 @@ export function ProjectDetailPage() {
                 ))}
               </div>
               <div className="flex gap-3 flex-wrap">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-primary-foreground text-xs font-mono hover:opacity-75 transition-opacity"
-                >
-                  <Github size={12} strokeWidth={1.75} />
-                  GitHub
-                </a>
+                {project.github ? (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-primary-foreground text-xs font-mono hover:opacity-75 transition-opacity"
+                  >
+                    <Github size={12} strokeWidth={1.75} />
+                    GitHub
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-primary-foreground text-xs font-mono">
+                    <Github size={12} strokeWidth={1.75} />
+                    {project.repositoryLabel ?? "Em producao"}
+                  </span>
+                )}
+                {project.status && (
+                  <span className="inline-flex items-center px-5 py-2.5 border border-border text-xs font-mono tracking-[0.18em] text-foreground uppercase">
+                    {project.status}
+                  </span>
+                )}
                 {project.live && (
                   <a
                     href={project.live}

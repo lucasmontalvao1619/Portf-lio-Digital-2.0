@@ -4,9 +4,10 @@ import { useNavigate } from "react-router";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import { useInView } from "../../lib/useInView";
 
-export function ProjectGalleryCard({ num, name, desc, tech, image, alt, github, live, githubLabel, liveLabel, delay, slug }: {
+export function ProjectGalleryCard({ num, name, desc, tech, image, alt, github, live, githubLabel, liveLabel, delay, slug, repositoryLabel, status }: {
   num: string; name: string; desc: string; tech: readonly string[]; image: string; alt: string;
   github: string; live: string; githubLabel: string; liveLabel: string; delay: number; slug: string;
+  repositoryLabel?: string; status?: string;
 }) {
   const { ref, inView } = useInView(0.05);
   const [hovered, setHovered] = useState(false);
@@ -50,13 +51,23 @@ export function ProjectGalleryCard({ num, name, desc, tech, image, alt, github, 
           ))}
         </div>
         <div className="flex items-center gap-5 pt-1 border-t border-border mt-1">
-          <a href={github} target="_blank" rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors group/g pt-4">
-            <Github size={12} strokeWidth={1.75} />
-            <span>{githubLabel}</span>
-            <ArrowUpRight size={10} className="opacity-0 group-hover/g:opacity-100 transition-opacity" />
-          </a>
+          {github ? (
+            <a href={github} target="_blank" rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors group/g pt-4">
+              <Github size={12} strokeWidth={1.75} />
+              <span>{githubLabel}</span>
+              <ArrowUpRight size={10} className="opacity-0 group-hover/g:opacity-100 transition-opacity" />
+            </a>
+          ) : (
+            <span
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground pt-4"
+            >
+              <Github size={12} strokeWidth={1.75} />
+              <span>{repositoryLabel ?? githubLabel}</span>
+            </span>
+          )}
           {live && (
             <a href={live} target="_blank" rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
@@ -65,6 +76,11 @@ export function ProjectGalleryCard({ num, name, desc, tech, image, alt, github, 
               <span>{liveLabel}</span>
               <ArrowUpRight size={10} className="opacity-0 group-hover/l:opacity-100 transition-opacity" />
             </a>
+          )}
+          {status && (
+            <span className="inline-flex items-center text-[10px] font-mono tracking-[0.18em] text-foreground border border-foreground/20 px-2 py-1 mt-4 uppercase">
+              {status}
+            </span>
           )}
           <span className="ml-auto inline-flex items-center gap-1 text-[10px] font-mono text-muted-foreground/40 pt-4 group-hover:text-muted-foreground transition-colors duration-200">
             Ver projeto <ArrowUpRight size={9} />
