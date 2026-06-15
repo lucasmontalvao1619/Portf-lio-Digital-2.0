@@ -7,10 +7,9 @@ export const CONTACT_LINKS = [
   { icon: "github", label: "GitHub", href: "https://github.com/lucasmontalvao1619" },
   { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/lucas-montalv%C3%A3o-gon%C3%A7alves-de-oliveira-781998342/" },
   { icon: "mail", label: "E-mail", href: "mailto:lucasmontalvao2019@gmail.com" },
-  { icon: "phone", label: "(79) 9 9609-1102", href: "tel:+5579996091102" },
 ] as const satisfies readonly ContactLink[];
 
-export const FOOTER_LINKS = CONTACT_LINKS.slice(0, 3);
+export const FOOTER_LINKS = CONTACT_LINKS;
 
 export function buildNavItems(tr: Tr): NavigationItem[] {
   return [

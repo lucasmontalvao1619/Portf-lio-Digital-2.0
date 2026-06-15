@@ -11,7 +11,18 @@ interface ContactFormData {
 }
 
 const INITIAL_FORM_DATA: ContactFormData = { name: "", email: "", message: "", website: "" };
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5000";
+
+function getApiBaseUrl(): string {
+  const configuredUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+
+  if (configuredUrl) {
+    return configuredUrl.replace(/\/+$/, "");
+  }
+
+  return import.meta.env.DEV ? "http://localhost:5000" : "";
+}
+
+const API_BASE_URL = getApiBaseUrl();
 
 export function ContactForm({ tr }: { tr: Tr }) {
   const [formData, setFormData] = useState<ContactFormData>(INITIAL_FORM_DATA);
@@ -35,6 +46,11 @@ export function ContactForm({ tr }: { tr: Tr }) {
     setError(null);
 
     try {
+      if (!API_BASE_URL) {
+        setError("Servico de contato nao configurado para este ambiente.");
+        return;
+      }
+
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

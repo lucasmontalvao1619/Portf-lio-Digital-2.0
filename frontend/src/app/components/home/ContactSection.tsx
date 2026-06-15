@@ -17,7 +17,7 @@ export function ContactSection({ tr }: { tr: Tr }) {
   const contactDetails = [
     { icon: <MapPin size={28} strokeWidth={1} />, title: tr.contact_address, detail: "Aracaju, Sergipe, Brasil" },
     { icon: <Mail size={28} strokeWidth={1} />, title: "Email", detail: "lucasmontalvao2019@gmail.com" },
-    { icon: <Phone size={28} strokeWidth={1} />, title: tr.contact_phone_lbl, detail: "(79) 9 9609-1102" },
+    { icon: <Phone size={28} strokeWidth={1} />, title: tr.contact_phone_lbl, detail: "Disponivel pelo formulario de contato" },
   ];
 
   return (

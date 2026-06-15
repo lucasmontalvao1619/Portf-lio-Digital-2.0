@@ -40,14 +40,26 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 // CORS fica em configuração: no desenvolvimento, apenas Vite em localhost/127.0.0.1.
 const string FrontendCorsPolicy = "FrontendCorsPolicy";
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+    ?? Array.Empty<string>();
+var corsOriginsFromEnvironment = Environment.GetEnvironmentVariable("CORS_ALLOWED_ORIGINS");
+
+if (!string.IsNullOrWhiteSpace(corsOriginsFromEnvironment))
+{
+    allowedOrigins = corsOriginsFromEnvironment
+        .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+}
+
+if (!builder.Environment.IsDevelopment() && allowedOrigins.Length == 0)
+{
+    throw new InvalidOperationException("Configure Cors:AllowedOrigins or CORS_ALLOWED_ORIGINS before running in production.");
+}
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(FrontendCorsPolicy, policy =>
     {
-        var origins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
-            ?? Array.Empty<string>();
-
-        policy.WithOrigins(origins)
+        policy.WithOrigins(allowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
