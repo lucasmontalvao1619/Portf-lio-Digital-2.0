@@ -4,6 +4,7 @@ type CursorGlowStyle = CSSProperties & {
   "--cursor-glow-core": string;
   "--cursor-glow-primary": string;
   "--cursor-glow-secondary": string;
+  "--cursor-glow-blend": string;
 };
 
 interface CursorGlowProps {
@@ -14,12 +15,14 @@ const LIGHT_GLOW_STYLE: CursorGlowStyle = {
   "--cursor-glow-core": "rgba(255, 255, 255, 0.22)",
   "--cursor-glow-primary": "rgba(86, 124, 255, 0.16)",
   "--cursor-glow-secondary": "rgba(42, 178, 255, 0.08)",
+  "--cursor-glow-blend": "overlay",
 };
 
 const DARK_GLOW_STYLE: CursorGlowStyle = {
   "--cursor-glow-core": "rgba(255, 255, 255, 0.10)",
   "--cursor-glow-primary": "rgba(84, 190, 255, 0.16)",
   "--cursor-glow-secondary": "rgba(154, 118, 255, 0.10)",
+  "--cursor-glow-blend": "screen",
 };
 
 export function CursorGlow({ isDark }: CursorGlowProps) {
@@ -82,15 +85,16 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
 
           position: fixed;
           inset: 0;
-          z-index: 2;
+          z-index: 9999;
           width: 100vw;
           height: 100vh;
           pointer-events: none;
           opacity: var(--cursor-glow-opacity);
+          mix-blend-mode: var(--cursor-glow-blend, screen);
           background:
-            radial-gradient(140px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-core), transparent 70%),
-            radial-gradient(600px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-primary), transparent 70%),
-            radial-gradient(920px circle at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-secondary), transparent 74%);
+            radial-gradient(circle 140px at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-core), transparent 70%),
+            radial-gradient(circle 600px at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-primary), transparent 70%),
+            radial-gradient(circle 920px at var(--cursor-glow-x) var(--cursor-glow-y), var(--cursor-glow-secondary), transparent 74%);
           
           contain: paint style;
           transition: opacity 240ms ease;
