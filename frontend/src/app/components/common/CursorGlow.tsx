@@ -11,13 +11,6 @@ interface CursorGlowProps {
   isDark: boolean;
 }
 
-const LIGHT_GLOW_STYLE: CursorGlowStyle = {
-  "--cursor-glow-core": "rgba(20,  40, 120, 0.18)",
-  "--cursor-glow-primary": "rgba(40,  70, 180, 0.12)",
-  "--cursor-glow-secondary": "rgba(60, 100, 200, 0.07)",
-  "--cursor-glow-blend": "multiply",
-};
-
 const DARK_GLOW_STYLE: CursorGlowStyle = {
   "--cursor-glow-core": "rgba(180, 180, 180, 0.08)",
   "--cursor-glow-primary": "rgba(120, 120, 120, 0.06)",
@@ -29,6 +22,8 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
   const glowRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!isDark) return;
+
     const glow = glowRef.current;
     if (!glow) return;
 
@@ -66,14 +61,16 @@ export function CursorGlow({ isDark }: CursorGlowProps) {
       document.documentElement.removeEventListener("mouseleave", hideGlow);
       reducedMotionQuery.removeEventListener("change", syncEnabledState);
     };
-  }, []);
+  }, [isDark]);
+
+  if (!isDark) return null;
 
   return (
     <>
       <div
         ref={glowRef}
         className="cursor-glow"
-        style={isDark ? DARK_GLOW_STYLE : LIGHT_GLOW_STYLE}
+        style={DARK_GLOW_STYLE}
         aria-hidden="true"
       />
 
