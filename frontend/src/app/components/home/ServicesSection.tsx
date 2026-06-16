@@ -11,10 +11,9 @@ export function ServicesSection({ tr }: { tr: Tr }) {
             {tr.services.map((service, index) => (
               <div
                 key={service.title}
-                className="group relative overflow-hidden rounded-[20px] border p-7 shadow-[0_10px_32px_rgba(0,0,0,0.025)] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(0,0,0,0.055)] dark:shadow-[0_10px_32px_rgba(0,0,0,0.14)] dark:hover:shadow-[0_18px_44px_rgba(0,0,0,0.22)] md:p-8"
+                className="group relative overflow-hidden rounded-[20px] border p-7 shadow-[var(--skills-card-shadow)] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_18px_44px_rgba(0,0,0,0.24)] md:p-8"
                 style={{
-                  background:
-                    "linear-gradient(180deg, rgba(255,255,255,0.42), rgba(255,255,255,0.12)), var(--background)",
+                  background: "var(--skills-card-background)",
                   borderColor: "var(--border)",
                 }}
               >
