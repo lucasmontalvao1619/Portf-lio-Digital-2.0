@@ -7,7 +7,8 @@
       "launchBrowser": false,
       "applicationUrl": "http://localhost:5272",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "RESEND_APITOKEN": "re_Ljxh2dxy_JXeNVhG7TvojfsQxLZGs6jgj"
       }
     },
     "https": {
@@ -16,7 +17,8 @@
       "launchBrowser": false,
       "applicationUrl": "https://localhost:7032;http://localhost:5272",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "RESEND_APITOKEN": "re_Ljxh2dxy_JXeNVhG7TvojfsQxLZGs6jgj"
       }
     }
   }
