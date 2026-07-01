@@ -8,11 +8,10 @@ import type { Lang, OutletCtx, SectionId } from "../data/content";
 import { readStorageValue, writeStorageValue } from "../lib/storage";
 
 const isLang = (value: string): value is Lang => value === "PT" || value === "EN";
-const isTheme = (value: string): value is "dark" | "light" => value === "dark" || value === "light";
 
 export function Root() {
   const [lang, setLang] = useState<Lang>(() => readStorageValue("lang", "PT", isLang));
-  const [isDark, setIsDark] = useState(() => readStorageValue("theme", "light", isTheme) === "dark");
+  const [isDark, setIsDark] = useState(false);
   const [menuOpen, setMenuOpen]           = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("inicio");
   const pendingScrollRef                  = useRef<string | null>(null);
@@ -23,6 +22,7 @@ export function Root() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", isDark ? "#0c0c0c" : "#fafafa");
     writeStorageValue("theme", isDark ? "dark" : "light");
   }, [isDark]);
 
