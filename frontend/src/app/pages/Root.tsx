@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { CosmicBackground } from "../components/home/CosmicBackground";
-import { Footer } from "../components/layout/Footer";
-import { NavBar } from "../components/layout/NavBar";
+import { CosmicBackground } from "../features/home/CosmicBackground";
+import { Footer } from "../layout/Footer";
+import { NavBar } from "../layout/NavBar";
 import { SCROLL_IDS, T } from "../data/content";
 import type { Lang, OutletCtx, SectionId } from "../data/content";
 import { readStorageValue, writeStorageValue } from "../lib/storage";
@@ -95,7 +95,6 @@ export function Root() {
         .d100{animation-delay:100ms;} .d200{animation-delay:200ms;}
         .d300{animation-delay:300ms;} .d450{animation-delay:450ms;}
         .infinite-bar-track{width:max-content;animation:infinite-bar var(--infinite-bar-duration,35s) linear infinite;will-change:transform;}
-        .infinite-bar:hover .infinite-bar-track{animation-play-state:paused;}
         *{scrollbar-width:none;} *::-webkit-scrollbar{display:none;}
       `}</style>
 

@@ -1,13 +1,13 @@
 import { useOutletContext } from "react-router";
-import { AboutSection } from "../components/home/AboutSection";
-import { ContactSection } from "../components/home/ContactSection";
-import { EducationSection } from "../components/home/EducationSection";
-import { HeroSection } from "../components/home/HeroSection";
-import { JourneySection } from "../components/home/JourneySection";
-import { ServicesSection } from "../components/home/ServicesSection";
-import { SkillsSection } from "../components/home/SkillsSection";
 import { InfiniteBar } from "../components/common/InfiniteBar";
 import { Divider } from "../components/common/Common";
+import { AboutSection } from "../features/home/AboutSection";
+import { ContactSection } from "../features/home/ContactSection";
+import { EducationSection } from "../features/home/EducationSection";
+import { HeroSection } from "../features/home/HeroSection";
+import { JourneySection } from "../features/home/JourneySection";
+import { ServicesSection } from "../features/home/ServicesSection";
+import { SkillsSection } from "../features/home/SkillsSection";
 import { IDENTITY, MARQUEE } from "../data/content";
 import type { OutletCtx } from "../data/content";
 

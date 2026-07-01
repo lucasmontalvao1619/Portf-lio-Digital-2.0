@@ -11,6 +11,7 @@ export function ProjectGalleryCard({ num, name, desc, tech, image, alt, github, 
 }) {
   const { ref, inView } = useInView(0.05);
   const [hovered, setHovered] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const navigate = useNavigate();
   const openProject = () => navigate(`/projetos/${slug}`);
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -36,8 +37,20 @@ export function ProjectGalleryCard({ num, name, desc, tech, image, alt, github, 
         transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
       }}>
       <div className="aspect-video overflow-hidden bg-muted p-2">
-        <img src={image} alt={alt} loading="lazy" className="w-full h-full object-contain"
-          style={{ transition: "filter 0.45s cubic-bezier(0.16,1,0.3,1)", filter: hovered ? "contrast(1.03)" : "contrast(1)" }} />
+        {imageFailed ? (
+          <div className="flex h-full w-full items-center justify-center border border-border bg-background/40 px-8 text-center">
+            <span className="font-mono text-[10px] tracking-[0.22em] text-muted-foreground uppercase">{name}</span>
+          </div>
+        ) : (
+          <img
+            src={image}
+            alt={alt}
+            loading="lazy"
+            onError={() => setImageFailed(true)}
+            className="w-full h-full object-contain"
+            style={{ transition: "filter 0.45s cubic-bezier(0.16,1,0.3,1)", filter: hovered ? "contrast(1.03)" : "contrast(1)" }}
+          />
+        )}
       </div>
       <div className="p-7 md:p-8 flex flex-col gap-4">
         <div>

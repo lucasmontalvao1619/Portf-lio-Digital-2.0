@@ -58,6 +58,7 @@ export interface Translation {
   readonly services: readonly ServiceItem[];
   readonly s_projects: string;
   readonly projects_subtitle: string;
+  readonly project_filters: Record<ProjectFilter, string>;
   readonly github_btn: string;
   readonly live_btn: string;
   readonly proj_names: readonly string[];
@@ -91,6 +92,8 @@ export interface Translation {
 export type Tr = Translation;
 
 export type Localized<T> = Record<Lang, T>;
+export type ProjectCategory = "fullstack" | "frontend" | "research" | "ui";
+export type ProjectFilter = "all" | ProjectCategory;
 
 export interface OutletCtx {
   readonly isDark: boolean;
@@ -113,6 +116,7 @@ export interface ProjectStaticData {
   readonly image: string;
   readonly alt: string;
   readonly tech: readonly string[];
+  readonly categories: readonly ProjectCategory[];
   readonly github: string;
   readonly repositoryLabel?: string;
   readonly status?: string;

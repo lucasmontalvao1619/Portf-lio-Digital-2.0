@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
-import { FOOTER_LINKS, FOOTER_SCROLL_IDS, isExternalLink } from "../../data/content";
-import type { SectionId, Tr } from "../../data/content";
+import { FOOTER_LINKS, FOOTER_SCROLL_IDS, isExternalLink } from "../data/content";
+import type { SectionId, Tr } from "../data/content";
 
 export function Footer({ isDark, tr, handleNavClick, handleProjectsClick }: {
   isDark: boolean;

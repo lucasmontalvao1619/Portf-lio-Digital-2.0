@@ -18,18 +18,19 @@ import lucasTecnologiasUrl from "../../../assets/portfolio_lucas_tecnologias.png
 export const PROJECTS = [
   {
     slug: "sistema-gestao-imobiliaria",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=675&fit=crop&auto=format&q=85",
-    alt: "Corretora apresentando um imovel para clientes",
+    image: dubyDashboardUrl,
+    alt: "Dashboard de sistema de gestao",
     tech: ["C#", "ASP.NET Core", "Entity Framework", "SQL Server", "React"],
+    categories: ["fullstack"],
     github: "",
     repositoryLabel: "Em produção",
     status: "PRODUÇÃO",
     live: "",
     gallery: [
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&h=788&fit=crop&auto=format&q=85",
-      "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1400&h=788&fit=crop&auto=format&q=85",
-      "https://images.unsplash.com/photo-1560184897-ae75f418493e?w=1400&h=788&fit=crop&auto=format&q=85",
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&h=788&fit=crop&auto=format&q=85",
+      dubyDashboardUrl,
+      dubyPlanoUrl,
+      dubyDarkModeUrl,
+      dubyLoginUrl,
     ],
     details: {
       PT: {
@@ -53,6 +54,7 @@ export const PROJECTS = [
     image: dubyLoginUrl,
     alt: "DUBY login page",
     tech: ["HTML", "CSS", "JavaScript", "Chart.js", "Lucide Icons"],
+    categories: ["frontend", "ui"],
     github: "https://github.com/lucasmontalvao1619/Projeto-Duby",
     live: "",
     gallery: [
@@ -83,6 +85,7 @@ export const PROJECTS = [
     image: tauanHeroUrl,
     alt: "Portfolio Tauan hero section",
     tech: ["React", "Vite", "TypeScript", "Tailwind CSS", "Motion"],
+    categories: ["frontend", "ui"],
     github: "https://github.com/lucasmontalvao1619/Portf-lio-Tauan",
     live: "",
     gallery: [
@@ -113,6 +116,7 @@ export const PROJECTS = [
     image: lucasHeroUrl,
     alt: "Portfolio Lucas Montalvao hero section",
     tech: ["React", "TypeScript", "Tailwind CSS"],
+    categories: ["frontend", "research", "ui"],
     github: "https://github.com/lucasmontalvao1619/Portf-lio-Digital-2.0",
     live: "",
     gallery: [

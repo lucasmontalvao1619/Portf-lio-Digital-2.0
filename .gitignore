@@ -26,6 +26,12 @@ frontend/edge-shot-test-profile-2/
 # .NET output
 backend/**/bin/
 backend/**/obj/
+backend/**/Properties/launchSettings.json
+
+# Local secrets
+.env
+.env.*
+!.env.example
 
 # OS/editor noise
 .DS_Store

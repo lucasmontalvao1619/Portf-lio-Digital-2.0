@@ -20,7 +20,7 @@ export function InfiniteBar({ items, duration }: InfiniteBarProps) {
             {items.map((item, itemIndex) => (
               <span key={`${groupIndex}-${itemIndex}`} className="inline-flex items-center">
                 <span className="font-mono text-xs text-muted-foreground px-5">{item}</span>
-                <span className="text-[10px]" style={{ color: "var(--border)" }}>Â·</span>
+                <span className="text-[10px]" style={{ color: "var(--border)" }}>{"\u00B7"}</span>
               </span>
             ))}
           </div>

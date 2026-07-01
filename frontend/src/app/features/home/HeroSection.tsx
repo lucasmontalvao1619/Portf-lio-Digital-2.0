@@ -1,6 +1,8 @@
-import { Download } from "lucide-react";
+import type React from "react";
+import { Download, Github, Linkedin, Mail, Phone } from "lucide-react";
 import cvUrl from "../../../../assets/Curriculo_LucasMontalvao_2-1.pdf?url";
-import type { Tr } from "../../data/content";
+import { CONTACT_LINKS, isExternalLink } from "../../data/content";
+import type { ContactIconKey, Tr } from "../../data/content";
 
 const CORNER_CLASSES = [
   "top-[88px] left-8 md:left-14 border-l border-t",
@@ -8,6 +10,13 @@ const CORNER_CLASSES = [
   "bottom-14 left-8 md:left-14 border-l border-b",
   "bottom-14 right-8 md:right-14 border-r border-b",
 ] as const;
+
+const SOCIAL_ICONS: Record<ContactIconKey, React.ReactNode> = {
+  github: <Github size={15} strokeWidth={1.7} />,
+  linkedin: <Linkedin size={15} strokeWidth={1.7} />,
+  mail: <Mail size={15} strokeWidth={1.7} />,
+  phone: <Phone size={15} strokeWidth={1.7} />,
+};
 
 interface HeroSectionProps {
   isDark: boolean;
@@ -76,6 +85,21 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
           >
             {tr.btn_contact}
           </button>
+        </div>
+
+        <div className="mt-8 flex items-center justify-center gap-2 afu d450">
+          {CONTACT_LINKS.map(({ icon, label, href }) => (
+            <a
+              key={label}
+              href={href}
+              target={isExternalLink(href) ? "_blank" : undefined}
+              rel={isExternalLink(href) ? "noopener noreferrer" : undefined}
+              aria-label={label}
+              className="inline-flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+            >
+              {SOCIAL_ICONS[icon]}
+            </a>
+          ))}
         </div>
       </div>
 

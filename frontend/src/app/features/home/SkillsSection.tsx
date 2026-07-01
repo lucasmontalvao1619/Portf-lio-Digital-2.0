@@ -1,4 +1,4 @@
-import { Reveal, TechIconButton } from "../common/Common";
+import { Reveal, TechIconButton } from "../../components/common/Common";
 import { SKILL_CARDS } from "../../data/content";
 import type { Tr } from "../../data/content";
 

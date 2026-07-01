@@ -1,5 +1,5 @@
 import { TRAJ_YEARS } from "../../data/content";
-import { SectionHeader } from "../common/Common";
+import { SectionHeader } from "../../components/common/Common";
 import type { Tr } from "../../data/content";
 
 interface JourneySectionProps {

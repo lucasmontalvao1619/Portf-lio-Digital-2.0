@@ -4,7 +4,7 @@ import cvUrl from "../../../../assets/Curriculo_LucasMontalvao_2-1.pdf?url";
 import { CONTACT_LINKS, isExternalLink } from "../../data/content";
 import type { ContactIconKey, Tr } from "../../data/content";
 import { ContactForm } from "../contact/ContactForm";
-import { Divider, Reveal, SectionHeader } from "../common/Common";
+import { Divider, Reveal, SectionHeader } from "../../components/common/Common";
 
 const contactIcons: Record<ContactIconKey, React.ReactNode> = {
   github: <Github size={14} strokeWidth={1.5} />,

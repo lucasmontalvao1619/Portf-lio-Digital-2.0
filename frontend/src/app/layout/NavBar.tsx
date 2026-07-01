@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type React from "react";
 import { Menu, X } from "lucide-react";
-import { GlobeIcon, MoonIcon, SunIcon } from "../icons/PortfolioIcons";
-import { buildNavItems } from "../../data/content";
-import type { Lang, NavItemId, SectionId, Tr } from "../../data/content";
+import { GlobeIcon, MoonIcon, SunIcon } from "../components/icons/PortfolioIcons";
+import { buildNavItems } from "../data/content";
+import type { Lang, NavItemId, SectionId, Tr } from "../data/content";
 
 interface NavBarProps {
   lang: Lang;
@@ -48,6 +48,12 @@ export function NavBar({
   const ptInactive   = isDark ? "rgba(255,255,255,0.28)"  : "rgba(0,0,0,0.3)";
   const menuBg       = isDark ? "rgba(5,7,13,0.72)"       : "rgba(255,255,255,0.97)";
   const hamburgClr   = isDark ? "rgba(255,255,255,0.65)"  : "rgba(0,0,0,0.6)";
+  const projectBorder = onProjectsPage
+    ? linkActive
+    : isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.28)";
+  const projectColor = onProjectsPage
+    ? linkActive
+    : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)";
 
   const pill: React.CSSProperties = {
     background: pillBg, border: `1px solid ${pillBorder}`,
@@ -136,6 +142,26 @@ export function NavBar({
 
         <div className="ml-auto flex items-center gap-2 shrink-0">
           <div className="hidden lg:flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleProjectsClick}
+              className="relative text-[12px] font-mono px-3 py-1.5 shrink-0 transition-all duration-200"
+              style={{ color: projectColor, border: `1px solid ${projectBorder}`, background: onProjectsPage ? linkActive : "transparent" }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = linkActive;
+                el.style.color = isDark ? "#0c0c0c" : "#fafafa";
+                el.style.borderColor = linkActive;
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = onProjectsPage ? linkActive : "transparent";
+                el.style.color = onProjectsPage ? (isDark ? "#0c0c0c" : "#fafafa") : projectColor;
+                el.style.borderColor = projectBorder;
+              }}
+            >
+              {tr.nav_labels[7]}
+            </button>
             <button onClick={() => setLang(lang === "PT" ? "EN" : "PT")}
               type="button"
               aria-label="Toggle language"
@@ -195,6 +221,17 @@ export function NavBar({
           })}
           <div className="flex items-center gap-3 pt-2"
             style={{ borderTop: `1px solid ${navBorder}`, marginTop: "4px" }}>
+            <button
+              onClick={handleProjectsClick}
+              type="button"
+              className="text-[13px] font-mono px-3 py-1.5 border"
+              style={{
+                color: onProjectsPage ? linkActive : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)",
+                borderColor: onProjectsPage ? linkActive : isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.28)",
+              }}
+            >
+              {tr.nav_labels[7]}
+            </button>
             <button onClick={() => setLang(lang === "PT" ? "EN" : "PT")}
               type="button"
               aria-label="Toggle language"

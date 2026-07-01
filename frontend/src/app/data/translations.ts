@@ -29,6 +29,13 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
 
     s_projects: "Projetos",
     projects_subtitle: "Trabalhos selecionados e produtos digitais.",
+    project_filters: {
+      all: "Todos",
+      fullstack: "Full-stack",
+      frontend: "Front-end",
+      research: "Pesquisa",
+      ui: "UI",
+    },
     github_btn: "GitHub",
     live_btn: "Live Demo",
     proj_names: [
@@ -117,6 +124,13 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
 
     s_projects: "Projects",
     projects_subtitle: "Selected works and digital products.",
+    project_filters: {
+      all: "All",
+      fullstack: "Full-stack",
+      frontend: "Front-end",
+      research: "Research",
+      ui: "UI",
+    },
     github_btn: "GitHub",
     live_btn: "Live Demo",
     proj_names: [

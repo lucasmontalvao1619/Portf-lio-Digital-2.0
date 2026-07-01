@@ -1,12 +1,19 @@
+import { useState } from "react";
 import { useOutletContext } from "react-router";
-import { ProjectGalleryCard } from "../components/projects/ProjectGalleryCard";
 import { Reveal } from "../components/common/Common";
+import { ProjectGalleryCard } from "../features/projects/ProjectGalleryCard";
 import { getLocalizedProjects } from "../data/content";
-import type { OutletCtx } from "../data/content";
+import type { OutletCtx, ProjectFilter } from "../data/content";
+
+const PROJECT_FILTERS: readonly ProjectFilter[] = ["all", "fullstack", "frontend", "research", "ui"];
 
 export function ProjectsPage() {
   const { tr } = useOutletContext<OutletCtx>();
+  const [activeFilter, setActiveFilter] = useState<ProjectFilter>("all");
   const projects = getLocalizedProjects(tr);
+  const filteredProjects = activeFilter === "all"
+    ? projects
+    : projects.filter((project) => project.categories.includes(activeFilter));
 
   return (
     <div className="pt-28 pb-32 px-6">
@@ -17,10 +24,32 @@ export function ProjectsPage() {
             {tr.s_projects}
           </h1>
           <p className="text-muted-foreground text-base md:text-lg mt-5">{tr.projects_subtitle}</p>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {PROJECT_FILTERS.map((filter) => {
+              const active = activeFilter === filter;
+
+              return (
+                <button
+                  key={filter}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => setActiveFilter(filter)}
+                  className="border px-3 py-1.5 font-mono text-[11px] transition-colors"
+                  style={{
+                    borderColor: active ? "var(--foreground)" : "var(--border)",
+                    color: active ? "var(--background)" : "var(--muted-foreground)",
+                    background: active ? "var(--foreground)" : "transparent",
+                  }}
+                >
+                  {tr.project_filters[filter]}
+                </button>
+              );
+            })}
+          </div>
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <ProjectGalleryCard
               key={project.slug}
               num={project.num}

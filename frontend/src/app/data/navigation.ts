@@ -14,13 +14,11 @@ export const FOOTER_LINKS = CONTACT_LINKS;
 export function buildNavItems(tr: Tr): NavigationItem[] {
   return [
     { label: tr.nav_labels[0], id: "inicio" },
-    { label: tr.nav_labels[1], id: "sobre" },
     { label: tr.nav_labels[2], id: "habilidades" },
     { label: tr.nav_labels[3], id: "servicos" },
     { label: tr.nav_labels[4], id: "formacao" },
-    { label: tr.nav_labels[5], id: "trajetoria" },
+    { label: tr.nav_labels[1], id: "sobre" },
     { label: tr.nav_labels[6], id: "contato" },
-    { label: tr.nav_labels[7], id: "projetos", isRoute: true },
   ];
 }
 

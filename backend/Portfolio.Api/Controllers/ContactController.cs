@@ -39,12 +39,6 @@ public sealed class ContactController : ControllerBase
             _sanitizer.CleanEmail(request.Email),
             _sanitizer.CleanText(request.Message, 2000));
 
-        if (contact.Message.Length < 10)
-        {
-            ModelState.AddModelError(nameof(request.Message), "Mensagem deve ter no mínimo 10 caracteres.");
-            return ValidationProblem(ModelState);
-        }
-
         await _emailService.SendContactEmailAsync(contact, cancellationToken);
 
         return Ok(new { message = "Mensagem enviada com sucesso." });

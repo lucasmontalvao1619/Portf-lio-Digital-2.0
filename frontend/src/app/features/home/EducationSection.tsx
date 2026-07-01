@@ -1,4 +1,4 @@
-import { Reveal, SectionHeader } from "../common/Common";
+import { Reveal, SectionHeader } from "../../components/common/Common";
 import type { Tr } from "../../data/content";
 
 export function EducationSection({ tr }: { tr: Tr }) {

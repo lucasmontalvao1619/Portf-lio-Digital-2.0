@@ -14,7 +14,6 @@ public sealed class ContactRequest
     public string Email { get; init; } = string.Empty;
 
     [Required(ErrorMessage = "Mensagem é obrigatória.")]
-    [MinLength(10, ErrorMessage = "Mensagem deve ter no mínimo 10 caracteres.")]
     [MaxLength(2000, ErrorMessage = "Mensagem deve ter no máximo 2000 caracteres.")]
     public string Message { get; init; } = string.Empty;
 
