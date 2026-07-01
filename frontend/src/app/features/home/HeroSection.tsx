@@ -26,12 +26,15 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: HeroSectionProps) {
-  const gridLine = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)";
+  const gridLine = isDark ? "rgba(255,255,255,0.085)" : "rgba(0,0,0,0.07)";
 
   return (
-    <section id="inicio" className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+    <section
+      id="inicio"
+      className={`min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden${isDark ? " locke-hero-bg" : ""}`}
+    >
       <div
-        className="absolute inset-0 z-[1] pointer-events-none"
+        className={`absolute inset-0 ${isDark ? "z-[3]" : "z-[1]"} pointer-events-none`}
         style={{
           backgroundImage: `linear-gradient(to right,${gridLine} 1px,transparent 1px),linear-gradient(to bottom,${gridLine} 1px,transparent 1px)`,
           backgroundSize: "155px 110px",
@@ -106,6 +109,46 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 afu d450">
         <div className="w-px h-12 bg-gradient-to-b from-transparent to-border mx-auto" />
       </div>
+
+      <style>{`
+        .locke-hero-bg::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background-image: url("/assets/locke-bg.jpg");
+          background-size: auto 126%;
+          background-position: right 45%;
+          background-repeat: no-repeat;
+          opacity: 0.48;
+        }
+
+        .locke-hero-bg::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          pointer-events: none;
+          background:
+            linear-gradient(90deg, rgba(5, 7, 13, 0.88) 0%, rgba(5, 7, 13, 0.5) 48%, rgba(5, 7, 13, 0.7) 100%),
+            linear-gradient(180deg, rgba(5, 7, 13, 0.62) 0%, rgba(5, 7, 13, 0.22) 42%, rgba(5, 7, 13, 0.8) 100%);
+        }
+
+        @media (max-width: 640px) {
+          .locke-hero-bg::before {
+            background-size: auto 118%;
+            background-position: 74% center;
+            opacity: 0.4;
+          }
+
+          .locke-hero-bg::after {
+            background:
+              linear-gradient(90deg, rgba(5, 7, 13, 0.94) 0%, rgba(5, 7, 13, 0.64) 58%, rgba(5, 7, 13, 0.9) 100%),
+              linear-gradient(180deg, rgba(5, 7, 13, 0.74) 0%, rgba(5, 7, 13, 0.36) 42%, rgba(5, 7, 13, 0.88) 100%);
+          }
+        }
+      `}</style>
     </section>
   );
 }
