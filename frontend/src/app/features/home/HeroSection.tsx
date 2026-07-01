@@ -1,4 +1,5 @@
 import type React from "react";
+import type { CSSProperties } from "react";
 import { Download, Github, Linkedin, Mail, Phone } from "lucide-react";
 import cvUrl from "../../../../assets/Curriculo_LucasMontalvao_2-1.pdf?url";
 import { CONTACT_LINKS, isExternalLink } from "../../data/content";
@@ -17,6 +18,33 @@ const SOCIAL_ICONS: Record<ContactIconKey, React.ReactNode> = {
   mail: <Mail size={15} strokeWidth={1.7} />,
   phone: <Phone size={15} strokeWidth={1.7} />,
 };
+
+type HeroStarStyle = CSSProperties & {
+  "--hero-star-opacity": number;
+  "--hero-star-duration": string;
+  "--hero-star-delay": string;
+};
+
+const HERO_STAR_COUNT = 36;
+
+function seededHeroValue(index: number, salt: number) {
+  const x = Math.sin(index * 83.3 + salt * 29.9) * 10000;
+  return x - Math.floor(x);
+}
+
+const heroStars = Array.from({ length: HERO_STAR_COUNT }, (_, index) => {
+  const depth = seededHeroValue(index, 1);
+  const size = depth > 0.82 ? 2 : depth > 0.52 ? 1.35 : 0.8;
+
+  return {
+    left: `${seededHeroValue(index, 2) * 100}%`,
+    top: `${8 + seededHeroValue(index, 3) * 64}%`,
+    size,
+    opacity: 0.22 + seededHeroValue(index, 4) * 0.48,
+    duration: `${4 + seededHeroValue(index, 5) * 5}s`,
+    delay: `${seededHeroValue(index, 6) * -7}s`,
+  };
+});
 
 interface HeroSectionProps {
   isDark: boolean;
@@ -44,6 +72,24 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
       {CORNER_CLASSES.map((className) => (
         <div key={className} className={`absolute z-[2] w-5 h-5 border-foreground/10 pointer-events-none ${className}`} />
       ))}
+
+      {isDark && (
+        <div className="hero-star-field absolute inset-0 z-[4] pointer-events-none" aria-hidden="true">
+          {heroStars.map((star, index) => {
+            const style: HeroStarStyle = {
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              "--hero-star-opacity": star.opacity,
+              "--hero-star-duration": star.duration,
+              "--hero-star-delay": star.delay,
+            };
+
+            return <span key={`hero-star-${index}`} className="hero-star" style={style} />;
+          })}
+        </div>
+      )}
 
       <div className="text-center max-w-4xl mx-auto relative z-10">
         <div className="inline-flex items-center gap-2.5 mb-10 afu">
@@ -135,7 +181,26 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
             linear-gradient(180deg, rgba(5, 7, 13, 0.62) 0%, rgba(5, 7, 13, 0.22) 42%, rgba(5, 7, 13, 0.8) 100%);
         }
 
+        .hero-star {
+          position: absolute;
+          display: block;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.92);
+          box-shadow: 0 0 8px rgba(255, 255, 255, 0.24);
+          opacity: var(--hero-star-opacity);
+          animation: hero-star-twinkle var(--hero-star-duration) ease-in-out var(--hero-star-delay) infinite alternate;
+        }
+
+        @keyframes hero-star-twinkle {
+          from { opacity: calc(var(--hero-star-opacity) * 0.42); }
+          to { opacity: var(--hero-star-opacity); }
+        }
+
         @media (max-width: 640px) {
+          .hero-star-field .hero-star:nth-child(2n) {
+            display: none;
+          }
+
           .locke-hero-bg::before {
             background-size: auto 118%;
             background-position: 74% center;
