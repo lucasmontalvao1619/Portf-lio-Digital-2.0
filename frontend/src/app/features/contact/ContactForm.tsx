@@ -19,7 +19,7 @@ function getApiBaseUrl(): string {
     return configuredUrl.replace(/\/+$/, "");
   }
 
-  return import.meta.env.DEV ? "http://localhost:5000" : "";
+  return import.meta.env.DEV ? "http://localhost:5272" : "";
 }
 
 const API_BASE_URL = getApiBaseUrl();
