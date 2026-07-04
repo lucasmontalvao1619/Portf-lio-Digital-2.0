@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 
 type StarStyle = CSSProperties & {
@@ -21,6 +22,8 @@ type MeteorStyle = CSSProperties & {
 
 const STAR_COUNT = 90;
 const METEOR_COUNT = 6;
+const COSMIC_FADE_MS = 420;
+const COSMIC_ENTER_DELAY_MS = 70;
 
 function seededValue(index: number, salt: number) {
   const x = Math.sin(index * 91.7 + salt * 37.3) * 10000;
@@ -69,10 +72,35 @@ interface CosmicBackgroundProps {
 }
 
 export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
-  if (!isDark) return null;
+  const [shouldRender, setShouldRender] = useState(isDark);
+  const [isVisible, setIsVisible] = useState(isDark);
+
+  useEffect(() => {
+    if (isDark) {
+      const timeout = window.setTimeout(() => {
+        setShouldRender(true);
+        window.requestAnimationFrame(() => setIsVisible(true));
+      }, shouldRender ? 0 : COSMIC_ENTER_DELAY_MS);
+
+      return () => window.clearTimeout(timeout);
+    }
+
+    setIsVisible(false);
+    const timeout = window.setTimeout(() => setShouldRender(false), COSMIC_FADE_MS);
+    return () => window.clearTimeout(timeout);
+  }, [isDark]);
+
+  if (!shouldRender) return null;
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div
+      className={`fixed inset-0 z-0 pointer-events-none overflow-hidden${isVisible ? "" : " cosmic-paused"}`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: `opacity ${COSMIC_FADE_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+      }}
+      aria-hidden="true"
+    >
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 cosmic-base" />
         <div className="absolute inset-0 cosmic-nebula" />
@@ -215,6 +243,11 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
             0 0 22px rgba(255, 255, 255, 0.6),
             0 0 38px rgba(231, 236, 255, 0.36);
           transform: translateY(-50%);
+        }
+
+        .cosmic-paused .cosmic-star,
+        .cosmic-paused .cosmic-meteor {
+          animation-play-state: paused;
         }
 
         @keyframes cosmic-twinkle {

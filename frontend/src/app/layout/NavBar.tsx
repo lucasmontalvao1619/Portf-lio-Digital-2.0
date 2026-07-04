@@ -9,7 +9,7 @@ interface NavBarProps {
   lang: Lang;
   setLang: React.Dispatch<React.SetStateAction<Lang>>;
   isDark: boolean;
-  setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+  onThemeToggle: React.MouseEventHandler<HTMLButtonElement>;
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   activeSection: SectionId;
@@ -20,7 +20,7 @@ interface NavBarProps {
 }
 
 export function NavBar({
-  lang, setLang, isDark, setIsDark,
+  lang, setLang, isDark, onThemeToggle,
   menuOpen, setMenuOpen,
   activeSection, handleNavClick, handleProjectsClick,
   tr, onProjectsPage,
@@ -32,28 +32,30 @@ export function NavBar({
   const isActive = (id: NavItemId, isRoute?: boolean) =>
     isRoute ? onProjectsPage : !onProjectsPage && activeSection === id;
 
-  const navBg        = isDark ? "rgba(5,7,13,0.45)"       : "rgba(255,255,255,0.92)";
-  const navBorder    = isDark ? "rgba(255,255,255,0.09)"  : "rgba(0,0,0,0.07)";
-  const logoAngle    = isDark ? "rgba(255,255,255,0.28)"  : "rgba(0,0,0,0.28)";
-  const logoName     = isDark ? "rgba(255,255,255,0.92)"  : "rgba(0,0,0,0.88)";
-  const linkActive   = isDark ? "rgba(255,255,255,0.92)"  : "rgba(0,0,0,0.88)";
-  const linkInactive = isDark ? "rgba(255,255,255,0.42)"  : "rgba(0,0,0,0.48)";
-  const linkHover    = isDark ? "rgba(255,255,255,0.75)"  : "rgba(0,0,0,0.72)";
-  const underline    = isDark ? "rgba(255,255,255,0.55)"  : "rgba(0,0,0,0.75)";
-  const pillBg       = isDark ? "rgba(255,255,255,0.05)"  : "rgba(0,0,0,0.04)";
-  const pillBorder   = isDark ? "rgba(255,255,255,0.09)"  : "rgba(0,0,0,0.1)";
-  const pillHoverBg  = isDark ? "rgba(255,255,255,0.09)"  : "rgba(0,0,0,0.07)";
-  const sepColor     = isDark ? "rgba(255,255,255,0.16)"  : "rgba(0,0,0,0.16)";
-  const ptActive     = isDark ? "rgba(255,255,255,0.92)"  : "rgba(0,0,0,0.88)";
-  const ptInactive   = isDark ? "rgba(255,255,255,0.28)"  : "rgba(0,0,0,0.3)";
-  const menuBg       = isDark ? "rgba(5,7,13,0.72)"       : "rgba(255,255,255,0.97)";
-  const hamburgClr   = isDark ? "rgba(255,255,255,0.65)"  : "rgba(0,0,0,0.6)";
+  const navBg        = "var(--nav-bg)";
+  const navBorder    = "var(--nav-border)";
+  const logoAngle    = "var(--nav-logo-angle)";
+  const logoName     = "var(--nav-logo-name)";
+  const linkActive   = "var(--nav-link-active)";
+  const linkInactive = "var(--nav-link-inactive)";
+  const linkHover    = "var(--nav-link-hover)";
+  const underline    = "var(--nav-underline)";
+  const pillBg       = "var(--nav-pill-bg)";
+  const pillBorder   = "var(--nav-pill-border)";
+  const pillHoverBg  = "var(--nav-pill-hover-bg)";
+  const sepColor     = "var(--nav-separator)";
+  const ptActive     = "var(--nav-lang-active)";
+  const ptInactive   = "var(--nav-lang-inactive)";
+  const menuBg       = "var(--nav-menu-bg)";
+  const hamburgClr   = "var(--nav-menu-button)";
+  const activeText   = "var(--primary-foreground)";
+  const navIcon      = "var(--nav-icon)";
   const projectBorder = onProjectsPage
     ? linkActive
-    : isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.28)";
+    : "var(--nav-project-border)";
   const projectColor = onProjectsPage
     ? linkActive
-    : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)";
+    : "var(--nav-project-color)";
 
   const pill: React.CSSProperties = {
     background: pillBg, border: `1px solid ${pillBorder}`,
@@ -92,10 +94,10 @@ export function NavBar({
             if (isRoute) {
               const routeBorder = active
                 ? linkActive
-                : isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.28)";
+                : "var(--nav-project-border)";
               const routeColor = active
                 ? linkActive
-                : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)";
+                : "var(--nav-project-color)";
               return (
                 <button key={id}
                   type="button"
@@ -105,16 +107,16 @@ export function NavBar({
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = linkActive;
-                    el.style.color = isDark ? "#0c0c0c" : "#fafafa";
+                    el.style.color = activeText;
                     el.style.borderColor = linkActive;
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = active ? linkActive : "transparent";
-                    el.style.color = active ? (isDark ? "#0c0c0c" : "#fafafa") : routeColor;
+                    el.style.color = active ? activeText : routeColor;
                     el.style.borderColor = routeBorder;
                   }}>
-                  <span style={{ color: active ? (isDark ? "#0c0c0c" : "#fafafa") : routeColor }}>{label}</span>
+                  <span style={{ color: active ? activeText : routeColor }}>{label}</span>
                 </button>
               );
             }
@@ -150,13 +152,13 @@ export function NavBar({
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
                 el.style.background = linkActive;
-                el.style.color = isDark ? "#0c0c0c" : "#fafafa";
+                el.style.color = activeText;
                 el.style.borderColor = linkActive;
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
                 el.style.background = onProjectsPage ? linkActive : "transparent";
-                el.style.color = onProjectsPage ? (isDark ? "#0c0c0c" : "#fafafa") : projectColor;
+                el.style.color = onProjectsPage ? activeText : projectColor;
                 el.style.borderColor = projectBorder;
               }}
             >
@@ -168,18 +170,18 @@ export function NavBar({
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono" style={pill}
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = pillHoverBg)}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = pillBg)}>
-              <GlobeIcon color={isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)"} />
+              <GlobeIcon color={navIcon} />
               <span style={{ color: lang === "PT" ? ptActive : ptInactive, transition: "color 0.2s" }}>PT</span>
               <span style={{ color: sepColor }}>|</span>
               <span style={{ color: lang === "EN" ? ptActive : ptInactive, transition: "color 0.2s" }}>EN</span>
             </button>
-            <button onClick={() => setIsDark((d) => !d)}
+            <button onClick={onThemeToggle}
               type="button"
               className="flex items-center justify-center w-8 h-8" style={pill}
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = pillHoverBg)}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = pillBg)}
               aria-label="Toggle theme">
-              {isDark ? <SunIcon color="rgba(255,255,255,0.6)" /> : <MoonIcon color="rgba(0,0,0,0.5)" />}
+              {isDark ? <SunIcon color={navIcon} /> : <MoonIcon color={navIcon} />}
             </button>
           </div>
 
@@ -203,8 +205,8 @@ export function NavBar({
                   type="button"
                   className="text-[13px] font-mono text-left py-1 px-3 w-fit border"
                   style={{
-                    color: active ? linkActive : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)",
-                    borderColor: active ? linkActive : isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.28)",
+                    color: active ? linkActive : "var(--nav-project-color)",
+                    borderColor: active ? linkActive : "var(--nav-project-border)",
                   }}>
                   {label}
                 </button>
@@ -226,8 +228,8 @@ export function NavBar({
               type="button"
               className="text-[13px] font-mono px-3 py-1.5 border"
               style={{
-                color: onProjectsPage ? linkActive : isDark ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.72)",
-                borderColor: onProjectsPage ? linkActive : isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.28)",
+                color: onProjectsPage ? linkActive : "var(--nav-project-color)",
+                borderColor: onProjectsPage ? linkActive : "var(--nav-project-border)",
               }}
             >
               {tr.nav_labels[7]}
@@ -236,16 +238,16 @@ export function NavBar({
               type="button"
               aria-label="Toggle language"
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono" style={pill}>
-              <GlobeIcon color={isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)"} />
+              <GlobeIcon color={navIcon} />
               <span style={{ color: lang === "PT" ? ptActive : ptInactive }}>PT</span>
               <span style={{ color: sepColor }}>|</span>
               <span style={{ color: lang === "EN" ? ptActive : ptInactive }}>EN</span>
             </button>
-            <button onClick={() => setIsDark((d) => !d)}
+            <button onClick={onThemeToggle}
               type="button"
               className="flex items-center justify-center w-8 h-8" style={pill}
               aria-label="Toggle theme">
-              {isDark ? <SunIcon color="rgba(255,255,255,0.6)" /> : <MoonIcon color="rgba(0,0,0,0.5)" />}
+              {isDark ? <SunIcon color={navIcon} /> : <MoonIcon color={navIcon} />}
             </button>
           </div>
         </div>

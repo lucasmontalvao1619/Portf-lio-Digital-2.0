@@ -49,6 +49,25 @@
   --skills-icon-shadow: 0 5px 16px rgba(0, 0, 0, 0.025);
   --skills-icon-hover-shadow: 0 12px 26px rgba(0, 0, 0, 0.09), 0 0 0 1px rgba(255, 255, 255, 0.72);
   --skills-category-icon-background: rgba(255, 255, 255, 0.48);
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-border: rgba(0, 0, 0, 0.07);
+  --nav-logo-angle: rgba(0, 0, 0, 0.28);
+  --nav-logo-name: rgba(0, 0, 0, 0.88);
+  --nav-link-active: rgba(0, 0, 0, 0.88);
+  --nav-link-inactive: rgba(0, 0, 0, 0.48);
+  --nav-link-hover: rgba(0, 0, 0, 0.72);
+  --nav-underline: rgba(0, 0, 0, 0.75);
+  --nav-pill-bg: rgba(0, 0, 0, 0.04);
+  --nav-pill-border: rgba(0, 0, 0, 0.1);
+  --nav-pill-hover-bg: rgba(0, 0, 0, 0.07);
+  --nav-separator: rgba(0, 0, 0, 0.16);
+  --nav-lang-active: rgba(0, 0, 0, 0.88);
+  --nav-lang-inactive: rgba(0, 0, 0, 0.3);
+  --nav-menu-bg: rgba(255, 255, 255, 0.97);
+  --nav-menu-button: rgba(0, 0, 0, 0.6);
+  --nav-project-border: rgba(0, 0, 0, 0.28);
+  --nav-project-color: rgba(0, 0, 0, 0.72);
+  --nav-icon: rgba(0, 0, 0, 0.45);
 }
 
 .dark {
@@ -98,6 +117,25 @@
   --skills-icon-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
   --skills-icon-hover-shadow: 0 12px 26px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.045);
   --skills-category-icon-background: rgba(255, 255, 255, 0.035);
+  --nav-bg: rgba(5, 7, 13, 0.45);
+  --nav-border: rgba(255, 255, 255, 0.09);
+  --nav-logo-angle: rgba(255, 255, 255, 0.28);
+  --nav-logo-name: rgba(255, 255, 255, 0.92);
+  --nav-link-active: rgba(255, 255, 255, 0.92);
+  --nav-link-inactive: rgba(255, 255, 255, 0.42);
+  --nav-link-hover: rgba(255, 255, 255, 0.75);
+  --nav-underline: rgba(255, 255, 255, 0.55);
+  --nav-pill-bg: rgba(255, 255, 255, 0.05);
+  --nav-pill-border: rgba(255, 255, 255, 0.09);
+  --nav-pill-hover-bg: rgba(255, 255, 255, 0.09);
+  --nav-separator: rgba(255, 255, 255, 0.16);
+  --nav-lang-active: rgba(255, 255, 255, 0.92);
+  --nav-lang-inactive: rgba(255, 255, 255, 0.28);
+  --nav-menu-bg: rgba(5, 7, 13, 0.72);
+  --nav-menu-button: rgba(255, 255, 255, 0.65);
+  --nav-project-border: rgba(255, 255, 255, 0.35);
+  --nav-project-color: rgba(255, 255, 255, 0.78);
+  --nav-icon: rgba(255, 255, 255, 0.5);
 }
 
 @theme inline {

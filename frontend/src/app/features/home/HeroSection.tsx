@@ -25,7 +25,12 @@ type HeroStarStyle = CSSProperties & {
   "--hero-star-delay": string;
 };
 
+type HeroSectionStyle = CSSProperties & {
+  "--locke-hero-opacity": number;
+};
+
 const HERO_STAR_COUNT = 36;
+const HERO_THEME_FADE_MS = 420;
 
 function seededHeroValue(index: number, salt: number) {
   const x = Math.sin(index * 83.3 + salt * 29.9) * 10000;
@@ -55,11 +60,15 @@ interface HeroSectionProps {
 
 export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: HeroSectionProps) {
   const gridLine = isDark ? "rgba(255,255,255,0.085)" : "rgba(0,0,0,0.07)";
+  const sectionStyle: HeroSectionStyle = {
+    "--locke-hero-opacity": isDark ? 1 : 0,
+  };
 
   return (
     <section
       id="inicio"
-      className={`min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden${isDark ? " locke-hero-bg" : ""}`}
+      className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden locke-hero-bg"
+      style={sectionStyle}
     >
       <div
         className={`absolute inset-0 ${isDark ? "z-[3]" : "z-[1]"} pointer-events-none`}
@@ -67,29 +76,35 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
           backgroundImage: `linear-gradient(to right,${gridLine} 1px,transparent 1px),linear-gradient(to bottom,${gridLine} 1px,transparent 1px)`,
           backgroundSize: "155px 110px",
           opacity: isDark ? 0.72 : 1,
+          transition: `opacity ${HERO_THEME_FADE_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
         }}
       />
       {CORNER_CLASSES.map((className) => (
         <div key={className} className={`absolute z-[2] w-5 h-5 border-foreground/10 pointer-events-none ${className}`} />
       ))}
 
-      {isDark && (
-        <div className="hero-star-field absolute inset-0 z-[4] pointer-events-none" aria-hidden="true">
-          {heroStars.map((star, index) => {
-            const style: HeroStarStyle = {
-              left: star.left,
-              top: star.top,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              "--hero-star-opacity": star.opacity,
-              "--hero-star-duration": star.duration,
-              "--hero-star-delay": star.delay,
-            };
+      <div
+        className={`hero-star-field absolute inset-0 z-[4] pointer-events-none${isDark ? "" : " hero-stars-paused"}`}
+        style={{
+          opacity: isDark ? 1 : 0,
+          transition: `opacity ${HERO_THEME_FADE_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+        }}
+        aria-hidden="true"
+      >
+        {heroStars.map((star, index) => {
+          const style: HeroStarStyle = {
+            left: star.left,
+            top: star.top,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            "--hero-star-opacity": star.opacity,
+            "--hero-star-duration": star.duration,
+            "--hero-star-delay": star.delay,
+          };
 
-            return <span key={`hero-star-${index}`} className="hero-star" style={style} />;
-          })}
-        </div>
-      )}
+          return <span key={`hero-star-${index}`} className="hero-star" style={style} />;
+        })}
+      </div>
 
       <div className="text-center max-w-4xl mx-auto relative z-10">
         <div className="inline-flex items-center gap-2.5 mb-10 afu">
@@ -167,7 +182,8 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
           background-size: auto 126%;
           background-position: right 45%;
           background-repeat: no-repeat;
-          opacity: 0.48;
+          opacity: calc(var(--locke-hero-opacity) * 0.48);
+          transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .locke-hero-bg::after {
@@ -179,6 +195,8 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
           background:
             linear-gradient(90deg, rgba(5, 7, 13, 0.88) 0%, rgba(5, 7, 13, 0.5) 48%, rgba(5, 7, 13, 0.7) 100%),
             linear-gradient(180deg, rgba(5, 7, 13, 0.62) 0%, rgba(5, 7, 13, 0.22) 42%, rgba(5, 7, 13, 0.8) 100%);
+          opacity: var(--locke-hero-opacity);
+          transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .hero-star {
@@ -196,6 +214,10 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
           to { opacity: var(--hero-star-opacity); }
         }
 
+        .hero-stars-paused .hero-star {
+          animation-play-state: paused;
+        }
+
         @media (max-width: 640px) {
           .hero-star-field .hero-star:nth-child(2n) {
             display: none;
@@ -204,7 +226,7 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
           .locke-hero-bg::before {
             background-size: auto 118%;
             background-position: 74% center;
-            opacity: 0.4;
+            opacity: calc(var(--locke-hero-opacity) * 0.4);
           }
 
           .locke-hero-bg::after {
