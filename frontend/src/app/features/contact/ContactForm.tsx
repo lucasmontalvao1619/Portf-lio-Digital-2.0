@@ -12,17 +12,17 @@ interface ContactFormData {
 
 const INITIAL_FORM_DATA: ContactFormData = { name: "", email: "", message: "", website: "" };
 
-function getApiBaseUrl(): string {
+function getContactEndpoint(): string {
   const configuredUrl = import.meta.env.VITE_API_BASE_URL?.trim();
 
   if (configuredUrl) {
-    return configuredUrl.replace(/\/+$/, "");
+    return `${configuredUrl.replace(/\/+$/, "")}/api/contact`;
   }
 
-  return import.meta.env.DEV ? "http://localhost:5272" : "";
+  return import.meta.env.DEV ? "http://localhost:5272/api/contact" : "/api/contact";
 }
 
-const API_BASE_URL = getApiBaseUrl();
+const CONTACT_ENDPOINT = getContactEndpoint();
 
 export function ContactForm({ tr }: { tr: Tr }) {
   const [formData, setFormData] = useState<ContactFormData>(INITIAL_FORM_DATA);
@@ -46,12 +46,7 @@ export function ContactForm({ tr }: { tr: Tr }) {
     setError(null);
 
     try {
-      if (!API_BASE_URL) {
-        setError("Servico de contato nao configurado para este ambiente.");
-        return;
-      }
-
-      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
