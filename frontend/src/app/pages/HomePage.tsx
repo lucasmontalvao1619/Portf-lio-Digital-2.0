@@ -4,6 +4,7 @@ import { Divider } from "../components/common/Common";
 import { AboutSection } from "../features/home/AboutSection";
 import { ContactSection } from "../features/home/ContactSection";
 import { EducationSection } from "../features/home/EducationSection";
+import { GitHubStatsSection } from "../features/home/GitHubStatsSection";
 import { HeroSection } from "../features/home/HeroSection";
 import { JourneySection } from "../features/home/JourneySection";
 import { ServicesSection } from "../features/home/ServicesSection";
@@ -42,6 +43,10 @@ export function HomePage() {
       <Divider />
 
       <JourneySection isDark={isDark} tr={tr} />
+
+      <Divider />
+
+      <GitHubStatsSection tr={tr} />
 
       <InfiniteBar items={IDENTITY} duration="80s" />
 

@@ -94,6 +94,21 @@ builder.Services.AddRateLimiter(options =>
             AutoReplenishment = true
         });
     });
+
+    // /api/github/stats é somente leitura, cacheado, mas ainda assim limitamos por IP
+    // para evitar amplification em caso de burst.
+    options.AddPolicy("github", httpContext =>
+    {
+        var clientIp = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.GetFixedWindowLimiter(clientIp, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 30,
+            Window = TimeSpan.FromMinutes(1),
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
 });
 
 // Resend usa apenas variável de ambiente para token; nenhuma chave fica no código.
@@ -109,6 +124,27 @@ builder.Services.AddTransient<IResend, ResendClient>();
 builder.Services.Configure<ContactEmailOptions>(builder.Configuration.GetSection(ContactEmailOptions.SectionName));
 builder.Services.AddSingleton<IInputSanitizer, InputSanitizer>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+
+// Proxy de estatísticas do GitHub: HttpClientFactory + IMemoryCache para
+// reduzir chamadas e ficar dentro do limite de 60 req/hora sem token.
+var githubUsernameFromEnv = Environment.GetEnvironmentVariable("GITHUBSTATS__USERNAME");
+var githubTokenFromEnv = Environment.GetEnvironmentVariable("GITHUBSTATS__TOKEN");
+builder.Services.AddHttpClient();
+builder.Services.AddMemoryCache();
+builder.Services.AddResponseCaching();
+builder.Services.Configure<GitHubStatsOptions>(options =>
+{
+    builder.Configuration.GetSection(GitHubStatsOptions.SectionName).Bind(options);
+    if (!string.IsNullOrWhiteSpace(githubUsernameFromEnv))
+    {
+        options.Username = githubUsernameFromEnv;
+    }
+    if (!string.IsNullOrWhiteSpace(githubTokenFromEnv))
+    {
+        options.Token = githubTokenFromEnv;
+    }
+});
+builder.Services.AddScoped<IGitHubStatsService, GitHubStatsService>();
 
 var app = builder.Build();
 
@@ -153,6 +189,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 app.UseCors(FrontendCorsPolicy);
+app.UseResponseCaching();
 app.UseRateLimiter();
 app.MapControllers();
 

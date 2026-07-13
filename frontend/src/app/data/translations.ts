@@ -91,6 +91,18 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
 
     s_identity: "Minha Essência",
 
+    s_github: "Atividade no GitHub",
+    github_subtitle: "Dados ao vivo, cacheados via API .NET.",
+    github_repos: "Repos",
+    github_followers: "Seguidores",
+    github_following: "Seguindo",
+    github_open_profile: "Abrir perfil",
+    github_total_repos: "Repositórios",
+    github_total_stars: "Estrelas",
+    github_total_forks: "Forks",
+    github_top_languages: "Linguagens mais usadas",
+    github_top_repos: "Repositórios em destaque",
+
     footer_tagline: "Construindo software e aprendendo todos os dias.",
     footer_site: "Site",
     footer_links: "Links",
@@ -185,6 +197,18 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
     f_msg_ph: "Your message...",
 
     s_identity: "Who I Am",
+
+    s_github: "GitHub Activity",
+    github_subtitle: "Live data, cached through the .NET API.",
+    github_repos: "Repos",
+    github_followers: "Followers",
+    github_following: "Following",
+    github_open_profile: "Open profile",
+    github_total_repos: "Repositories",
+    github_total_stars: "Stars",
+    github_total_forks: "Forks",
+    github_top_languages: "Top languages",
+    github_top_repos: "Featured repositories",
 
     footer_tagline: "Building software and learning every day.",
     footer_site: "Site",

@@ -82,6 +82,17 @@ export interface Translation {
   readonly f_email_ph: string;
   readonly f_msg_ph: string;
   readonly s_identity: string;
+  readonly s_github: string;
+  readonly github_subtitle: string;
+  readonly github_repos: string;
+  readonly github_followers: string;
+  readonly github_following: string;
+  readonly github_open_profile: string;
+  readonly github_total_repos: string;
+  readonly github_total_stars: string;
+  readonly github_total_forks: string;
+  readonly github_top_languages: string;
+  readonly github_top_repos: string;
   readonly footer_tagline: string;
   readonly footer_site: string;
   readonly footer_links: string;
