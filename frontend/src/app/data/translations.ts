@@ -48,7 +48,7 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
       "Projeto em produção para gestão de imóveis, contratos, clientes e rotinas imobiliárias.",
       "Sistema web acadêmico para gestão empresarial, relatórios financeiros e dashboards.",
       "Landing page premium para personal trainer, com galeria, animações e canais de contato.",
-      "Portfólio pessoal com design minimalista suíço e foco em performance.",
+      "Portfólio fullstack com frontend React na Vercel, contato via Serverless Function e API .NET dedicada.",
     ],
 
     s_education: "Formação",
@@ -155,7 +155,7 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
       "Production-stage platform for managing properties, contracts, clients, and real estate workflows.",
       "Academic web system for business management, financial reports, and dashboards.",
       "Premium landing page for a personal trainer, with gallery, animations, and contact channels.",
-      "Personal portfolio with Swiss minimalist design and focus on performance.",
+      "Fullstack portfolio: React frontend on Vercel, contact via Serverless Function, and a dedicated .NET API.",
     ],
 
     s_education: "Education",
