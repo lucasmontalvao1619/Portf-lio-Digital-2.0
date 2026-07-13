@@ -24,6 +24,42 @@ function getContactEndpoint(): string {
 
 const CONTACT_ENDPOINT = getContactEndpoint();
 
+interface ContactErrorBody {
+  error?: string;
+  code?: string;
+  upstream_status?: number;
+  upstream_message?: string;
+}
+
+async function resolveErrorMessage(response: Response): Promise<string> {
+  if (response.status === 429) {
+    return "Aguarde um pouco antes de tentar novamente.";
+  }
+
+  let body: ContactErrorBody | null = null;
+  try {
+    body = (await response.json()) as ContactErrorBody;
+  } catch {
+    body = null;
+  }
+
+  switch (body?.code) {
+    case "not_configured":
+      return "Serviço de e-mail temporariamente indisponível.";
+    case "invalid_input":
+    case "invalid_body":
+      return "Verifique os campos e tente novamente.";
+    case "resend_unreachable":
+      return "Não foi possível conectar ao serviço de e-mail.";
+    case "resend_error":
+      return body.upstream_message
+        ? `Não foi possível enviar agora (${body.upstream_message}).`
+        : "Não foi possível enviar agora.";
+    default:
+      return body?.error ?? "Não foi possível enviar agora.";
+  }
+}
+
 export function ContactForm({ tr }: { tr: Tr }) {
   const [formData, setFormData] = useState<ContactFormData>(INITIAL_FORM_DATA);
   const [sent, setSent] = useState(false);
@@ -58,7 +94,7 @@ export function ContactForm({ tr }: { tr: Tr }) {
       });
 
       if (!response.ok) {
-        setError(response.status === 429 ? "Aguarde um pouco antes de tentar novamente." : "Não foi possível enviar agora.");
+        setError(await resolveErrorMessage(response));
         return;
       }
 
