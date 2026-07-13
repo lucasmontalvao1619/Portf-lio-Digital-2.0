@@ -1,5 +1,9 @@
 # 🚀 Portfólio Digital 2.0 — Lucas Montalvão
 
+[![CI](https://github.com/lucasmontalvao1619/Portf-lio-Digital-2.0/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasmontalvao1619/Portf-lio-Digital-2.0/actions/workflows/ci.yml)
+
+![Preview do portfólio](frontend/assets/portfolio_lucas_hero.png)
+
 Meu portfólio profissional desenvolvido para apresentar projetos, pesquisas científicas, habilidades técnicas e experiências na área de Tecnologia da Informação.
 
 O projeto foi construído com foco em performance, experiência do usuário e arquitetura moderna, combinando **React + TypeScript** no frontend, uma **Vercel Serverless Function** para o formulário de contato via Resend, e uma **API ASP.NET Core** dedicada às estatísticas ao vivo do GitHub.
@@ -39,6 +43,7 @@ Este portfólio foi desenvolvido para centralizar minha trajetória acadêmica e
 * Response Caching
 * CORS
 * Validações Server-Side
+* Testes unitários com xUnit
 * Docker
 
 ### Serverless
@@ -52,6 +57,7 @@ Este portfólio foi desenvolvido para centralizar minha trajetória acadêmica e
 * Vercel (hospedagem do frontend e da function de contato)
 * Render (hospedagem da API .NET via Docker)
 * Git & GitHub
+* GitHub Actions (CI: typecheck, builds e testes a cada push)
 * VS Code / Rider
 
 ---
@@ -90,31 +96,38 @@ Este portfólio foi desenvolvido para centralizar minha trajetória acadêmica e
 
 ```text
 Portfolio-Digital-2.0/
+├── .github/
+│   └── workflows/
+│       └── ci.yml               # CI: typecheck + build do front, build + testes do back
+│
 ├── frontend/
 │   ├── api/                     # Vercel Serverless Functions
 │   │   ├── contact.ts           # POST → envia e-mail via Resend
 │   │   └── health.ts            # GET  → sanity check + status das env vars
 │   ├── src/
-│   │   └── app/
-│   │       ├── data/            # traduções, projetos, skills, navegação
-│   │       ├── features/        # seções: home/, contact/, projects/
-│   │       ├── components/      # UI reutilizável (Reveal, SectionHeader...)
-│   │       ├── layout/          # NavBar, Footer
-│   │       └── pages/           # HomePage, ProjectsPage, ProjectDetailPage
+│   │   ├── app/
+│   │   │   ├── data/            # traduções, projetos, skills, navegação
+│   │   │   ├── features/        # seções: home/, contact/, projects/
+│   │   │   ├── components/      # UI reutilizável (Reveal, SectionHeader...)
+│   │   │   ├── layout/          # NavBar, Footer
+│   │   │   ├── lib/             # hooks e utilitários (useInView, storage...)
+│   │   │   └── pages/           # HomePage, ProjectsPage, ProjectDetailPage
+│   │   └── styles/              # tailwind.css, theme.css, fonts.css
 │   ├── public/
 │   ├── package.json
 │   ├── vite.config.ts
 │   └── .env.example
 │
 ├── backend/
-│   └── Portfolio.Api/
-│       ├── Controllers/         # GitHubController, ContactController, HealthController
-│       ├── DTOs/                # ContactRequest, GitHubStatsResponse
-│       ├── Models/              # ContactEmailOptions, GitHubStatsOptions...
-│       ├── Services/            # GitHubStatsService, EmailService, InputSanitizer
-│       ├── Program.cs
-│       ├── appsettings.json
-│       └── dockerfile
+│   ├── Portfolio.Api/
+│   │   ├── Controllers/         # GitHubController, ContactController, HealthController
+│   │   ├── DTOs/                # ContactRequest, GitHubStatsResponse
+│   │   ├── Models/              # ContactEmailOptions, GitHubStatsOptions...
+│   │   ├── Services/            # GitHubStatsService, EmailService, InputSanitizer
+│   │   ├── Program.cs
+│   │   ├── appsettings.json
+│   │   └── dockerfile
+│   └── Portfolio.Api.Tests/     # testes unitários (xUnit)
 │
 └── README.md
 ```
@@ -195,6 +208,14 @@ GET  /api/health          → sanity check
 GET  /api/github/stats    → estatísticas agregadas do GitHub
 POST /api/contact         → envio de e-mail (usa Resend)
 ```
+
+### 4. Testes
+
+```bash
+dotnet test backend/Portfolio.Api.Tests/Portfolio.Api.Tests.csproj
+```
+
+Cobrem a sanitização de input (`InputSanitizer`) e a agregação de estatísticas do GitHub (`GitHubStatsService`: totais sem forks, percentual de linguagens, ordenação dos repositórios e cache). Os mesmos testes rodam no GitHub Actions a cada push em `main`.
 
 ---
 

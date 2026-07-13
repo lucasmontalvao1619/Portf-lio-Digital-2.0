@@ -1,12 +1,13 @@
 {
-  "name": "luxury-landing-page",
+  "name": "portfolio-digital",
   "private": true,
-  "version": "0.0.1",
+  "version": "2.0.0",
   "scripts": {
     "dev": "npm --prefix frontend run dev",
     "build": "npm --prefix frontend run build",
     "preview": "npm --prefix frontend run preview",
     "typecheck": "npm --prefix frontend run typecheck",
-    "backend": "dotnet run --project backend/Portfolio.Api/Portfolio.Api.csproj"
+    "backend": "dotnet run --project backend/Portfolio.Api/Portfolio.Api.csproj",
+    "test:backend": "dotnet test backend/Portfolio.Api.Tests/Portfolio.Api.Tests.csproj"
   }
 }
