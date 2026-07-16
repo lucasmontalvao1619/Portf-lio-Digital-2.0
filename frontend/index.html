@@ -36,6 +36,13 @@
         margin: 0;
       }
 
+      /* Fundo do terminal de abertura — pintado antes do React carregar
+         para não haver nenhum frame branco/do site; o IntroOverlay
+         troca para "transparent" quando a intro termina. */
+      html {
+        background-color: #020402;
+      }
+
       #root {
         height: 100%;
       }
@@ -47,4 +54,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-```

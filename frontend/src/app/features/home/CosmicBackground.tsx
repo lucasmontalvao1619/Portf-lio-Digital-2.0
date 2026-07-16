@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 
 type StarStyle = CSSProperties & {
@@ -23,7 +22,6 @@ type MeteorStyle = CSSProperties & {
 const STAR_COUNT = 90;
 const METEOR_COUNT = 6;
 const COSMIC_FADE_MS = 420;
-const COSMIC_ENTER_DELAY_MS = 70;
 
 function seededValue(index: number, salt: number) {
   const x = Math.sin(index * 91.7 + salt * 37.3) * 10000;
@@ -72,32 +70,16 @@ interface CosmicBackgroundProps {
 }
 
 export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
-  const [shouldRender, setShouldRender] = useState(isDark);
-  const [isVisible, setIsVisible] = useState(isDark);
-
-  useEffect(() => {
-    if (isDark) {
-      const timeout = window.setTimeout(() => {
-        setShouldRender(true);
-        window.requestAnimationFrame(() => setIsVisible(true));
-      }, shouldRender ? 0 : COSMIC_ENTER_DELAY_MS);
-
-      return () => window.clearTimeout(timeout);
-    }
-
-    setIsVisible(false);
-    const timeout = window.setTimeout(() => setShouldRender(false), COSMIC_FADE_MS);
-    return () => window.clearTimeout(timeout);
-  }, [isDark]);
-
-  if (!shouldRender) return null;
-
+  // Fica sempre montado: montar/desmontar ~100 nós animados no clique do
+  // toggle de tema causava engasgo. Oculto, some via opacity/visibility e
+  // as animações ficam pausadas (.cosmic-paused), custando quase nada.
   return (
     <div
-      className={`fixed inset-0 z-0 pointer-events-none overflow-hidden${isVisible ? "" : " cosmic-paused"}`}
+      className={`fixed inset-0 z-0 pointer-events-none overflow-hidden${isDark ? "" : " cosmic-paused"}`}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transition: `opacity ${COSMIC_FADE_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+        opacity: isDark ? 1 : 0,
+        visibility: isDark ? "visible" : "hidden",
+        transition: `opacity ${COSMIC_FADE_MS}ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear ${isDark ? 0 : COSMIC_FADE_MS}ms`,
       }}
       aria-hidden="true"
     >
