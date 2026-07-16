@@ -34,10 +34,10 @@ export function SkillsSection({ tr }: { tr: Tr }) {
 
             <div className="relative">
               <div className="mb-12 text-center md:mb-16">
-                <h2 className="font-display text-2xl font-medium text-foreground md:text-3xl">{tr.s_skills}</h2>
+                <h2 className="font-display text-2xl font-medium text-foreground md:text-3xl">{tr.skills.title}</h2>
                 <div className="mx-auto mt-5 h-px w-24 bg-foreground/25" />
-                {tr.skills_subtitle && (
-                  <p className="mx-auto mt-6 max-w-md text-sm leading-6 text-muted-foreground">{tr.skills_subtitle}</p>
+                {tr.skills.subtitle && (
+                  <p className="mx-auto mt-6 max-w-md text-sm leading-6 text-muted-foreground">{tr.skills.subtitle}</p>
                 )}
               </div>
 
@@ -47,7 +47,7 @@ export function SkillsSection({ tr }: { tr: Tr }) {
 
                   return (
                     <div
-                      key={tr.skill_cats[index]}
+                      key={tr.skills.categories[index]}
                       className="group rounded-[20px] border p-7 shadow-[var(--skills-card-shadow)] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_18px_44px_rgba(0,0,0,0.24)] sm:p-8 md:p-10"
                       style={{
                         background: "var(--skills-card-background)",
@@ -65,7 +65,7 @@ export function SkillsSection({ tr }: { tr: Tr }) {
                           <CategoryIcon size={15} strokeWidth={1.5} className="text-muted-foreground" />
                         </span>
                         <p className="font-mono text-[10px] tracking-[0.26em] text-muted-foreground/75 uppercase">
-                          {tr.skill_cats[index]}
+                          {tr.skills.categories[index]}
                         </p>
                       </div>
                       <div className="flex flex-wrap gap-3">

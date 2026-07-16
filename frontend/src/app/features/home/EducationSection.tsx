@@ -5,13 +5,13 @@ export function EducationSection({ tr }: { tr: Tr }) {
   return (
     <section id="formacao" className="px-6 py-24 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader title={tr.s_education} />
+        <SectionHeader title={tr.education.title} />
         <Reveal delay={60} className="-mt-8">
           <div className="relative">
             <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-5 hidden h-px bg-border/80 lg:block" />
             <div className="pointer-events-none absolute bottom-0 left-4 top-5 w-px bg-border/70 sm:hidden" />
             <div className="grid auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-              {tr.education.map((education, index) => (
+              {tr.education.items.map((education, index) => (
                 <div
                   key={education.title}
                   className="relative flex h-full min-h-[21rem] flex-col border bg-card p-8 transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-card hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.28)] sm:min-h-[23rem]"

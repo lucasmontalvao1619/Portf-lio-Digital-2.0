@@ -162,7 +162,7 @@ export function NavBar({
                 el.style.borderColor = projectBorder;
               }}
             >
-              {tr.nav_labels[7]}
+              {tr.nav.projects}
             </button>
             <button onClick={() => setLang(lang === "PT" ? "EN" : "PT")}
               type="button"
@@ -232,7 +232,7 @@ export function NavBar({
                 borderColor: onProjectsPage ? linkActive : "var(--nav-project-border)",
               }}
             >
-              {tr.nav_labels[7]}
+              {tr.nav.projects}
             </button>
             <button onClick={() => setLang(lang === "PT" ? "EN" : "PT")}
               type="button"

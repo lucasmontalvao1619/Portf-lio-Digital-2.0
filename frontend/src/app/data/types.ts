@@ -42,62 +42,115 @@ export interface EducationItem {
   readonly highlightLabel?: string;
 }
 
-export interface Translation {
+export interface NavTranslation {
+  readonly home: string;
+  readonly about: string;
+  readonly skills: string;
+  readonly services: string;
+  readonly education: string;
+  readonly journey: string;
+  readonly contact: string;
+  readonly projects: string;
+}
+
+export interface HeroTranslation {
   readonly status: string;
   readonly tagline: string;
-  readonly btn_projects: string;
-  readonly btn_contact: string;
-  readonly btn_cv: string;
-  readonly nav_labels: readonly string[];
-  readonly s_about: string;
-  readonly about_text: string;
-  readonly s_skills: string;
-  readonly skills_subtitle: string;
-  readonly skill_cats: readonly string[];
-  readonly s_services: string;
-  readonly services: readonly ServiceItem[];
-  readonly s_projects: string;
-  readonly projects_subtitle: string;
-  readonly project_filters: Record<ProjectFilter, string>;
-  readonly github_btn: string;
-  readonly live_btn: string;
-  readonly proj_names: readonly string[];
-  readonly proj_descs: readonly string[];
-  readonly s_education: string;
-  readonly education: readonly EducationItem[];
-  readonly s_traj: string;
-  readonly traj_labels: readonly string[];
-  readonly traj_descs: readonly string[];
-  readonly traj_today: string;
-  readonly s_contact: string;
-  readonly contact_heading: string;
-  readonly contact_address: string;
-  readonly contact_phone_lbl: string;
-  readonly f_name: string;
-  readonly f_email: string;
-  readonly f_message: string;
-  readonly f_send: string;
-  readonly f_sent: string;
-  readonly f_name_ph: string;
-  readonly f_email_ph: string;
-  readonly f_msg_ph: string;
-  readonly s_identity: string;
-  readonly s_github: string;
-  readonly github_subtitle: string;
-  readonly github_repos: string;
-  readonly github_followers: string;
-  readonly github_following: string;
-  readonly github_open_profile: string;
-  readonly github_total_repos: string;
-  readonly github_total_stars: string;
-  readonly github_total_forks: string;
-  readonly github_top_languages: string;
-  readonly github_top_repos: string;
-  readonly footer_tagline: string;
-  readonly footer_site: string;
-  readonly footer_links: string;
-  readonly footer_rights: string;
-  readonly footer_nav: readonly string[];
+  readonly ctaProjects: string;
+  readonly ctaContact: string;
+  readonly ctaDownloadCv: string;
+}
+
+export interface AboutTranslation {
+  readonly title: string;
+  readonly text: string;
+}
+
+export interface SkillsTranslation {
+  readonly title: string;
+  readonly subtitle: string;
+  readonly categories: readonly string[];
+}
+
+export interface ServicesTranslation {
+  readonly title: string;
+  readonly items: readonly ServiceItem[];
+}
+
+export interface ProjectsTranslation {
+  readonly title: string;
+  readonly subtitle: string;
+  readonly filters: Record<ProjectFilter, string>;
+  readonly githubLabel: string;
+  readonly liveLabel: string;
+  readonly names: readonly string[];
+  readonly descriptions: readonly string[];
+}
+
+export interface EducationTranslation {
+  readonly title: string;
+  readonly items: readonly EducationItem[];
+}
+
+export interface JourneyTranslation {
+  readonly title: string;
+  readonly labels: readonly string[];
+  readonly descriptions: readonly string[];
+  readonly today: string;
+}
+
+export interface ContactFormTranslation {
+  readonly name: string;
+  readonly email: string;
+  readonly message: string;
+  readonly send: string;
+  readonly sent: string;
+  readonly namePlaceholder: string;
+  readonly emailPlaceholder: string;
+  readonly messagePlaceholder: string;
+}
+
+export interface ContactTranslation {
+  readonly title: string;
+  readonly heading: string;
+  readonly address: string;
+  readonly phoneLabel: string;
+  readonly form: ContactFormTranslation;
+}
+
+export interface GitHubTranslation {
+  readonly title: string;
+  readonly subtitle: string;
+  readonly repos: string;
+  readonly followers: string;
+  readonly following: string;
+  readonly openProfile: string;
+  readonly totalRepos: string;
+  readonly totalStars: string;
+  readonly totalForks: string;
+  readonly topLanguages: string;
+  readonly topRepos: string;
+}
+
+export interface FooterTranslation {
+  readonly tagline: string;
+  readonly siteLabel: string;
+  readonly linksLabel: string;
+  readonly rights: string;
+}
+
+export interface Translation {
+  readonly nav: NavTranslation;
+  readonly hero: HeroTranslation;
+  readonly about: AboutTranslation;
+  readonly skills: SkillsTranslation;
+  readonly services: ServicesTranslation;
+  readonly projects: ProjectsTranslation;
+  readonly education: EducationTranslation;
+  readonly journey: JourneyTranslation;
+  readonly contact: ContactTranslation;
+  readonly github: GitHubTranslation;
+  readonly footer: FooterTranslation;
 }
 
 export type Tr = Translation;

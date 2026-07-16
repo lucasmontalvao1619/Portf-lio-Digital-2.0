@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { FOOTER_LINKS, FOOTER_SCROLL_IDS, isExternalLink } from "../data/content";
+import { FOOTER_LINKS, FOOTER_SCROLL_IDS, isExternalLink, sectionNavLabel } from "../data/content";
 import type { SectionId, Tr } from "../data/content";
 
 export function Footer({ isDark, tr, handleNavClick, handleProjectsClick }: {
@@ -18,33 +18,33 @@ export function Footer({ isDark, tr, handleNavClick, handleProjectsClick }: {
               Lucas Montalvão
             </p>
             <p className="text-sm leading-relaxed max-w-xs" style={{ color: "rgba(255,255,255,0.38)" }}>
-              {tr.footer_tagline}
+              {tr.footer.tagline}
             </p>
           </div>
 
           <div className="flex flex-col gap-3">
             <p className="font-mono text-[10px] tracking-[0.22em] uppercase mb-1" style={{ color: "rgba(255,255,255,0.2)" }}>
-              {tr.footer_site}
+              {tr.footer.siteLabel}
             </p>
-            {FOOTER_SCROLL_IDS.map((id, i) => (
+            {FOOTER_SCROLL_IDS.map((id) => (
               <button key={id} onClick={() => handleNavClick(id)}
                 type="button"
                 className="text-sm text-left hover:text-white transition-colors"
                 style={{ color: "rgba(255,255,255,0.42)" }}>
-                {tr.footer_nav[i]}
+                {sectionNavLabel(id, tr)}
               </button>
             ))}
             <button onClick={handleProjectsClick}
               type="button"
               className="text-sm text-left hover:text-white transition-colors"
               style={{ color: "rgba(255,255,255,0.42)" }}>
-              {tr.nav_labels[7]}
+              {tr.nav.projects}
             </button>
           </div>
 
           <div className="flex flex-col gap-3">
             <p className="font-mono text-[10px] tracking-[0.22em] uppercase mb-1" style={{ color: "rgba(255,255,255,0.2)" }}>
-              {tr.footer_links}
+              {tr.footer.linksLabel}
             </p>
             {FOOTER_LINKS.map(({ label, href }) => (
               <a key={label} href={href}
@@ -64,7 +64,7 @@ export function Footer({ isDark, tr, handleNavClick, handleProjectsClick }: {
             © {new Date().getFullYear()} Lucas Montalvão
           </span>
           <span className="font-mono text-xs" style={{ color: "rgba(255,255,255,0.16)" }}>
-            {tr.footer_rights}
+            {tr.footer.rights}
           </span>
         </div>
       </div>

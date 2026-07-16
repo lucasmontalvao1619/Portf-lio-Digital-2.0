@@ -112,7 +112,7 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
             className="w-1.5 h-1.5 rounded-full shrink-0"
             style={{ backgroundColor: "var(--foreground)", opacity: 0.45, animation: "pulse-dot 2.5s ease-in-out infinite" }}
           />
-          <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">{tr.status}</p>
+          <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">{tr.hero.status}</p>
         </div>
 
         <h1
@@ -123,7 +123,7 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
         </h1>
 
         <p className="text-muted-foreground text-lg md:text-xl max-w-xs mx-auto mb-14 leading-relaxed font-light afu d200">
-          {tr.tagline}
+          {tr.hero.tagline}
         </p>
 
         <div className="flex items-center justify-center gap-3 flex-wrap afu d300">
@@ -132,7 +132,7 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
             onClick={onProjectsClick}
             className="px-6 py-2.5 bg-foreground text-primary-foreground text-sm font-medium hover:opacity-80 transition-opacity"
           >
-            {tr.btn_projects}
+            {tr.hero.ctaProjects}
           </button>
           <a
             href={cvUrl}
@@ -140,14 +140,14 @@ export function HeroSection({ isDark, tr, onProjectsClick, onContactClick }: Her
             className="px-6 py-2.5 border border-border text-sm font-medium hover:bg-muted transition-colors inline-flex items-center gap-2"
           >
             <Download size={14} strokeWidth={1.75} />
-            {tr.btn_cv}
+            {tr.hero.ctaDownloadCv}
           </a>
           <button
             type="button"
             onClick={onContactClick}
             className="px-6 py-2.5 border border-border text-sm font-medium hover:bg-muted transition-colors"
           >
-            {tr.btn_contact}
+            {tr.hero.ctaContact}
           </button>
         </div>
 

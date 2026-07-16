@@ -15,7 +15,7 @@ export function JourneySection({ isDark, tr }: JourneySectionProps) {
   return (
     <section id="trajetoria" className="py-24 md:py-36 px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader title={tr.s_traj} />
+        <SectionHeader title={tr.journey.title} />
         <div className="max-w-2xl mx-auto -mt-8">
           <div className="relative">
             <div className="absolute top-2 bottom-2 w-px" style={{ left: "5.5rem", background: lineColor }} />
@@ -31,7 +31,7 @@ export function JourneySection({ isDark, tr }: JourneySectionProps) {
                   >
                     <div className="shrink-0 text-right pr-5 pt-0.5" style={{ width: "5.5rem" }}>
                       <span className="font-mono text-xs" style={{ color: isToday ? "var(--foreground)" : inactiveYearColor }}>
-                        {isToday ? tr.traj_today : year}
+                        {isToday ? tr.journey.today : year}
                       </span>
                     </div>
                     <div className="relative z-10 shrink-0" style={{ width: 0 }}>
@@ -53,10 +53,10 @@ export function JourneySection({ isDark, tr }: JourneySectionProps) {
                         className="text-sm font-medium leading-snug mb-1.5 transition-colors duration-300 group-hover:text-foreground"
                         style={{ color: "var(--foreground)" }}
                       >
-                        {tr.traj_labels[index]}
+                        {tr.journey.labels[index]}
                       </p>
                       <p className="text-xs leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
-                        {tr.traj_descs[index]}
+                        {tr.journey.descriptions[index]}
                       </p>
                     </div>
                   </div>

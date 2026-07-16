@@ -21,9 +21,9 @@ export function ProjectsPage() {
         <Reveal className="mb-20">
           <h1 className="text-foreground mb-4"
             style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem,8vw,7rem)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1 }}>
-            {tr.s_projects}
+            {tr.projects.title}
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg mt-5">{tr.projects_subtitle}</p>
+          <p className="text-muted-foreground text-base md:text-lg mt-5">{tr.projects.subtitle}</p>
           <div className="mt-8 flex flex-wrap gap-2">
             {PROJECT_FILTERS.map((filter) => {
               const active = activeFilter === filter;
@@ -41,7 +41,7 @@ export function ProjectsPage() {
                     background: active ? "var(--foreground)" : "transparent",
                   }}
                 >
-                  {tr.project_filters[filter]}
+                  {tr.projects.filters[filter]}
                 </button>
               );
             })}
@@ -62,8 +62,8 @@ export function ProjectsPage() {
               repositoryLabel={project.repositoryLabel}
               status={project.status}
               live={project.live}
-              githubLabel={tr.github_btn}
-              liveLabel={tr.live_btn}
+              githubLabel={tr.projects.githubLabel}
+              liveLabel={tr.projects.liveLabel}
               delay={project.index * 80}
               slug={project.slug}
             />

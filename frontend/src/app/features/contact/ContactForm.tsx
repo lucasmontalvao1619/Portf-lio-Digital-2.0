@@ -119,7 +119,7 @@ export function ContactForm({ tr }: { tr: Tr }) {
           </svg>
         </div>
         <div>
-          <p className="text-sm font-medium text-foreground">{tr.f_sent}</p>
+          <p className="text-sm font-medium text-foreground">{tr.contact.form.sent}</p>
           <p className="text-xs text-muted-foreground mt-0.5">Em breve entrarei em contato.</p>
         </div>
       </div>
@@ -139,29 +139,29 @@ export function ContactForm({ tr }: { tr: Tr }) {
       />
       <div className="grid sm:grid-cols-2 gap-8 sm:gap-10">
         <div>
-          <label htmlFor="contact-name" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_name}</label>
+          <label htmlFor="contact-name" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.contact.form.name}</label>
           <input id="contact-name" type="text" value={formData.name} onChange={(e) => updateField("name", e.target.value)}
             className={inputBase} style={{ borderColor: "var(--border)" }}
             onFocus={(e) => (e.currentTarget.style.borderColor = "var(--foreground)")}
             onBlur={(e)  => (e.currentTarget.style.borderColor = "var(--border)")}
-            placeholder={tr.f_name_ph} />
+            placeholder={tr.contact.form.namePlaceholder} />
         </div>
         <div>
-          <label htmlFor="contact-email" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_email}</label>
+          <label htmlFor="contact-email" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.contact.form.email}</label>
           <input id="contact-email" type="email" value={formData.email} onChange={(e) => updateField("email", e.target.value)}
             className={inputBase} style={{ borderColor: "var(--border)" }}
             onFocus={(e) => (e.currentTarget.style.borderColor = "var(--foreground)")}
             onBlur={(e)  => (e.currentTarget.style.borderColor = "var(--border)")}
-            placeholder={tr.f_email_ph} />
+            placeholder={tr.contact.form.emailPlaceholder} />
         </div>
       </div>
       <div>
-        <label htmlFor="contact-message" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.f_message}</label>
+        <label htmlFor="contact-message" className="block font-mono text-[9px] tracking-[0.25em] text-muted-foreground/50 uppercase mb-2">{tr.contact.form.message}</label>
         <textarea id="contact-message" value={formData.message} onChange={(e) => updateField("message", e.target.value)}
           rows={4} className={`${inputBase} resize-none`} style={{ borderColor: "var(--border)" }}
           onFocus={(e) => (e.currentTarget.style.borderColor = "var(--foreground)")}
           onBlur={(e)  => (e.currentTarget.style.borderColor = "var(--border)")}
-          placeholder={tr.f_msg_ph} />
+          placeholder={tr.contact.form.messagePlaceholder} />
       </div>
       <div>
         <button type="submit" disabled={sending}
@@ -169,7 +169,7 @@ export function ContactForm({ tr }: { tr: Tr }) {
           style={{ letterSpacing: "0.02em" }}>
           {sending
             ? <span style={{ letterSpacing: "0.1em", opacity: 0.7 }}>···</span>
-            : <><span>{tr.f_send}</span><Send size={12} strokeWidth={1.75} /></>}
+            : <><span>{tr.contact.form.send}</span><Send size={12} strokeWidth={1.75} /></>}
         </button>
         {error && <p className="mt-4 text-xs text-muted-foreground">{error}</p>}
       </div>

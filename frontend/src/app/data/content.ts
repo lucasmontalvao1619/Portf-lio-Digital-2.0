@@ -6,17 +6,10 @@ export {
   SCROLL_IDS,
   buildNavItems,
   isExternalLink,
+  sectionNavLabel,
 } from "./navigation";
 export {
   PROJECTS,
-  PROJECT_ALT,
-  PROJECT_DETAILS,
-  PROJECT_GALLERY,
-  PROJECT_GITHUB,
-  PROJECT_IMAGES,
-  PROJECT_LIVE,
-  PROJECT_SLUGS,
-  PROJECT_TECH,
   findLocalizedProject,
   getLocalizedProjects,
   getProjectDetails,

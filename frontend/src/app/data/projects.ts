@@ -147,22 +147,13 @@ export const PROJECTS = [
   },
 ] as const satisfies readonly ProjectStaticData[];
 
-export const PROJECT_IMAGES = PROJECTS.map((project) => project.image);
-export const PROJECT_ALT = PROJECTS.map((project) => project.alt);
-export const PROJECT_TECH = PROJECTS.map((project) => project.tech);
-export const PROJECT_GITHUB = PROJECTS.map((project) => project.github);
-export const PROJECT_LIVE = PROJECTS.map((project) => project.live);
-export const PROJECT_SLUGS = PROJECTS.map((project) => project.slug);
-export const PROJECT_DETAILS = PROJECTS.map((project) => project.details);
-export const PROJECT_GALLERY = PROJECTS.map((project) => project.gallery);
-
 export function getLocalizedProjects(tr: Tr): ProjectCardData[] {
   return PROJECTS.map((project, index) => ({
     ...project,
     index,
     num: `0${index + 1}`,
-    name: tr.proj_names[index],
-    desc: tr.proj_descs[index],
+    name: tr.projects.names[index],
+    desc: tr.projects.descriptions[index],
   }));
 }
 

@@ -15,15 +15,15 @@ const contactIcons: Record<ContactIconKey, React.ReactNode> = {
 
 export function ContactSection({ tr }: { tr: Tr }) {
   const contactDetails = [
-    { icon: <MapPin size={28} strokeWidth={1} />, title: tr.contact_address, detail: "Aracaju, Sergipe, Brasil" },
+    { icon: <MapPin size={28} strokeWidth={1} />, title: tr.contact.address, detail: "Aracaju, Sergipe, Brasil" },
     { icon: <Mail size={28} strokeWidth={1} />, title: "Email", detail: "lucasmontalvao2019@gmail.com" },
-    { icon: <Phone size={28} strokeWidth={1} />, title: tr.contact_phone_lbl, detail: "Disponivel pelo formulario de contato" },
+    { icon: <Phone size={28} strokeWidth={1} />, title: tr.contact.phoneLabel, detail: "Disponivel pelo formulario de contato" },
   ];
 
   return (
     <section id="contato" className="py-24 md:py-36 px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader title={tr.s_contact} />
+        <SectionHeader title={tr.contact.title} />
 
         <div className="grid md:grid-cols-[220px_1fr] gap-16 md:gap-24 mb-20 -mt-8">
           <Reveal>
@@ -47,7 +47,7 @@ export function ContactSection({ tr }: { tr: Tr }) {
                 className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-all duration-200"
               >
                 <Download size={13} strokeWidth={1.75} />
-                {tr.btn_cv}
+                {tr.hero.ctaDownloadCv}
               </a>
             </div>
           </Reveal>
@@ -58,7 +58,7 @@ export function ContactSection({ tr }: { tr: Tr }) {
                 className="font-medium tracking-tight text-foreground leading-tight"
                 style={{ fontSize: "clamp(1.7rem,3.5vw,2.6rem)", letterSpacing: "-0.02em" }}
               >
-                {tr.contact_heading}
+                {tr.contact.heading}
               </h2>
             </Reveal>
             <Reveal delay={140}>

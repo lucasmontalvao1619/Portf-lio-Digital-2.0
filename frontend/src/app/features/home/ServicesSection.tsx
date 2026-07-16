@@ -5,10 +5,10 @@ export function ServicesSection({ tr }: { tr: Tr }) {
   return (
     <section id="servicos" className="px-6 py-24 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader title={tr.s_services} />
+        <SectionHeader title={tr.services.title} />
         <Reveal delay={60} className="-mt-8">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
-            {tr.services.map((service, index) => (
+            {tr.services.items.map((service, index) => (
               <div
                 key={service.title}
                 className="group relative overflow-hidden rounded-[20px] border p-7 shadow-[var(--skills-card-shadow)] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_18px_44px_rgba(0,0,0,0.24)] md:p-8"

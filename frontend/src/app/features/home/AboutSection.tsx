@@ -5,10 +5,10 @@ export function AboutSection({ tr }: { tr: Tr }) {
   return (
     <section id="sobre" className="py-24 md:py-36 px-6">
       <div className="max-w-3xl mx-auto text-center">
-        <SectionHeader title={tr.s_about} />
+        <SectionHeader title={tr.about.title} />
         <Reveal delay={80}>
           <div className="space-y-6">
-            {tr.about_text.split(/\n\s*\n/).map((paragraph) => (
+            {tr.about.text.split(/\n\s*\n/).map((paragraph) => (
               <p
                 key={paragraph}
                 className="font-sans font-light text-foreground leading-[1.72]"

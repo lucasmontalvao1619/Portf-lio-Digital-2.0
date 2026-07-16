@@ -1,4 +1,4 @@
-import type { ContactLink, NavigationItem, SectionId, Tr } from "./types";
+import type { ContactLink, NavigationItem, NavTranslation, SectionId, Tr } from "./types";
 
 export const SCROLL_IDS = ["inicio", "sobre", "habilidades", "servicos", "formacao", "trajetoria", "contato"] as const satisfies readonly SectionId[];
 export const FOOTER_SCROLL_IDS = ["sobre", "habilidades", "servicos", "formacao", "trajetoria", "contato"] as const satisfies readonly SectionId[];
@@ -11,15 +11,24 @@ export const CONTACT_LINKS = [
 
 export const FOOTER_LINKS = CONTACT_LINKS;
 
+const SECTION_NAV_KEY: Record<SectionId, keyof NavTranslation> = {
+  inicio: "home",
+  sobre: "about",
+  habilidades: "skills",
+  servicos: "services",
+  formacao: "education",
+  trajetoria: "journey",
+  contato: "contact",
+};
+
+export function sectionNavLabel(id: SectionId, tr: Tr): string {
+  return tr.nav[SECTION_NAV_KEY[id]];
+}
+
+const TOP_NAV_SECTION_IDS = ["inicio", "habilidades", "servicos", "formacao", "sobre", "contato"] as const satisfies readonly SectionId[];
+
 export function buildNavItems(tr: Tr): NavigationItem[] {
-  return [
-    { label: tr.nav_labels[0], id: "inicio" },
-    { label: tr.nav_labels[2], id: "habilidades" },
-    { label: tr.nav_labels[3], id: "servicos" },
-    { label: tr.nav_labels[4], id: "formacao" },
-    { label: tr.nav_labels[1], id: "sobre" },
-    { label: tr.nav_labels[6], id: "contato" },
-  ];
+  return TOP_NAV_SECTION_IDS.map((id) => ({ label: sectionNavLabel(id, tr), id }));
 }
 
 export function isExternalLink(href: string): boolean {

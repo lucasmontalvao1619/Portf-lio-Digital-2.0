@@ -81,7 +81,7 @@ export function GitHubStatsSection({ tr }: { tr: Tr }) {
   return (
     <section id="github" className="py-24 md:py-36 px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader title={tr.s_github} subtitle={tr.github_subtitle} />
+        <SectionHeader title={tr.github.title} subtitle={tr.github.subtitle} />
 
         {status === "loading" || !stats ? (
           <GitHubSkeleton />
@@ -126,13 +126,13 @@ function GitHubContent({ stats, tr }: { stats: GitHubStatsPayload; tr: Tr }) {
           </div>
           {bio && <p className="text-xs leading-5 text-muted-foreground mb-5 line-clamp-3">{bio}</p>}
           <div className="grid grid-cols-3 gap-2 text-center">
-            <ProfileMetric label={tr.github_repos} value={stats.profile.publicRepos} />
-            <ProfileMetric label={tr.github_followers} value={stats.profile.followers} />
-            <ProfileMetric label={tr.github_following} value={stats.profile.following} />
+            <ProfileMetric label={tr.github.repos} value={stats.profile.publicRepos} />
+            <ProfileMetric label={tr.github.followers} value={stats.profile.followers} />
+            <ProfileMetric label={tr.github.following} value={stats.profile.following} />
           </div>
           <div className="mt-5 flex items-center justify-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors">
             <Github size={11} strokeWidth={1.5} />
-            <span>{tr.github_open_profile}</span>
+            <span>{tr.github.openProfile}</span>
             <ArrowUpRight size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
           </div>
         </a>
@@ -141,9 +141,9 @@ function GitHubContent({ stats, tr }: { stats: GitHubStatsPayload; tr: Tr }) {
       <div className="flex flex-col gap-10">
         <Reveal delay={80}>
           <div className="grid grid-cols-3 gap-4">
-            <TotalCard label={tr.github_total_repos} value={stats.totals.totalRepositories} />
-            <TotalCard label={tr.github_total_stars} value={stats.totals.totalStars} icon={<Star size={12} strokeWidth={1.5} />} />
-            <TotalCard label={tr.github_total_forks} value={stats.totals.totalForks} icon={<GitFork size={12} strokeWidth={1.5} />} />
+            <TotalCard label={tr.github.totalRepos} value={stats.totals.totalRepositories} />
+            <TotalCard label={tr.github.totalStars} value={stats.totals.totalStars} icon={<Star size={12} strokeWidth={1.5} />} />
+            <TotalCard label={tr.github.totalForks} value={stats.totals.totalForks} icon={<GitFork size={12} strokeWidth={1.5} />} />
           </div>
         </Reveal>
 
@@ -151,7 +151,7 @@ function GitHubContent({ stats, tr }: { stats: GitHubStatsPayload; tr: Tr }) {
           <Reveal delay={140}>
             <div className="rounded-[20px] border p-6 sm:p-7" style={{ background: "var(--skills-card-background)", borderColor: "var(--border)" }}>
               <p className="font-mono text-[10px] tracking-[0.26em] text-muted-foreground/75 uppercase mb-5">
-                {tr.github_top_languages}
+                {tr.github.topLanguages}
               </p>
               <div className="flex flex-col gap-3">
                 {stats.topLanguages.map((language) => (
@@ -177,7 +177,7 @@ function GitHubContent({ stats, tr }: { stats: GitHubStatsPayload; tr: Tr }) {
           <Reveal delay={200}>
             <div>
               <p className="font-mono text-[10px] tracking-[0.26em] text-muted-foreground/75 uppercase mb-5">
-                {tr.github_top_repos}
+                {tr.github.topRepos}
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 {stats.topRepositories.map((repo) => (
