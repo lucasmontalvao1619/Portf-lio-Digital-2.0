@@ -11,9 +11,6 @@ import { readStorageValue, writeStorageValue } from "../lib/storage";
 const isLang = (value: string): value is Lang => value === "PT" || value === "EN";
 const isThemeMode = (value: string): value is "light" | "dark" => value === "light" || value === "dark";
 
-// Duração do crossfade de cores ao trocar o tema (ms):
-const THEME_CROSSFADE_MS = 320;
-
 function applyDocumentTheme(isDark: boolean) {
   document.documentElement.classList.toggle("dark", isDark);
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", isDark ? "#0c0c0c" : "#fafafa");
@@ -26,45 +23,25 @@ export function Root() {
   const [menuOpen, setMenuOpen]           = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("inicio");
   const pendingScrollRef                  = useRef<string | null>(null);
-  const didApplyInitialTheme              = useRef(false);
-  const themeCrossfadeTimeoutRef          = useRef<number | null>(null);
   const navigate                          = useNavigate();
   const location                          = useLocation();
 
   const tr = T[lang];
 
   const handleThemeToggle = useCallback(() => {
+    // A paleta troca num único frame (só reatribui as CSS vars sob .dark,
+    // ~7ms de recálculo). Nada de crossfade de cores por nó nem snapshot de
+    // página inteira (View Transitions) — os dois passavam por um platô cinza
+    // ilegível e engasgavam nesta página pesada. A transição visível fica por
+    // conta do fade de GPU do fundo cósmico, que é sempre legível.
     const nextTheme = !document.documentElement.classList.contains("dark");
-
-    if (themeCrossfadeTimeoutRef.current !== null) {
-      window.clearTimeout(themeCrossfadeTimeoutRef.current);
-      themeCrossfadeTimeoutRef.current = null;
-    }
-
-    document.documentElement.classList.add("theme-crossfade");
-    themeCrossfadeTimeoutRef.current = window.setTimeout(() => {
-      document.documentElement.classList.remove("theme-crossfade");
-      themeCrossfadeTimeoutRef.current = null;
-    }, THEME_CROSSFADE_MS + 60);
-
     applyDocumentTheme(nextTheme);
     setIsDark(nextTheme);
   }, []);
 
   useLayoutEffect(() => {
-    if (didApplyInitialTheme.current) {
-      applyDocumentTheme(isDark);
-    } else {
-      didApplyInitialTheme.current = true;
-      applyDocumentTheme(isDark);
-    }
+    applyDocumentTheme(isDark);
   }, [isDark]);
-
-  useEffect(() => () => {
-    if (themeCrossfadeTimeoutRef.current !== null) {
-      window.clearTimeout(themeCrossfadeTimeoutRef.current);
-    }
-  }, []);
 
   useEffect(() => {
     writeStorageValue("lang", lang);
@@ -123,8 +100,7 @@ export function Root() {
   const ctx: OutletCtx = { isDark, lang, tr, scrollToSection, handleProjectsClick };
 
   return (
-    <div className="relative isolate bg-background text-foreground font-sans antialiased min-h-screen overflow-x-hidden"
-      style={{ transition: "background-color 0.3s ease, color 0.3s ease" }}>
+    <div className="relative isolate bg-background text-foreground font-sans antialiased min-h-screen overflow-x-hidden">
       <CosmicBackground isDark={isDark} />
       <IntroOverlay />
 
@@ -132,16 +108,6 @@ export function Root() {
         @keyframes fade-up { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
         @keyframes infinite-bar { from { transform:translate3d(0,0,0); } to { transform:translate3d(-12.5%,0,0); } }
         @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.35;transform:scale(0.65);} }
-        .theme-crossfade,
-        .theme-crossfade *,
-        .theme-crossfade *::before,
-        .theme-crossfade *::after{
-          transition:
-            background-color ${THEME_CROSSFADE_MS}ms ease,
-            color ${THEME_CROSSFADE_MS}ms ease,
-            border-color ${THEME_CROSSFADE_MS}ms ease !important;
-          transition-delay: 0s !important;
-        }
         .afu{animation:fade-up 0.95s cubic-bezier(0.16,1,0.3,1) both;}
         .d100{animation-delay:100ms;} .d200{animation-delay:200ms;}
         .d300{animation-delay:300ms;} .d450{animation-delay:450ms;}

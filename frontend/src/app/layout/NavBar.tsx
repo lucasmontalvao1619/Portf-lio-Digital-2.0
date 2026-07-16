@@ -64,7 +64,7 @@ export function NavBar({
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50"
-      style={{ backgroundColor: navBg, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderBottom: `1px solid ${navBorder}`, transition: "background-color 0.3s ease, border-color 0.3s ease" }}>
+      style={{ backgroundColor: navBg, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderBottom: `1px solid ${navBorder}` }}>
       <div className="max-w-6xl mx-auto px-6 h-14 relative flex items-center">
 
         <button

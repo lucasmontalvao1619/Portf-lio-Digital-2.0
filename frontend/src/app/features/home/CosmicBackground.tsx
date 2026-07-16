@@ -21,7 +21,12 @@ type MeteorStyle = CSSProperties & {
 
 const STAR_COUNT = 90;
 const METEOR_COUNT = 6;
-const COSMIC_FADE_MS = 420;
+// Fade assimétrico: ao entrar (→ dark) é um reveal suave das estrelas; ao sair
+// (→ light) precisa ser quase instantâneo, porque a base cósmica é escura e
+// opaca — se demorasse a sumir, o texto escuro do modo claro ficaria em cima
+// dela (ilegível) até ela clarear. Saindo rápido, o branco do fundo aparece já.
+const COSMIC_FADE_IN_MS = 460;
+const COSMIC_FADE_OUT_MS = 90;
 
 function seededValue(index: number, salt: number) {
   const x = Math.sin(index * 91.7 + salt * 37.3) * 10000;
@@ -73,13 +78,14 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
   // Fica sempre montado: montar/desmontar ~100 nós animados no clique do
   // toggle de tema causava engasgo. Oculto, some via opacity/visibility e
   // as animações ficam pausadas (.cosmic-paused), custando quase nada.
+  const fadeMs = isDark ? COSMIC_FADE_IN_MS : COSMIC_FADE_OUT_MS;
   return (
     <div
       className={`fixed inset-0 z-0 pointer-events-none overflow-hidden${isDark ? "" : " cosmic-paused"}`}
       style={{
         opacity: isDark ? 1 : 0,
         visibility: isDark ? "visible" : "hidden",
-        transition: `opacity ${COSMIC_FADE_MS}ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear ${isDark ? 0 : COSMIC_FADE_MS}ms`,
+        transition: `opacity ${fadeMs}ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear ${isDark ? 0 : fadeMs}ms`,
       }}
       aria-hidden="true"
     >
@@ -164,6 +170,11 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
 
         .cosmic-star-field {
           z-index: 2;
+          /* Uma única camada de composição para as ~90 estrelas: elas pintam
+             dentro deste layer isolado em vez de criar 90 layers de GPU
+             (o que deixava o dark mode pesado). */
+          contain: layout paint style;
+          transform: translateZ(0);
         }
 
         .cosmic-star {
@@ -175,7 +186,6 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
           animation:
             cosmic-twinkle var(--twinkle-duration) ease-in-out var(--twinkle-delay) infinite alternate,
             cosmic-drift 22s ease-in-out var(--twinkle-delay) infinite alternate;
-          will-change: opacity, transform;
         }
 
         .cosmic-star-glow {
@@ -186,6 +196,8 @@ export function CosmicBackground({ isDark }: CosmicBackgroundProps) {
 
         .cosmic-meteor-layer {
           pointer-events: none;
+          contain: layout paint style;
+          transform: translateZ(0);
         }
 
         .cosmic-meteor {
