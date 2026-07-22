@@ -36,3 +36,6 @@ backend/**/Properties/launchSettings.json
 # OS/editor noise
 .DS_Store
 __MACOSX/
+
+.vercel
+.env*

@@ -8,7 +8,7 @@ on:
 
 jobs:
   frontend:
-    name: Frontend (typecheck + build)
+    name: Frontend (typecheck + testes + build)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -27,6 +27,9 @@ jobs:
 
       - name: Typecheck
         run: npm run typecheck
+
+      - name: Testes
+        run: npm run test
 
       - name: Build de produção
         run: npm run build

@@ -6,7 +6,7 @@
 
 Meu portfólio profissional desenvolvido para apresentar projetos, pesquisas científicas, habilidades técnicas e experiências na área de Tecnologia da Informação.
 
-O projeto foi construído com foco em performance, experiência do usuário e arquitetura moderna, combinando **React + TypeScript** no frontend, uma **Vercel Serverless Function** para o formulário de contato via Resend, e uma **API ASP.NET Core** dedicada às estatísticas ao vivo do GitHub.
+O projeto foi construído com foco em performance, experiência do usuário e arquitetura moderna, combinando **React + TypeScript** no frontend, uma **Vercel Edge Function** para o formulário de contato via Resend, e uma **API ASP.NET Core** dedicada às estatísticas ao vivo do GitHub.
 
 ## 🌐 Sobre o Projeto
 
@@ -32,6 +32,7 @@ Este portfólio foi desenvolvido para centralizar minha trajetória acadêmica e
 * Tailwind CSS
 * Lucide Icons
 * React Router
+* Vitest + Testing Library
 
 ### Backend (API .NET)
 
@@ -98,10 +99,10 @@ Este portfólio foi desenvolvido para centralizar minha trajetória acadêmica e
 Portfolio-Digital-2.0/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml               # CI: typecheck + build do front, build + testes do back
+│       └── ci.yml               # CI: typecheck + testes + build do front, build + testes do back
 │
 ├── frontend/
-│   ├── api/                     # Vercel Serverless Functions
+│   ├── api/                     # Vercel Edge Functions
 │   │   ├── contact.ts           # POST → envia e-mail via Resend
 │   │   └── health.ts            # GET  → sanity check + status das env vars
 │   ├── src/
@@ -153,7 +154,7 @@ Portfolio-Digital-2.0/
 
 ### Contato
 
-* Formulário funcional via Vercel Serverless Function
+* Formulário funcional via Vercel Edge Function
 * Validação de campos client + server
 * Honeypot anti-bot
 * Rate limit por IP
@@ -215,7 +216,13 @@ POST /api/contact         → envio de e-mail (usa Resend)
 dotnet test backend/Portfolio.Api.Tests/Portfolio.Api.Tests.csproj
 ```
 
-Cobrem a sanitização de input (`InputSanitizer`) e a agregação de estatísticas do GitHub (`GitHubStatsService`: totais sem forks, percentual de linguagens, ordenação dos repositórios e cache). Os mesmos testes rodam no GitHub Actions a cada push em `main`.
+Cobrem a sanitização de input (`InputSanitizer`) e a agregação de estatísticas do GitHub (`GitHubStatsService`: totais sem forks, percentual de linguagens, ordenação dos repositórios e cache).
+
+```bash
+npm --prefix frontend run test
+```
+
+Cobrem a Edge Function `/api/contact` (sanitização, honeypot, rate limit), o `ContactForm` (validação, envio, mensagens de erro) e `storage.ts`. Ambas as suítes rodam no GitHub Actions a cada push em `main`.
 
 ---
 
@@ -247,7 +254,7 @@ Um `.env.example` completo está em `frontend/.env.example`. **Nunca commite val
 
 ## 🚀 Deploy
 
-### Frontend + Serverless Function → Vercel
+### Frontend + Edge Function → Vercel
 
 1. Importe o repositório no Vercel.
 2. Configure o **Root Directory** como `frontend/`.
