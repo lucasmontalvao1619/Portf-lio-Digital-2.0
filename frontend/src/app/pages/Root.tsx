@@ -11,6 +11,10 @@ import { readStorageValue, writeStorageValue } from "../lib/storage";
 const isLang = (value: string): value is Lang => value === "PT" || value === "EN";
 const isThemeMode = (value: string): value is "light" | "dark" => value === "light" || value === "dark";
 
+function getSystemTheme(): "light" | "dark" {
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 function applyDocumentTheme(isDark: boolean) {
   document.documentElement.classList.toggle("dark", isDark);
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", isDark ? "#0c0c0c" : "#fafafa");
@@ -19,7 +23,7 @@ function applyDocumentTheme(isDark: boolean) {
 
 export function Root() {
   const [lang, setLang] = useState<Lang>(() => readStorageValue("lang", "PT", isLang));
-  const [isDark, setIsDark] = useState(() => readStorageValue("theme", "light", isThemeMode) === "dark");
+  const [isDark, setIsDark] = useState(() => readStorageValue("theme", getSystemTheme(), isThemeMode) === "dark");
   const [menuOpen, setMenuOpen]           = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("inicio");
   const pendingScrollRef                  = useRef<string | null>(null);
