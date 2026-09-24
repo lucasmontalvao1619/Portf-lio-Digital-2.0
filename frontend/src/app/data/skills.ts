@@ -60,7 +60,7 @@ export const SKILL_CARDS = [
 ] as const satisfies readonly SkillCard[];
 
 export const IDENTITY = [
-  "Pesquisador PIBIC/CNPq",
+  "Pesquisador PROBITI/CNPq",
   "Desenvolvedor Full Stack",
   "Apaixonado por Automação",
   "Construindo Soluções Digitais",

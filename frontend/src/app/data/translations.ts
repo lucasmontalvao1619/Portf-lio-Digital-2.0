@@ -86,7 +86,7 @@ Além do desenvolvimento de software, atuo em projetos de pesquisa científica p
         "Início da graduação em Ciência da Computação",
         "Instrutor de Tecnologia",
         "Estágio em TI — FAPITEC",
-        "Programa de Pesquisa Científica (PIBIC/CNPq)",
+        "Programa de Pesquisa Científica (PROBITI/CNPq)",
         "Desenvolvendo produtos de software",
       ],
       descriptions: [
@@ -223,7 +223,7 @@ Beyond software development, I work in scientific research through Scientific In
         "Started Computer Science degree",
         "Technology Instructor",
         "IT Internship — FAPITEC",
-        "Scientific Research Program (PIBIC/CNPq)",
+        "Scientific Research Program (PROBITI/CNPq)",
         "Building software products",
       ],
       descriptions: [

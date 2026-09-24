@@ -13,7 +13,7 @@ O projeto foi construído com foco em performance, experiência do usuário e ar
 Este portfólio foi desenvolvido para centralizar minha trajetória acadêmica e profissional como estudante de Ciência da Computação, destacando:
 
 * Projetos de desenvolvimento de software;
-* Pesquisa científica e Iniciação Científica (PIBIC/CNPq);
+* Pesquisa científica e Iniciação Científica (PROBITI/CNPq);
 * Habilidades técnicas;
 * Tecnologias utilizadas;
 * Experiências acadêmicas;
